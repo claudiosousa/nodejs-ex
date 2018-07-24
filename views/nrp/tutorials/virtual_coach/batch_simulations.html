@@ -1,0 +1,372 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Running Batch Simulations with the Virtual Coach &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Virtual Coach Tutorial" href="index.html" />
+    <link rel="next" title="Multiple robots Tutorial" href="../multiple_robots/index.html" />
+    <link rel="prev" title="Tutorial: Interacting with an Experiment from the Virtual Coach" href="interacting_exp.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/virtual_coach/batch_simulations.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Virtual Coach Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="interacting_exp.html">Tutorial: Interacting with an Experiment from the Virtual Coach</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../multiple_robots/index.html">Multiple robots Tutorial</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-running-batch-simulations-with-the-virtual-coach">
+<h1>Tutorial: Running Batch Simulations with the Virtual Coach<a class="headerlink" href="#tutorial-running-batch-simulations-with-the-virtual-coach" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scope-of-this-tutorial">
+<h2>Scope of this tutorial<a class="headerlink" href="#scope-of-this-tutorial" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial we will go through running an evolutionary experiment in the NRP through the Virtual Coach. Evolutionary experiments are a perfect use case for the Virtual Coach as they require running the same experiment over and over again with different parameters and then assessing the success of each run.
+The experiment we will be going through in this tutorial has been done physically and is described in detail in this paper: Floreano, Dario, and Claudio Mattiussi. &#8220;Evolution of spiking neural controllers for autonomous vision-based robots.&#8221; Evolutionary Robotics. From Intelligent Robotics to Artificial Life (2001): 38-61.</p>
+<p>We will briefly go through the transfer functions and the brain script that make this experiment possible. However, we will not dive into the detials of the implementation. If you want to learn more about implementing transfer functions there&#8217;s a dedicated <a class="reference internal" href="../transfer_function/index.html#transfer-functions"><span>Transfer function advanced Tutorial</span></a>.</p>
+</div>
+<div class="section" id="create-the-basic-setup">
+<h2>Create the basic setup<a class="headerlink" href="#create-the-basic-setup" title="Permalink to this headline">¶</a></h2>
+<p>In this experiment we have a small neural network comprised of 28 spiking neurons interfaced to a robot. Only four of these neurons drive the robot, two controlling the left wheel and two controlling the right wheel. To connect the four neurons to the robot&#8217;s wheels we define a Brain2Motor Transfer Function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hbp_nrp_cle.tf_framework</span> <span class="kn">as</span> <span class="nn">nrp</span>
+<span class="kn">from</span> <span class="nn">hbp_nrp_cle.robotsim.RobotInterface</span> <span class="kn">import</span> <span class="n">Topic</span>
+<span class="kn">import</span> <span class="nn">gazebo_msgs.msg</span>
+
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;left_wheel_forward_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">population_rate</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;left_wheel_back_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">population_rate</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;right_wheel_forward_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">population_rate</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;right_wheel_back_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">population_rate</span><span class="p">)</span>
+
+<span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;ideal_wheel_speed&quot;</span><span class="p">,</span> <span class="n">global_key</span><span class="o">=</span><span class="s2">&quot;ideal_wheel_speed&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="n">nrp</span><span class="o">.</span><span class="n">GLOBAL</span><span class="p">)</span>
+
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">(</span><span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/wheel_speeds&#39;</span><span class="p">,</span> <span class="n">gazebo_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">WheelSpeeds</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">Brain2Motor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ideal_wheel_speed</span><span class="p">,</span> <span class="n">left_wheel_forward_neuron</span><span class="p">,</span> <span class="n">left_wheel_back_neuron</span><span class="p">,</span> <span class="n">right_wheel_forward_neuron</span><span class="p">,</span> <span class="n">right_wheel_back_neuron</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The transfer function which calculates the linear twist of the husky robot based on the</span>
+<span class="sd">voltage of left and right wheel neurons.</span>
+<span class="sd">:param t: the current simulation time</span>
+<span class="sd">:param left_wheel_forward_neuron: the left wheel forward neuron device</span>
+<span class="sd">:param left_wheel_back_neuron: the left wheel back neuron device</span>
+<span class="sd">:param right_wheel_forward_neuron: the right wheel forward neuron device</span>
+<span class="sd">:param right_wheel_back_neuron: the right wheel back neuron device</span>
+<span class="sd">:return: a gazebo_msgs/WheelSpeeds setting the speeds of the left and right pair of wheels of the husky robot for movement.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">left_wheel</span> <span class="o">=</span> <span class="mf">0.002</span><span class="o">*</span><span class="p">(</span><span class="n">left_wheel_forward_neuron</span><span class="o">.</span><span class="n">rate</span> <span class="o">-</span> <span class="n">left_wheel_back_neuron</span><span class="o">.</span><span class="n">rate</span><span class="p">)</span>
+<span class="n">right_wheel</span> <span class="o">=</span> <span class="mf">0.002</span><span class="o">*</span><span class="p">(</span><span class="n">right_wheel_forward_neuron</span><span class="o">.</span><span class="n">rate</span> <span class="o">-</span> <span class="n">right_wheel_back_neuron</span><span class="o">.</span><span class="n">rate</span><span class="p">)</span>
+
+<span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">left_wheel</span><span class="p">,</span> <span class="n">right_wheel</span><span class="p">)</span>
+
+<span class="n">ideal_wheel_speed</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="n">left_wheel</span><span class="p">,</span> <span class="n">right_wheel</span><span class="p">]</span>
+
+<span class="k">return</span> <span class="n">gazebo_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">WheelSpeeds</span><span class="p">(</span><span class="n">left_wheel</span><span class="p">,</span> <span class="n">right_wheel</span><span class="p">,</span> <span class="n">left_wheel</span><span class="p">,</span> <span class="n">right_wheel</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarly, we have 16 neurons that take input from the camera mounted on the robot. To establish this connection, we define a Sensor2Brain Transfer Function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="nd">@nrp.MapRobotSubscriber</span><span class="p">(</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span> <span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/camera&#39;</span><span class="p">,</span> <span class="n">sensor_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Image</span><span class="p">))</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel0&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel1&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel2&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel3&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel4&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel5&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel6&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel7&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel8&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel9&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel10&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel11&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel12&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel13&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel14&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;pixel15&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;left_wheel_speed_error&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;right_wheel_speed_error&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+
+<span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;ideal_wheel_speed&quot;</span><span class="p">,</span> <span class="n">global_key</span><span class="o">=</span><span class="s2">&quot;ideal_wheel_speed&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="n">nrp</span><span class="o">.</span><span class="n">GLOBAL</span><span class="p">)</span>
+<span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;real_wheel_speed&quot;</span><span class="p">,</span> <span class="n">global_key</span><span class="o">=</span><span class="s2">&quot;real_wheel_speed&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="n">scope</span><span class="o">=</span><span class="n">nrp</span><span class="o">.</span><span class="n">GLOBAL</span><span class="p">)</span>
+
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">Sensor2Brain</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">ideal_wheel_speed</span><span class="p">,</span> <span class="n">real_wheel_speed</span><span class="p">,</span> <span class="n">left_wheel_speed_error</span><span class="p">,</span> <span class="n">right_wheel_speed_error</span><span class="p">,</span><span class="n">camera</span><span class="p">,</span> <span class="n">pixel0</span><span class="p">,</span> <span class="n">pixel1</span><span class="p">,</span> <span class="n">pixel2</span><span class="p">,</span> <span class="n">pixel3</span><span class="p">,</span> <span class="n">pixel4</span><span class="p">,</span> <span class="n">pixel5</span><span class="p">,</span> <span class="n">pixel6</span><span class="p">,</span> <span class="n">pixel7</span><span class="p">,</span> <span class="n">pixel8</span><span class="p">,</span> <span class="n">pixel9</span><span class="p">,</span> <span class="n">pixel10</span><span class="p">,</span> <span class="n">pixel11</span><span class="p">,</span> <span class="n">pixel12</span><span class="p">,</span> <span class="n">pixel13</span><span class="p">,</span> <span class="n">pixel14</span><span class="p">,</span> <span class="n">pixel15</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This transfer function uses OpenCV to compute the grayscale values of the camera pixels. Then, it maps these values to the neural network&#39;s first 16 sensory neurons using a Poisson generator.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">neurons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">pixel0</span><span class="p">,</span> <span class="n">pixel1</span><span class="p">,</span> <span class="n">pixel2</span><span class="p">,</span> <span class="n">pixel3</span><span class="p">,</span> <span class="n">pixel4</span><span class="p">,</span> <span class="n">pixel5</span><span class="p">,</span> <span class="n">pixel6</span><span class="p">,</span> <span class="n">pixel7</span><span class="p">,</span> <span class="n">pixel8</span><span class="p">,</span> <span class="n">pixel9</span><span class="p">,</span> <span class="n">pixel10</span><span class="p">,</span> <span class="n">pixel11</span><span class="p">,</span> <span class="n">pixel12</span><span class="p">,</span> <span class="n">pixel13</span><span class="p">,</span> <span class="n">pixel14</span><span class="p">,</span> <span class="n">pixel15</span><span class="p">])</span>
+<span class="n">bridge</span> <span class="o">=</span> <span class="n">CvBridge</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">None</span><span class="p">)):</span>
+
+        <span class="c1"># Get an OpenCV image converted to a 8-bit greyscale image and to a binary black and white image.</span>
+        <span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">im_bw</span><span class="p">)</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">bridge</span><span class="o">.</span><span class="n">imgmsg_to_cv2</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;mono8&quot;</span><span class="p">),</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span> <span class="o">|</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_OTSU</span><span class="p">)</span>
+
+        <span class="c1"># Fold the image to get a 16 values used to set the firing rates. 4 pixels are collapsed into one value with a weighted sum (center pixels have double weights)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">im_bw</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="mf">6.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">im_bw</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">im_bw</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">im_bw</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mf">6.0</span><span class="p">)</span>
+        <span class="n">neurons</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">r</span>
+
+
+<span class="n">iws</span> <span class="o">=</span> <span class="n">ideal_wheel_speed</span><span class="o">.</span><span class="n">value</span>
+<span class="n">rws</span> <span class="o">=</span> <span class="n">real_wheel_speed</span><span class="o">.</span><span class="n">value</span>
+<span class="n">left_wheel_speed_error</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="mf">100.0</span><span class="o">*</span><span class="n">iws</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">rws</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">right_wheel_speed_error</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="mf">100.0</span><span class="o">*</span><span class="n">iws</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">rws</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The connections between these neurons are encoded in a binary genetic string. We will instantiate a random population containing 60 of those binary strings and evolve them for 30 generations. Each genetic string will be tested for 40 seconds, and the fitness function that will govern the evolution will sum the speeds of both wheels in all timesteps. According to this function, the most successful individual will let the robot drive collision free.</p>
+<p>We will store the brain script in a variable as a string, to be able to parameterize it before each run with a new individual from our population pool. The brain script is defined as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">hbp_nrp_cle.brainsim</span> <span class="kn">import</span> <span class="n">simulator</span> <span class="k">as</span> <span class="n">sim</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_brain</span><span class="p">():</span>
+
+    <span class="n">dna</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">29</span><span class="p">)</span>
+
+    <span class="n">SENSORPARAMS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;v_rest&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_m&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_refrac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_syn_E&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_syn_I&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+                    <span class="s1">&#39;v_thresh&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+                    <span class="s1">&#39;v_reset&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+
+    <span class="n">BRAINPARAMS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;v_rest&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_m&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_refrac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_syn_E&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                    <span class="s1">&#39;tau_syn_I&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                    <span class="s1">&#39;v_thresh&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+                    <span class="s1">&#39;v_reset&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
+
+    <span class="n">SYNAPSE_PARAMS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                      <span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">}</span>
+
+    <span class="n">population</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Population</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">IF_curr_alpha</span><span class="p">())</span>
+    <span class="n">population</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">18</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">SENSORPARAMS</span><span class="p">)</span>
+    <span class="n">population</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="mi">28</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">BRAINPARAMS</span><span class="p">)</span>
+
+    <span class="c1"># Connect neurons</span>
+    <span class="n">CIRCUIT</span> <span class="o">=</span> <span class="n">population</span>
+
+    <span class="n">SYN</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">TsodyksMarkramSynapse</span><span class="p">(</span><span class="o">**</span><span class="n">SYNAPSE_PARAMS</span><span class="p">)</span>
+
+    <span class="n">row_counter</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">r_type</span> <span class="o">=</span> <span class="s1">&#39;excitatory&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">19</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="mi">18</span><span class="o">+</span><span class="n">row_counter</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">r_type</span><span class="p">)</span>
+                <span class="n">sim</span><span class="o">.</span><span class="n">Projection</span><span class="p">(</span><span class="n">presynaptic_population</span><span class="o">=</span><span class="n">CIRCUIT</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">],</span> <span class="n">postsynaptic_population</span><span class="o">=</span><span class="n">CIRCUIT</span><span class="p">[</span><span class="mi">18</span><span class="o">+</span><span class="n">row_counter</span><span class="p">:</span><span class="mi">19</span><span class="o">+</span><span class="n">row_counter</span><span class="p">],</span> <span class="n">connector</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">OneToOneConnector</span><span class="p">(),</span> <span class="n">synapse_type</span><span class="o">=</span><span class="n">SYN</span><span class="p">,</span> <span class="n">receptor_type</span><span class="o">=</span><span class="n">r_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">r_type</span> <span class="o">=</span> <span class="s1">&#39;inhibitory&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span><span class="mi">29</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="mi">18</span><span class="o">+</span><span class="n">row_counter</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">r_type</span><span class="p">)</span>
+
+                <span class="n">temp</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+                <span class="n">SYNAPSE_PARAMS_2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="n">temp</span><span class="p">,</span>
+                      <span class="s2">&quot;delay&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">}</span>
+
+                <span class="n">SYN2</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">StaticSynapse</span><span class="p">(</span><span class="o">**</span><span class="n">SYNAPSE_PARAMS_2</span><span class="p">)</span>
+
+                <span class="n">sim</span><span class="o">.</span><span class="n">Projection</span><span class="p">(</span><span class="n">presynaptic_population</span><span class="o">=</span><span class="n">CIRCUIT</span><span class="p">[</span><span class="mi">18</span><span class="o">+</span><span class="n">row_counter</span><span class="p">:</span><span class="mi">19</span><span class="o">+</span><span class="n">row_counter</span><span class="p">],</span> <span class="n">postsynaptic_population</span><span class="o">=</span><span class="n">CIRCUIT</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">],</span> <span class="n">connector</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">OneToOneConnector</span><span class="p">(),</span> <span class="n">synapse_type</span><span class="o">=</span><span class="n">SYN2</span><span class="p">,</span> <span class="n">receptor_type</span><span class="o">=</span><span class="n">r_type</span><span class="p">)</span>
+
+        <span class="n">row_counter</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="n">sim</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="n">population</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;v_rest&#39;</span><span class="p">))</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Circuit description: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">describe</span><span class="p">()))</span>
+
+    <span class="k">return</span> <span class="n">population</span>
+
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">create_brain</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Please note that the above script is stored as a string, and that this line:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">dna</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">29</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is formatted each run with a new individual to define the connections.</p>
+</div>
+<div class="section" id="running-batch-simulations">
+<h2>Running Batch Simulations<a class="headerlink" href="#running-batch-simulations" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned before, we want to evolve the experiment for 30 generations, and that each generation consists of 60 individuals. The entire experiment workflow can be seen in the diagram in <a class="reference internal" href="#experiment-workflow"><span>Fig. 3</span></a>. After we reach 40 seconds of simulation time, we pause the simulation, save the relevant data (the robot positions and wheel speeds in this case) and then move on to test the next individual.</p>
+<p>After we make it through one population, we sort the individuals according to the fitness scores they obtained and apply the evolutionary algorithms to get a new population. The evolutionary approaches done here are one-point cross over, bit mutation and elitism.</p>
+<div class="figure" id="id1">
+<span id="experiment-workflow"></span><img alt="../../../_images/experiment_workflow.png" src="../../../_images/experiment_workflow.png" />
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">The Experiment Workflow</span></p>
+</div>
+<p>The following code snippet is how run the entire experiment from the Virtual Coach using nested loops. This is basically how the workflow shown in <a class="reference internal" href="#experiment-workflow"><span>Fig. 3</span></a> is implemented in code.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">run_experiment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sim</span> <span class="o">=</span> <span class="n">vc</span><span class="o">.</span><span class="n">launch_experiment</span><span class="p">(</span><span class="s1">&#39;floreano&#39;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">register_status_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_status</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generations</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sim_data</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="p">)):</span>
+        <span class="k">print</span> <span class="s2">&quot;generation </span><span class="si">%d</span><span class="s2">, individual </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">genetic_string</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">population</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">edit_brain</span><span class="p">(</span><span class="n">brain</span> <span class="o">%</span> <span class="n">genetic_string</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">add_transfer_function</span><span class="p">(</span><span class="n">display_trial_tf</span> <span class="o">%</span> <span class="s2">&quot;Generation {}, Population {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+        <span class="c1"># run simulation for 40 seconds</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_condition</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;simulationTime&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">40</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_simulation_data</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">plot_individual_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sim_data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait_condition</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;paused&#39;</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;simulationTime&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">fitness_log</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;fitness&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">floreano_experiment</span><span class="o">.</span><span class="n">sim_data</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">top_performers</span> <span class="o">=</span> <span class="n">get_top_performers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">population</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fitness_log</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">population</span> <span class="o">=</span> <span class="n">evolve_new_generation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">top_performers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="interacting_exp.html">Tutorial: Interacting with an Experiment from the Virtual Coach</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../multiple_robots/index.html">Multiple robots Tutorial</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

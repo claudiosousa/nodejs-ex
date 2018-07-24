@@ -1,0 +1,4263 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>BIBI Model Specification &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Specifications" href="index.html" />
+    <link rel="next" title="Device Parameters" href="device_parameters.html" />
+    <link rel="prev" title="Experiment files" href="experiment_files.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/nrp/specifications/bibi_configuration.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="index.html">Specifications</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="experiment_files.html">Experiment files</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="device_parameters.html">Device Parameters</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="bibi-model-specification">
+<h1>BIBI Model Specification<a class="headerlink" href="#bibi-model-specification" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="schema-document-properties">
+<h2>Schema Document Properties<a class="headerlink" href="#schema-document-properties" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Target Namespace:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2014/BIBI">http://schemas.humanbrainproject.eu/SP10/2014/BIBI</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Element Qualifiers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">By default, local element declarations belong to this schema&#8217;s target namespace.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Attribute Qualifiers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">By default, local attribute declarations have no namespace.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="declared-namespaces">
+<h2>Declared Namespaces<a class="headerlink" href="#declared-namespaces" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Prefix</th>
+<th class="head">Namespace</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>(default)</td>
+<td><a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2014/BIBI">http://schemas.humanbrainproject.eu/SP10/2014/BIBI</a></td>
+</tr>
+<tr class="row-odd"><td>xml</td>
+<td><a class="reference external" href="http://www.w3.org/XML/1998/namespace">http://www.w3.org/XML/1998/namespace</a></td>
+</tr>
+<tr class="row-even"><td>xs</td>
+<td><a class="reference external" href="http://www.w3.org/2001/XMLSchema">http://www.w3.org/2001/XMLSchema</a></td>
+</tr>
+<tr class="row-odd"><td>xsd</td>
+<td><a class="reference external" href="http://www.w3.org/2001/XMLSchema">http://www.w3.org/2001/XMLSchema</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="global-declarations">
+<h2>Global Declarations<a class="headerlink" href="#global-declarations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="element-bibi">
+<h3>Element: bibi<a class="headerlink" href="#element-bibi" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">bibi</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">BIBIConfiguration</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="xml-instance-representation">
+<h4>XML Instance Representation<a class="headerlink" href="#xml-instance-representation" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;bibi&gt;
+   &lt;timestep&gt; TimeStep &lt;/timestep&gt; [0..1]
+   &lt;brainModel&gt; BrainModel &lt;/brainModel&gt; [1]
+   &lt;bodyModel&gt; SDFFilename &lt;/bodyModel&gt; [1]
+   &lt;extRobotController&gt; ScriptFilename &lt;/extRobotController&gt; [0..1]
+   &lt;configuration&gt; ConfFile &lt;/configuration&gt; [0..*]
+   &lt;connectors&gt; NeuronConnector &lt;/connectors&gt; [0..*]
+   &lt;synapseDynamics&gt; SynapseDynamics &lt;/synapseDynamics&gt; [0..*]
+   &lt;transferFunction&gt; TransferFunction &lt;/transferFunction&gt; [0..*]
+&lt;/bibi&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="global-definitions">
+<h2>Global Definitions<a class="headerlink" href="#global-definitions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complex-type-add">
+<h3>Complex Type: Add<a class="headerlink" href="#complex-type-add" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Operator (by extension) &lt; Add (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Add</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The sum of all operands</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="properties">
+<h4>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id1">
+<h4>XML Instance Representation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;operand&gt; FlowExpression &lt;/operand&gt; [2..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-alltoallconnector">
+<h3>Complex Type: AllToAllConnector<a class="headerlink" href="#complex-type-alltoallconnector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronConnector &lt; AllToAllConnector (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">AllToAllConnector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This connector type is obsolete.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id2">
+<h4>Properties<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id3">
+<h4>XML Instance Representation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... weights=&quot;double [0..1]&quot; delays=&quot;double [0..1]&quot; name=&quot;string [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-argument">
+<h3>Complex Type: Argument<a class="headerlink" href="#complex-type-argument" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Argument</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A named argument</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id4">
+<h4>Properties<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-value">
+<h5>Element value<a class="headerlink" href="#element-value" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The value passed for this argument</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-name">
+<h5>Attribute name<a class="headerlink" href="#attribute-name" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of this argument</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>XML Instance Representation<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot;&gt;
+   &lt;value&gt; FlowExpression &lt;/value&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-argumentreference">
+<h3>Complex Type: ArgumentReference<a class="headerlink" href="#complex-type-argumentreference" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; ArgumentReference (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ArgumentReference</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A reference to an argument, either a device or a local variable</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id6">
+<h4>Properties<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h5>Attribute name<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of the device or local variable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-property">
+<h5>Attribute property<a class="headerlink" href="#attribute-property" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">property</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">If specified, only a property of the local variable is referenced. Otherwise, the value itself (or the default property of a device) is selected.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>XML Instance Representation<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot; property=&quot;string [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-bibiconfiguration">
+<h3>Complex Type: BIBIConfiguration<a class="headerlink" href="#complex-type-bibiconfiguration" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">BIBIConfiguration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This class represents the root of the BIBI configuration.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id9">
+<h4>Properties<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-timestep">
+<h5>Element timestep<a class="headerlink" href="#element-timestep" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">timestep</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TimeStep</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">If specified, the CLE uses a different timestep than the default timestep of 20ms. The timestep is specified in milliseconds and depicts the time between two successive loops of the CLE in simulation time.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-brainmodel">
+<h5>Element brainModel<a class="headerlink" href="#element-brainmodel" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">brainModel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">BrainModel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The brain model depicts a path to the neural network model.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-bodymodel">
+<h5>Element bodyModel<a class="headerlink" href="#element-bodymodel" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">bodyModel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">SDFFilename</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The path to the robot model that should be used. This can either be a path to an SDF model or a path to a zip file containing all required assets for a robot. This zip file must have a file model.sdf at the root of the archive.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-extrobotcontroller">
+<h5>Element extRobotController<a class="headerlink" href="#element-extrobotcontroller" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">extRobotController</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ScriptFilename</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A path to an external robot controller. If specified, the robot controller is started when the simulation begins and stopped when the simulation is over. Therefore, the path must be a path to a shell script that offers a function start and a function stop.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-configuration">
+<h5>Element configuration<a class="headerlink" href="#element-configuration" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">configuration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ConfFile</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The configuration entries of an experiment depict additional files required for the simulation of experiments using this BIBI configuration.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-connectors">
+<h5>Element connectors<a class="headerlink" href="#element-connectors" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">connectors</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronConnector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A list of connectors. This can be useful when specifying transfer functions</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-synapsedynamics">
+<h5>Element synapseDynamics<a class="headerlink" href="#element-synapsedynamics" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">synapseDynamics</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">SynapseDynamics</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A list of synapse dynamics. Such a synapse dynamic can be referenced later on in neural network devices.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-transferfunction">
+<h5>Element transferFunction<a class="headerlink" href="#element-transferfunction" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">transferFunction</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TransferFunction</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The transfer functions that are used to couple a neural network to robot</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id10">
+<h4>XML Instance Representation<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;timestep&gt; TimeStep &lt;/timestep&gt; [0..1]
+   &lt;brainModel&gt; BrainModel &lt;/brainModel&gt; [1]
+   &lt;bodyModel&gt; SDFFilename &lt;/bodyModel&gt; [1]
+   &lt;extRobotController&gt; ScriptFilename &lt;/extRobotController&gt; [0..1]
+   &lt;configuration&gt; ConfFile &lt;/configuration&gt; [0..*]
+   &lt;connectors&gt; NeuronConnector &lt;/connectors&gt; [0..*]
+   &lt;synapseDynamics&gt; SynapseDynamics &lt;/synapseDynamics&gt; [0..*]
+   &lt;transferFunction&gt; TransferFunction &lt;/transferFunction&gt; [0..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-bibitransferfunction">
+<h3>Complex Type: BIBITransferFunction<a class="headerlink" href="#complex-type-bibitransferfunction" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>TransferFunction &lt; BIBITransferFunction (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>Robot2Neuron (by extension)</li>
+<li>Neuron2Monitor (by restriction)</li>
+<li>Neuron2Robot (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">BIBITransferFunction</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes the abstract base type of Transfer Functions specified entirely in the BIBI model, in XML</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id11">
+<h4>Properties<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-local">
+<h5>Element local<a class="headerlink" href="#element-local" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">local</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Local</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This denotes the local variables of this transfer function.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-device">
+<h5>Element device<a class="headerlink" href="#element-device" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">device</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">DeviceChannel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This denotes device channels, connections of the transfer function to the neural network using exactly one device.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-devicegroup">
+<h5>Element deviceGroup<a class="headerlink" href="#element-devicegroup" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">deviceGroup</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">DeviceGroupChannel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This denotes the device group channels, connections of transfer functions to the neural network using a one-dimensional array of devices.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-topic">
+<h5>Element topic<a class="headerlink" href="#element-topic" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">topic</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TopicChannel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This denotes the connections of the transfer function to robot control channels.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id12">
+<h5>Attribute name<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of the transfer function. This is used to identify the transfer function in order to update or delete it in a running simulation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>XML Instance Representation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot;&gt;
+   &lt;local&gt; Local &lt;/local&gt; [0..*]
+   &lt;device&gt; DeviceChannel &lt;/device&gt; [1]
+   &lt;deviceGroup&gt; DeviceGroupChannel &lt;/deviceGroup&gt; [1]
+   &lt;topic&gt; TopicChannel &lt;/topic&gt; [0..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-brainmodel">
+<h3>Complex Type: BrainModel<a class="headerlink" href="#complex-type-brainmodel" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">BrainModel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A neural network description as used in the CLE</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id14">
+<h4>Properties<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-file">
+<h5>Element file<a class="headerlink" href="#element-file" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">BrainFilename</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A path to the neural network file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-populations">
+<h5>Element populations<a class="headerlink" href="#element-populations" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">populations</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">MultiNeuronSelector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The populations in this field are the explicitly defined populations. Each of this population is defined as a view of an assumed &#8216;circuit&#8217; population.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>XML Instance Representation<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;file&gt; BrainFilename &lt;/file&gt; [1]
+   &lt;populations&gt; MultiNeuronSelector &lt;/populations&gt; [0..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-call">
+<h3>Complex Type: Call<a class="headerlink" href="#complex-type-call" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Call (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Call</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A call to a static method</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id16">
+<h4>Properties<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-argument">
+<h5>Element argument<a class="headerlink" href="#element-argument" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">argument</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Argument</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Named arguments that are passed to the selected method</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-type">
+<h5>Attribute type<a class="headerlink" href="#attribute-type" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A reference to the static method. This is specified as a full path of a Python function, including both the path of the module and the name of the function. For this to work, the function must be static, i.e. a global function on that module or a static class function.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id17">
+<h4>XML Instance Representation<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... type=&quot;string [1]&quot;&gt;
+   &lt;argument&gt; Argument &lt;/argument&gt; [1..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-chainselector">
+<h3>Complex Type: ChainSelector<a class="headerlink" href="#complex-type-chainselector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronGroupSelector &lt; ChainSelector (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ChainSelector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A chain of neurons or neuron groups</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id18">
+<h4>Properties<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-neurons">
+<h5>Element neurons<a class="headerlink" href="#element-neurons" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">neurons</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronSelector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Single neuron connections such as single neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id19">
+<h5>Element connectors<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">connectors</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronGroupSelector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Existing groups of neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id20">
+<h4>XML Instance Representation<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;neurons&gt; NeuronSelector &lt;/neurons&gt; [0..*]
+   &lt;connectors&gt; NeuronGroupSelector &lt;/connectors&gt; [0..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-conffile">
+<h3>Complex Type: ConfFile<a class="headerlink" href="#complex-type-conffile" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ConfFile</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes an additional configuration entry that consists of a file and a purpose.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id21">
+<h4>Properties<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-src">
+<h5>Attribute src<a class="headerlink" href="#attribute-src" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The source of a configuration entry is a path to a file that contains the necessary information. The path is relative to the BIBI model.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id22">
+<h5>Attribute type<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ConfType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The type of a configuration entry denotes the purpose how this entry is used. This is used to decouple the purpose of a configuration entry from the file name.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id23">
+<h4>XML Instance Representation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [1]&quot; type=&quot;ConfType [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-constant">
+<h3>Complex Type: Constant<a class="headerlink" href="#complex-type-constant" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Constant (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Constant</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A constant as a flow element</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id24">
+<h4>Properties<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-value">
+<h5>Attribute value<a class="headerlink" href="#attribute-value" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The value for this constant</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id25">
+<h4>XML Instance Representation<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... value=&quot;double [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-constantstring">
+<h3>Complex Type: ConstantString<a class="headerlink" href="#complex-type-constantstring" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; ConstantString (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ConstantString</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A constant string</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id26">
+<h4>Properties<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id27">
+<h5>Attribute value<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The value of this string constant</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id28">
+<h4>XML Instance Representation<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... value=&quot;string [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-devicechannel">
+<h3>Complex Type: DeviceChannel<a class="headerlink" href="#complex-type-devicechannel" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">DeviceChannel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a connection of a transfer function to a neural network</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id29">
+<h4>Properties<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id30">
+<h5>Element neurons<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">neurons</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronSelector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This specifies the neurons that should be connected to this neural connector device</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-connector">
+<h5>Element connector<a class="headerlink" href="#element-connector" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">connector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronConnector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Additional information on the connection to the neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-connectorref">
+<h5>Element connectorRef<a class="headerlink" href="#element-connectorref" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">connectorRef</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronConnectorRef</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A reference to a reusable connector</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id31">
+<h5>Element synapseDynamics<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">synapseDynamics</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">SynapseDynamics</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Additional information on the dynamics of the connection of this device to the neural network</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-synapsedynamicsref">
+<h5>Element synapseDynamicsRef<a class="headerlink" href="#element-synapsedynamicsref" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">synapseDynamicsRef</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">SynapseDynamicsRef</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A reference to a reusable synapse dynamics</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-target">
+<h5>Element target<a class="headerlink" href="#element-target" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">target</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronTarget</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The target of this connection. This configuration is useful in particular for spike source devices such as Poisson generators. By default, these devices are excitatory but they can be configured to inhibit connected neurons.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-body">
+<h5>Element body<a class="headerlink" href="#element-body" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This element is only meaningful for spike sources. It depicts the value to which the device should be configured.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id32">
+<h5>Attribute name<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of this device channel</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id33">
+<h5>Attribute type<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">DeviceType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The type of the neural network connection specified with this device channel</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id34">
+<h4>XML Instance Representation<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot; type=&quot;DeviceType [1]&quot;&gt;
+   &lt;neurons&gt; NeuronSelector &lt;/neurons&gt; [1]
+   &lt;connector&gt; NeuronConnector &lt;/connector&gt; [1]
+   &lt;connectorRef&gt; NeuronConnectorRef &lt;/connectorRef&gt; [1]
+   &lt;synapseDynamics&gt; SynapseDynamics &lt;/synapseDynamics&gt; [1]
+   &lt;synapseDynamicsRef&gt; SynapseDynamicsRef &lt;/synapseDynamicsRef&gt; [1]
+   &lt;target&gt; NeuronTarget &lt;/target&gt; [0..1]
+   &lt;body&gt; FlowExpression &lt;/body&gt; [0..1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-devicegroupchannel">
+<h3>Complex Type: DeviceGroupChannel<a class="headerlink" href="#complex-type-devicegroupchannel" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">DeviceGroupChannel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a connection of a transfer function to a neural network using an array of devices</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id35">
+<h4>Properties<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id36">
+<h5>Element neurons<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">neurons</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronGroupSelector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This specifies the neurons that should be connected to this neural connector device</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id37">
+<h5>Element connector<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">connector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronConnector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Additional information on the connection to the neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id38">
+<h5>Element connectorRef<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">connectorRef</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronConnectorRef</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A reference to a reusable connector</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id39">
+<h5>Element synapseDynamics<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">synapseDynamics</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">SynapseDynamics</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Additional information on the dynamics of the connection of this device to the neural network</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id40">
+<h5>Element synapseDynamicsRef<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">synapseDynamicsRef</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">SynapseDynamicsRef</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A reference to a reusable synapse dynamics</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id41">
+<h5>Element target<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">target</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronTarget</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The target of this connection. This configuration is useful in particular for spike source devices such as Poisson generators. By default, these devices are excitatory but they can be configured to inhibit connected neurons.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id42">
+<h5>Element body<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This element is only meaningful for spike sources. It depicts the value to which the device should be configured.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id43">
+<h5>Attribute name<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of this device group channel</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id44">
+<h5>Attribute type<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">DeviceType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The type of the neural network connection specified with this device group channel</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id45">
+<h4>XML Instance Representation<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot; type=&quot;DeviceType [1]&quot;&gt;
+   &lt;neurons&gt; NeuronGroupSelector &lt;/neurons&gt; [1]
+   &lt;connector&gt; NeuronConnector &lt;/connector&gt; [1]
+   &lt;connectorRef&gt; NeuronConnectorRef &lt;/connectorRef&gt; [1]
+   &lt;synapseDynamics&gt; SynapseDynamics &lt;/synapseDynamics&gt; [1]
+   &lt;synapseDynamicsRef&gt; SynapseDynamicsRef &lt;/synapseDynamicsRef&gt; [1]
+   &lt;target&gt; NeuronTarget &lt;/target&gt; [0..1]
+   &lt;body&gt; FlowExpression &lt;/body&gt; [0..1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-divide">
+<h3>Complex Type: Divide<a class="headerlink" href="#complex-type-divide" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Operator (by extension) &lt; Divide (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Divide</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The quotient of two operands</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id46">
+<h4>Properties<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-operand">
+<h5>Element operand<a class="headerlink" href="#element-operand" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">operand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[2..2]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The arguments of the operator expression</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id47">
+<h4>XML Instance Representation<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;operand&gt; FlowExpression &lt;/operand&gt; [2..2]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-fixednumberpreconnector">
+<h3>Complex Type: FixedNumberPreConnector<a class="headerlink" href="#complex-type-fixednumberpreconnector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronConnector &lt; FixedNumberPreConnector (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">FixedNumberPreConnector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This connector type is obsolete.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id48">
+<h4>Properties<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-count">
+<h5>Attribute count<a class="headerlink" href="#attribute-count" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">count</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">positiveInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id49">
+<h4>XML Instance Representation<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... weights=&quot;double [0..1]&quot; delays=&quot;double [0..1]&quot; name=&quot;string [0..1]&quot; count=&quot;positiveInteger [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-flowexpression">
+<h3>Complex Type: FlowExpression<a class="headerlink" href="#complex-type-flowexpression" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>Scale (by extension)</li>
+<li>Call (by extension)</li>
+<li>Operator (by extension)</li>
+<li>Add (by extension)</li>
+<li>Subtract (by restriction)</li>
+<li>Multiply (by extension)</li>
+<li>Divide (by restriction)</li>
+<li>Min (by extension)</li>
+<li>Max (by extension)</li>
+<li>SimulationStep (by extension)</li>
+<li>ArgumentReference (by extension)</li>
+<li>Constant (by extension)</li>
+<li>ConstantString (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The abstract base class for an information flow expression. In the scope of the Transfer functions, an information flow is an expression without any control flow.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id50">
+<h4>Properties<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id51">
+<h4>XML Instance Representation<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;.../&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-index">
+<h3>Complex Type: Index<a class="headerlink" href="#complex-type-index" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelector &lt; Index (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">Selection of exactly one neuron using an index of a base population</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id52">
+<h4>Properties<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-index">
+<h5>Attribute index<a class="headerlink" href="#attribute-index" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">nonNegativeInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The index of the selected neuron within its population</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id53">
+<h4>XML Instance Representation<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... population=&quot;string [1]&quot; index=&quot;nonNegativeInteger [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-indextemplate">
+<h3>Complex Type: IndexTemplate<a class="headerlink" href="#complex-type-indextemplate" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelectorTemplate &lt; IndexTemplate (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">IndexTemplate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A template for an index-based neuron selection</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id54">
+<h4>Properties<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id55">
+<h5>Attribute index<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TemplatePattern</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The template for the index to access the neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id56">
+<h4>XML Instance Representation<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... index=&quot;TemplatePattern [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-list">
+<h3>Complex Type: List<a class="headerlink" href="#complex-type-list" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelector &lt; MultiNeuronSelector (by extension) &lt; List (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">List</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">Selection of a list of neurons using their indices</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id57">
+<h4>Properties<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-element">
+<h5>Element element<a class="headerlink" href="#element-element" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">nonNegativeInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The indices of selected neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id58">
+<h4>XML Instance Representation<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... population=&quot;string [1]&quot;&gt;
+   &lt;element&gt; nonNegativeInteger &lt;/element&gt; [1..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-listtemplate">
+<h3>Complex Type: ListTemplate<a class="headerlink" href="#complex-type-listtemplate" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelectorTemplate &lt; ListTemplate (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ListTemplate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A template for a list-based neuron selection</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id59">
+<h4>Properties<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id60">
+<h5>Element element<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TemplatePattern</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Templates for the indices of selected neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id61">
+<h4>XML Instance Representation<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;element&gt; TemplatePattern &lt;/element&gt; [1..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-local">
+<h3>Complex Type: Local<a class="headerlink" href="#complex-type-local" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Local</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A local variable</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id62">
+<h4>Properties<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id63">
+<h5>Element body<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The initial value for this local variable</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id64">
+<h5>Attribute name<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of the local variable</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id65">
+<h4>XML Instance Representation<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot;&gt;
+   &lt;body&gt; FlowExpression &lt;/body&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-mapselector">
+<h3>Complex Type: MapSelector<a class="headerlink" href="#complex-type-mapselector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronGroupSelector &lt; MapSelector (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">MapSelector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">An indexed mapping of neurons to neuron groups. As index, either a number or a population may be used. In the latter case, the size of the given population is used as count.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id66">
+<h4>Properties<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-count">
+<h5>Element count<a class="headerlink" href="#element-count" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">count</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">positiveInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The number of neural network connections contained in this indexed mapping</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-source">
+<h5>Element source<a class="headerlink" href="#element-source" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">source</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">MultiNeuronSelector</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The source population. If possibility is used, the indexed group consists of one neuron selection per neuron in the source group</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-pattern">
+<h5>Element pattern<a class="headerlink" href="#element-pattern" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">pattern</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">NeuronSelectorTemplate</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The pattern that shall be used to select neurons</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id67">
+<h4>XML Instance Representation<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;count&gt; positiveInteger &lt;/count&gt; [1]
+   &lt;source&gt; MultiNeuronSelector &lt;/source&gt; [1]
+   &lt;pattern&gt; NeuronSelectorTemplate &lt;/pattern&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-max">
+<h3>Complex Type: Max<a class="headerlink" href="#complex-type-max" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Operator (by extension) &lt; Max (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Max</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The maximum of the provided values</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id68">
+<h4>Properties<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id69">
+<h4>XML Instance Representation<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;operand&gt; FlowExpression &lt;/operand&gt; [2..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-min">
+<h3>Complex Type: Min<a class="headerlink" href="#complex-type-min" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Operator (by extension) &lt; Min (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Min</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The minimum of the provided values</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id70">
+<h4>Properties<a class="headerlink" href="#id70" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id71">
+<h4>XML Instance Representation<a class="headerlink" href="#id71" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;operand&gt; FlowExpression &lt;/operand&gt; [2..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-multineuronselector">
+<h3>Complex Type: MultiNeuronSelector<a class="headerlink" href="#complex-type-multineuronselector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelector &lt; MultiNeuronSelector (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>Range (by extension)</li>
+<li>List (by extension)</li>
+<li>Population (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">MultiNeuronSelector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The abstract base class of selections of multiple neurons</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id72">
+<h4>Properties<a class="headerlink" href="#id72" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id73">
+<h4>XML Instance Representation<a class="headerlink" href="#id73" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... population=&quot;string [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-multiply">
+<h3>Complex Type: Multiply<a class="headerlink" href="#complex-type-multiply" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Operator (by extension) &lt; Multiply (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Multiply</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The product of all operands</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id74">
+<h4>Properties<a class="headerlink" href="#id74" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id75">
+<h4>XML Instance Representation<a class="headerlink" href="#id75" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;operand&gt; FlowExpression &lt;/operand&gt; [2..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-neuron2monitor">
+<h3>Complex Type: Neuron2Monitor<a class="headerlink" href="#complex-type-neuron2monitor" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>TransferFunction &lt; BIBITransferFunction (by extension) &lt; Neuron2Monitor (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Neuron2Monitor</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A NeuronMonitor is a special class of transfer functions that monitors neural network populations. Connections to robot control topics or device groups are not allowed.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id76">
+<h4>Properties<a class="headerlink" href="#id76" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id77">
+<h5>Element local<a class="headerlink" href="#id77" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">local</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Local</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id78">
+<h5>Element device<a class="headerlink" href="#id78" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">device</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">DeviceChannel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id79">
+<h5>Attribute name<a class="headerlink" href="#id79" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id80">
+<h4>XML Instance Representation<a class="headerlink" href="#id80" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot;&gt;
+   &lt;local&gt; Local &lt;/local&gt; [0..*]
+   &lt;device&gt; DeviceChannel &lt;/device&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-neuron2robot">
+<h3>Complex Type: Neuron2Robot<a class="headerlink" href="#complex-type-neuron2robot" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>TransferFunction &lt; BIBITransferFunction (by extension) &lt; Neuron2Robot (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Neuron2Robot</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A Neuron2Robot transfer function is a transfer function whose primary purpose is to extract information from the neural network and use this information to control the robot using robot control messages</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id81">
+<h4>Properties<a class="headerlink" href="#id81" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-returnvalue">
+<h5>Element returnValue<a class="headerlink" href="#element-returnvalue" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">returnValue</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TopicChannel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The return value topic channel of a Neuron2Robot transfer function is the channel to which control messages the return value of the Python function are sent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id82">
+<h4>XML Instance Representation<a class="headerlink" href="#id82" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot;&gt;
+   &lt;local&gt; Local &lt;/local&gt; [0..*]
+   &lt;device&gt; DeviceChannel &lt;/device&gt; [1]
+   &lt;deviceGroup&gt; DeviceGroupChannel &lt;/deviceGroup&gt; [1]
+   &lt;topic&gt; TopicChannel &lt;/topic&gt; [0..*]
+   &lt;returnValue&gt; TopicChannel &lt;/returnValue&gt; [0..1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-neuronconnector">
+<h3>Complex Type: NeuronConnector<a class="headerlink" href="#complex-type-neuronconnector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>OneToOneConnector (by extension)</li>
+<li>AllToAllConnector (by extension)</li>
+<li>FixedNumberPreConnector (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">NeuronConnector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a connector to other populations</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id83">
+<h4>Properties<a class="headerlink" href="#id83" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-weights">
+<h5>Attribute weights<a class="headerlink" href="#attribute-weights" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">weights</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The weights of the connector denote the connections between the source neuron and the target neurons. If no weight is specified, the default weight of the neuron connection device is used.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-delays">
+<h5>Attribute delays<a class="headerlink" href="#attribute-delays" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">delays</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The delays of the connector denote the delays of spike deliveries. If no delays are specified, the default delays of the neuron connection device is used.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id84">
+<h5>Attribute name<a class="headerlink" href="#id84" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default Value:</th><td class="field-body">default</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The name of the connector for later reference.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id85">
+<h4>XML Instance Representation<a class="headerlink" href="#id85" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... weights=&quot;double [0..1]&quot; delays=&quot;double [0..1]&quot; name=&quot;string [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-neuronconnectorref">
+<h3>Complex Type: NeuronConnectorRef<a class="headerlink" href="#complex-type-neuronconnectorref" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>anyType &lt; NeuronConnectorRef (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">NeuronConnectorRef</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A reference to an elsewhere defined neural connector</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id86">
+<h4>Properties<a class="headerlink" href="#id86" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-ref">
+<h5>Attribute ref<a class="headerlink" href="#attribute-ref" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ref</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of the referenced connector</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id87">
+<h4>XML Instance Representation<a class="headerlink" href="#id87" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... ref=&quot;string [1]&quot;&gt; &lt;!-- &#39;anyType&#39; super type was not found in this schema. Some elements and attributes may be missing. --&gt;
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-neurongroupselector">
+<h3>Complex Type: NeuronGroupSelector<a class="headerlink" href="#complex-type-neurongroupselector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>ChainSelector (by extension)</li>
+<li>MapSelector (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">NeuronGroupSelector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes an abstract group of neurons</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id88">
+<h4>Properties<a class="headerlink" href="#id88" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id89">
+<h4>XML Instance Representation<a class="headerlink" href="#id89" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;.../&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-neuronselector">
+<h3>Complex Type: NeuronSelector<a class="headerlink" href="#complex-type-neuronselector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>Index (by extension)</li>
+<li>MultiNeuronSelector (by extension)</li>
+<li>Range (by extension)</li>
+<li>List (by extension)</li>
+<li>Population (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">NeuronSelector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The abstract base class of neuron selectors</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id90">
+<h4>Properties<a class="headerlink" href="#id90" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-population">
+<h5>Attribute population<a class="headerlink" href="#attribute-population" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">population</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The population this neuron selector refers to</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id91">
+<h4>XML Instance Representation<a class="headerlink" href="#id91" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... population=&quot;string [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-neuronselectortemplate">
+<h3>Complex Type: NeuronSelectorTemplate<a class="headerlink" href="#complex-type-neuronselectortemplate" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>IndexTemplate (by extension)</li>
+<li>RangeTemplate (by extension)</li>
+<li>ListTemplate (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">NeuronSelectorTemplate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A template for neuron selectors</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id92">
+<h4>Properties<a class="headerlink" href="#id92" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id93">
+<h4>XML Instance Representation<a class="headerlink" href="#id93" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;.../&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-onetooneconnector">
+<h3>Complex Type: OneToOneConnector<a class="headerlink" href="#complex-type-onetooneconnector" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronConnector &lt; OneToOneConnector (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">OneToOneConnector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This connector type is obsolete.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id94">
+<h4>Properties<a class="headerlink" href="#id94" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id95">
+<h4>XML Instance Representation<a class="headerlink" href="#id95" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... weights=&quot;double [0..1]&quot; delays=&quot;double [0..1]&quot; name=&quot;string [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-operator">
+<h3>Complex Type: Operator<a class="headerlink" href="#complex-type-operator" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Operator (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>Add (by extension)</li>
+<li>Subtract (by restriction)</li>
+<li>Multiply (by extension)</li>
+<li>Divide (by restriction)</li>
+<li>Min (by extension)</li>
+<li>Max (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Operator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The abstract base class for an operator call based on a flow expression</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id96">
+<h4>Properties<a class="headerlink" href="#id96" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id97">
+<h5>Element operand<a class="headerlink" href="#id97" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">operand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[2..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The arguments of the operator expression</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id98">
+<h4>XML Instance Representation<a class="headerlink" href="#id98" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;operand&gt; FlowExpression &lt;/operand&gt; [2..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-population">
+<h3>Complex Type: Population<a class="headerlink" href="#complex-type-population" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelector &lt; MultiNeuronSelector (by extension) &lt; Population (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Population</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">Selection of an entire population of neurons</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id99">
+<h4>Properties<a class="headerlink" href="#id99" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id100">
+<h5>Attribute count<a class="headerlink" href="#id100" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">count</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">positiveInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The size of the selected population. This is necessary for validation purposes where the neural network is not available.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id101">
+<h4>XML Instance Representation<a class="headerlink" href="#id101" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... population=&quot;string [1]&quot; count=&quot;positiveInteger [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-pythontransferfunction">
+<h3>Complex Type: PythonTransferFunction<a class="headerlink" href="#complex-type-pythontransferfunction" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>TransferFunction &lt; PythonTransferFunction (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">PythonTransferFunction</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a transfer function entirely specified in the Python DSL PyTF.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id102">
+<h4>Properties<a class="headerlink" href="#id102" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id103">
+<h5>Attribute src<a class="headerlink" href="#id103" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">PythonFilename</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The &#8216;src&#8217; attribute denotes the path of a python file that contains the entire transfer function. If this attribute is present, the actual contents of the transfer function element is ignored and only the contents of the specified Python file are taken into account.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id104">
+<h4>XML Instance Representation<a class="headerlink" href="#id104" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;PythonFilename [0..1]&quot;&gt; &lt;!-- Mixed content --&gt;Allow any elements from a namespace other than this schema&#39;s namespace (skip validation). [0..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-range">
+<h3>Complex Type: Range<a class="headerlink" href="#complex-type-range" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelector &lt; MultiNeuronSelector (by extension) &lt; Range (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Range</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">Selection of a range of neurons from an existing population</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id105">
+<h4>Properties<a class="headerlink" href="#id105" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-from">
+<h5>Attribute from<a class="headerlink" href="#attribute-from" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">nonNegativeInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The starting index from which neurons are selected</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-to">
+<h5>Attribute to<a class="headerlink" href="#attribute-to" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">to</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">nonNegativeInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The stop index to which neurons are selected</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-step">
+<h5>Attribute step<a class="headerlink" href="#attribute-step" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">step</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">positiveInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The step of the selection</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id106">
+<h4>XML Instance Representation<a class="headerlink" href="#id106" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... population=&quot;string [1]&quot; from=&quot;nonNegativeInteger [1]&quot; to=&quot;nonNegativeInteger [1]&quot; step=&quot;positiveInteger [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-rangetemplate">
+<h3>Complex Type: RangeTemplate<a class="headerlink" href="#complex-type-rangetemplate" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>NeuronSelectorTemplate &lt; RangeTemplate (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">RangeTemplate</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A template for the range-based neuron selection</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id107">
+<h4>Properties<a class="headerlink" href="#id107" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id108">
+<h5>Attribute from<a class="headerlink" href="#id108" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TemplatePattern</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A template for the start index of the selected range</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id109">
+<h5>Attribute to<a class="headerlink" href="#id109" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">to</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TemplatePattern</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A template for the end index of the selected range</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id110">
+<h5>Attribute step<a class="headerlink" href="#id110" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">step</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">TemplatePattern</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A template for the step of the selected range</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id111">
+<h4>XML Instance Representation<a class="headerlink" href="#id111" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... from=&quot;TemplatePattern [1]&quot; to=&quot;TemplatePattern [1]&quot; step=&quot;TemplatePattern [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-robot2neuron">
+<h3>Complex Type: Robot2Neuron<a class="headerlink" href="#complex-type-robot2neuron" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>TransferFunction &lt; BIBITransferFunction (by extension) &lt; Robot2Neuron (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Robot2Neuron</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A Robot2Neuron transfer function is a transfer function whose primary purpose is to translate information coming from robot sensors, transform it and push them into neural networks.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id112">
+<h4>Properties<a class="headerlink" href="#id112" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id113">
+<h4>XML Instance Representation<a class="headerlink" href="#id113" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot;&gt;
+   &lt;local&gt; Local &lt;/local&gt; [0..*]
+   &lt;device&gt; DeviceChannel &lt;/device&gt; [1]
+   &lt;deviceGroup&gt; DeviceGroupChannel &lt;/deviceGroup&gt; [1]
+   &lt;topic&gt; TopicChannel &lt;/topic&gt; [0..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-scale">
+<h3>Complex Type: Scale<a class="headerlink" href="#complex-type-scale" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Scale (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Scale</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The scaling of an element by a constant factor</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id114">
+<h4>Properties<a class="headerlink" href="#id114" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-inner">
+<h5>Element inner<a class="headerlink" href="#element-inner" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">inner</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The inner flow expression</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-factor">
+<h5>Attribute factor<a class="headerlink" href="#attribute-factor" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">factor</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The factor by which the inner expression should be scaled</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id115">
+<h4>XML Instance Representation<a class="headerlink" href="#id115" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... factor=&quot;double [1]&quot;&gt;
+   &lt;inner&gt; FlowExpression &lt;/inner&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-simulationstep">
+<h3>Complex Type: SimulationStep<a class="headerlink" href="#complex-type-simulationstep" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; SimulationStep (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">SimulationStep</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A reference to the simulation step</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id116">
+<h4>Properties<a class="headerlink" href="#id116" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id117">
+<h4>XML Instance Representation<a class="headerlink" href="#id117" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;.../&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-subtract">
+<h3>Complex Type: Subtract<a class="headerlink" href="#complex-type-subtract" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>FlowExpression &lt; Operator (by extension) &lt; Subtract (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Subtract</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The difference between two operands</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id118">
+<h4>Properties<a class="headerlink" href="#id118" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id119">
+<h5>Element operand<a class="headerlink" href="#id119" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">operand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[2..2]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The arguments of the operator expression</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id120">
+<h4>XML Instance Representation<a class="headerlink" href="#id120" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;operand&gt; FlowExpression &lt;/operand&gt; [2..2]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-synapsedynamics">
+<h3>Complex Type: SynapseDynamics<a class="headerlink" href="#complex-type-synapsedynamics" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>TsodyksMarkramMechanism (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">SynapseDynamics</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a reusable synapse dynamics configuration</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id121">
+<h4>Properties<a class="headerlink" href="#id121" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id122">
+<h5>Attribute name<a class="headerlink" href="#id122" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default Value:</th><td class="field-body">default</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The name of the synapse dynamics configuration</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id123">
+<h4>XML Instance Representation<a class="headerlink" href="#id123" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-synapsedynamicsref">
+<h3>Complex Type: SynapseDynamicsRef<a class="headerlink" href="#complex-type-synapsedynamicsref" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>anyType &lt; SynapseDynamicsRef (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">SynapseDynamicsRef</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type specifies a reference to a synapse dynamics configuration</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id124">
+<h4>Properties<a class="headerlink" href="#id124" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id125">
+<h5>Attribute ref<a class="headerlink" href="#id125" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ref</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of the synapse dynamics configuration</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id126">
+<h4>XML Instance Representation<a class="headerlink" href="#id126" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... ref=&quot;string [1]&quot;&gt; &lt;!-- &#39;anyType&#39; super type was not found in this schema. Some elements and attributes may be missing. --&gt;
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-topicchannel">
+<h3>Complex Type: TopicChannel<a class="headerlink" href="#complex-type-topicchannel" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">TopicChannel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A connection of a transfer function to a robot control message topic</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id127">
+<h4>Properties<a class="headerlink" href="#id127" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id128">
+<h5>Element body<a class="headerlink" href="#id128" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">body</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">FlowExpression</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The value that should be sent to the robot control topic. If this element is present, then the channel is published to. Otherwise, the channel subscribes to the selected topic.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id129">
+<h5>Attribute name<a class="headerlink" href="#id129" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The name of the robot topic channel</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-topic">
+<h5>Attribute topic<a class="headerlink" href="#attribute-topic" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">topic</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">RobotTopicAddress</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The actual topic address, for example &#8216;/husky/cmd_vel&#8217;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id130">
+<h5>Attribute type<a class="headerlink" href="#id130" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The type of the topic</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id131">
+<h4>XML Instance Representation<a class="headerlink" href="#id131" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [1]&quot; topic=&quot;RobotTopicAddress [1]&quot; type=&quot;string [1]&quot;&gt;
+   &lt;body&gt; FlowExpression &lt;/body&gt; [0..1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-transferfunction">
+<h3>Complex Type: TransferFunction<a class="headerlink" href="#complex-type-transferfunction" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>PythonTransferFunction (by extension)</li>
+<li>BIBITransferFunction (by extension)</li>
+<li>Robot2Neuron (by extension)</li>
+<li>Neuron2Monitor (by restriction)</li>
+<li>Neuron2Robot (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">TransferFunction</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This is the abstract type for a transfer function specification. A transfer function may be specified either in XML or in Python. These specification options are reflected in subclasses of the abstract transfer function type.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id132">
+<h4>Properties<a class="headerlink" href="#id132" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id133">
+<h4>XML Instance Representation<a class="headerlink" href="#id133" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;.../&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-tsodyksmarkrammechanism">
+<h3>Complex Type: TsodyksMarkramMechanism<a class="headerlink" href="#complex-type-tsodyksmarkrammechanism" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>SynapseDynamics &lt; TsodyksMarkramMechanism (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">TsodyksMarkramMechanism</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A synapse dynamics implementation based on the Tsodyks-Markram mechanism</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id134">
+<h4>Properties<a class="headerlink" href="#id134" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-u">
+<h5>Attribute u<a class="headerlink" href="#attribute-u" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">u</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-tau-rec">
+<h5>Attribute tau_rec<a class="headerlink" href="#attribute-tau-rec" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">tau_rec</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-tau-facil">
+<h5>Attribute tau_facil<a class="headerlink" href="#attribute-tau-facil" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">tau_facil</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id135">
+<h4>XML Instance Representation<a class="headerlink" href="#id135" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... name=&quot;string [0..1]&quot; u=&quot;double [1]&quot; tau_rec=&quot;double [1]&quot; tau_facil=&quot;double [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-type-brainfilename">
+<h3>Simple Type: BrainFilename<a class="headerlink" href="#simple-type-brainfilename" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">BrainFilename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Union of following types: H5FilenamePythonFilename</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This denotes the supported file types for neural network models. The current version only supports Python or H5 files for neural networks.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-conftype">
+<h3>Simple Type: ConfType<a class="headerlink" href="#simple-type-conftype" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ConfType</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Union of following types: ConfTypeEnumerationstring</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a configuration type which can be a standard configuration type or a custom type. The latter is just any string.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-conftypeenumeration">
+<h3>Simple Type: ConfTypeEnumeration<a class="headerlink" href="#simple-type-conftypeenumeration" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; ConfTypeEnumeration (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ConfTypeEnumeration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringvalue comes from list: {&#8216;retina&#8217;|&#8217;brainvisualizer&#8217;}</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This enumeration lists the standard configuration types used in the NRP.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>retina</li>
+<li>brainvisualizer</li>
+</ul>
+</div>
+</div>
+<div class="section" id="simple-type-devicetype">
+<h3>Simple Type: DeviceType<a class="headerlink" href="#simple-type-devicetype" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; DeviceType (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">DeviceType</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringvalue comes from list: {&#8216;ACSource&#8217;|&#8217;DCSource&#8217;|&#8217;FixedFrequency&#8217;|&#8217;LeakyIntegratorAlpha&#8217;|&#8217;LeakyIntegratorExp&#8217;|&#8217;NCSource&#8217;|&#8217;Poisson&#8217;|&#8217;SpikeRecorder&#8217;|&#8217;PopulationRate&#8217;}</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The device types supported by the CLE</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id136">
+<h4>Members<a class="headerlink" href="#id136" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>ACSource: The current generators for direct current, alternating current or noisy current do not generate spikes but inject currents of the specified type into all of the connected neurons. These devices receive the amplitude of the generated current as inputs. The ACSource injects alternating currents.</li>
+<li>DCSource: The DCSource type is similar to the ACSource but injects directed currents.</li>
+<li>FixedFrequency: A fixed frequency generator deterministically generates spikes at a given frequency. Here, the frequency is set as a parameter and can be adjusted to sensory inputs. Unlike the other spike generators, this device type is not directly implemented in neuronal simulators but can be implemented by connecting a current generator with an integrate-and-fire neuron.</li>
+<li>LeakyIntegratorAlpha: The concept of leaky integrators is to simply integrate spikes coming from a neuron under observation and add a leak term to it. The rationale behind this is that in spiking neuronal networks, the membrane potential is highly fragile. Shortly after a spike has been issued, the membrane potential is reset and therefore, it has a high importance whether any measurement is taken before or after a neuron spikes. Therefore, we augment the neuronal network with an additional leaky integrate-and-fire neuron with an infinite threshold potential (so that it never spikes) and measure the membrane potential of this neuron. The result is much less fragile and therefore appropriate to be used for robot control signals. This version of leaky integrators has an alpha-shaped post-synaptic current.</li>
+<li>LeakyIntegratorExp: This device type is similar to LeakyIntegratorAlpha but has an exponentially shaped post-synaptic current.</li>
+<li>NCSource: The noisy current generator is rather a tool to test whether the neuronal network currently simulated is robust with regard to noise rather than being a good choice to encode sensory inputs.</li>
+<li>Poisson: A Poisson generator issues spikes according to a Poisson distribution. Here, the inverse of the lambda parameter can be set in accordance to sensory inputs. This inverse reflects the rate in which spikes are generated by this device.</li>
+<li>SpikeRecorder: The simplest thing a spike sink can do is to simply record all spikes issued to a neuron under observation. However, this has two major drawbacks. At first, the communication overhead is increased since all spikes are transmitted between the neuronal simulation and the transfer function but more importantly the transfer function has to make sense of this series of spikes. This allows great flexibility as this approach is extensible, but it is not suited for general use.</li>
+<li>PopulationRate: Another very common pattern is to simply take the average incoming spike rate of a neuron or a range of neurons. This is again relatively stable and can be used for translation into robot control signals.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="simple-type-h5filename">
+<h3>Simple Type: H5Filename<a class="headerlink" href="#simple-type-h5filename" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; H5Filename (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">H5Filename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringpattern = [a-zA-Z0-9._/]*.h5</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a path to an H5 file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-neurontarget">
+<h3>Simple Type: NeuronTarget<a class="headerlink" href="#simple-type-neurontarget" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; NeuronTarget (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">NeuronTarget</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringvalue comes from list: {&#8216;Inhibitory&#8217;|&#8217;Excitatory&#8217;}</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The target of a neural connection</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id137">
+<h4>Members<a class="headerlink" href="#id137" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Inhibitory: Inhibitory means that the artificial synapse inhibits the target neuron, i.e. lowers its membrane potential.</li>
+<li>Excitatory: Excitatory means that the artificial synapse excites the target neuron, i.e. the membrane potential raises</li>
+</ul>
+</div>
+</div>
+<div class="section" id="simple-type-pythonfilename">
+<h3>Simple Type: PythonFilename<a class="headerlink" href="#simple-type-pythonfilename" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; PythonFilename (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">PythonFilename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringpattern = [a-zA-Z0-9._/]*.py</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a path to a Python file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-robottopicaddress">
+<h3>Simple Type: RobotTopicAddress<a class="headerlink" href="#simple-type-robottopicaddress" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; RobotTopicAddress (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">RobotTopicAddress</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringpattern = (/[a-zA-Z0-9_-]+)+(/)?</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a valid address of a robot control topic</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-scriptfilename">
+<h3>Simple Type: ScriptFilename<a class="headerlink" href="#simple-type-scriptfilename" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; ScriptFilename (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ScriptFilename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringpattern = [a-zA-Z0-9._/]*.sh</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a path to a script file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-sdffilename">
+<h3>Simple Type: SDFFilename<a class="headerlink" href="#simple-type-sdffilename" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; SDFFilename (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">SDFFilename</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringpattern = [a-zA-Z0-9._/]*.(sdf|zip)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a path to an SDF (or Zip) file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-templatepattern">
+<h3>Simple Type: TemplatePattern<a class="headerlink" href="#simple-type-templatepattern" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; TemplatePattern (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">TemplatePattern</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringpattern = ((s*)*(i|d+)(s*(+|*)s*((s*)*(i|d+)s*|))*</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">A regular expression denoting simple arithmetic index computations based on an index called i</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-timestep">
+<h3>Simple Type: TimeStep<a class="headerlink" href="#simple-type-timestep" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>positiveInteger &lt; TimeStep (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">TimeStep</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: positiveIntegervalue &lt;= 1000</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The timestep type of the CLE. This is a positive number in milliseconds. The maximum allowed value is 1000.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="experiment_files.html">Experiment files</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="device_parameters.html">Device Parameters</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,292 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Writing an Experiment Configuration &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Experiment configuration advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Writing a state machine for an experiment" href="state_machines.html" />
+    <link rel="prev" title="Experiment configuration advanced Tutorial" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/experiment/ex_configuration.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Experiment configuration advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">Experiment configuration advanced Tutorial</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="state_machines.html">Tutorial: Writing a state machine for an experiment</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-writing-an-experiment-configuration">
+<h1>Tutorial: Writing an Experiment Configuration<a class="headerlink" href="#tutorial-writing-an-experiment-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="file-format">
+<h2>File format<a class="headerlink" href="#file-format" title="Permalink to this headline">¶</a></h2>
+<p>The Experiment Configuration (ExD Configuration) is shown in <a class="reference internal" href="#exd-config"><span>Fig. 5</span></a>. The metamodel of the experiment
+configuration is available as an XML Schema document. Experiment Configurations models have the file extension <strong>.exc</strong>.</p>
+<div class="figure align-center" id="id1">
+<span id="exd-config"></span><img alt="../../../_images/exd_config.png" src="../../../_images/exd_config.png" />
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">The Experiment configuration at a glance</span></p>
+</div>
+<p>An experiment configuration consists of an <strong>ExD</strong> root element. This element contains the
+information  on which environment model is used, where the robot is placed in the environment
+and how it is connected to a neural network. In addition, the configuration allows to specify an initial
+camera position and state machines to control or evaluate the experiment.</p>
+</div>
+<div class="section" id="experiment-file-structure">
+<h2>Experiment File Structure<a class="headerlink" href="#experiment-file-structure" title="Permalink to this headline">¶</a></h2>
+<p>An experiment is a subdirectory in $HBP/Experiments and contains the following files, assuming the experiment is called &#8220;MyExperiment&#8221; :</p>
+<ul class="simple">
+<li>MyExperiment.exc : called the &#8220;Experiment Configuration file&#8221;, it holds high level information such as name, description, timeout, environment model, ...</li>
+<li>MyExperiment.png : the experiment thumbnail image. This image is displayed on the web cockpit client on the experiment list</li>
+<li>MyExperiment.3ds : graphical settings. This file stores web cockpit rendering settings, which are generally edited within the user interface. You can though also edit it manually</li>
+<li>MyExperiment.bibi : the &#8220;BIBI&#8221; file. This file references the brain model to use, the robot model, and definitions of transfer functions</li>
+<li>MyExperiment.exd : experiment design file. It defines state machines in python to automate your experiment life</li>
+</ul>
+<p>These reference models from robot, environment and brain libraries. Apart from the PNG file, which has to be named after the EXC file, all others reference each other and can be named freely.</p>
+<p>Libraries are:</p>
+<ul class="simple">
+<li>Robot library in $HBP/Models/robots. Robot files are Gazebo SDF (.sdf) files.</li>
+<li>Environment library in $HBP/Models/environments Environment files are Gazebo SDF (.sdf) files.</li>
+<li>Brain library in $HBP/Models/brains. Brain files are PyNN python (.py) files.</li>
+</ul>
+<p>Fig. <a class="reference internal" href="#experiment-file-formats"><span>Fig. 6</span></a> shows how the file formats work together.</p>
+<div class="figure align-center" id="id2">
+<span id="experiment-file-formats"></span><img alt="../../../_images/experiment_file_formats.png" src="../../../_images/experiment_file_formats.png" />
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">The File formats describing an experiments and how they are linked together</span></p>
+</div>
+</div>
+<div class="section" id="the-exd-configuration-for-the-braitenberg-vehicle-experiment-running-with-the-husky-in-the-virtual-room">
+<h2>The ExD Configuration for the Braitenberg vehicle experiment running with the Husky in the virtual room<a class="headerlink" href="#the-exd-configuration-for-the-braitenberg-vehicle-experiment-running-with-the-husky-in-the-virtual-room" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial shows how to create an experiment configuration to run the Braitenberg Demo with the Husky robot in the virtual
+room with some interactions.</p>
+<p>We begin by declaring a new ExD Configuration.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;ExD</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+     <span class="na">xmlns=</span><span class="s">&quot;http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/ExD&gt;</span>
+</pre></div>
+</div>
+<p>The namespace for the ExDConfig is necessary for tools to recognize the XML root element as ExDConfig.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The URL <em>http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig</em> currently does not exist and thus, editors cannot load the schema file from there.
+To still get a good editor support, we recommend to specify the schema location explicitly. This can be done with the following XML attribute
+(assuming that the schema is located in <em>../ExDConfFile.xsd</em> relative to the ExD model path):</p>
+<p class="last"><em>xsi:schemaLocation=&#8221;http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig ../ExDConfFile.xsd&#8221;</em></p>
+</div>
+<p>At first, we give our experiment a name, a description and a thumbnail. The thumbnail must be an image file and is used for the experiment list.
+It should be able to identify a given experiment based on the thumbnail.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;name&gt;</span>Tutorial experiment<span class="nt">&lt;/name&gt;</span>
+<span class="nt">&lt;thumbnail&gt;</span>Example.png<span class="nt">&lt;/thumbnail&gt;</span>
+<span class="nt">&lt;description&gt;</span>
+    This can be a very long experiment description. It is shown in the experiment list to give users a brief information of the purpose of
+    the experiment.
+<span class="nt">&lt;/description&gt;</span>
+</pre></div>
+</div>
+<p>The name and description are simply text. The thumbnail should be a path relative to the experiment configuration file.
+In the example above, we would expect an image file named <em>Example.png</em> in the same directory as the experiment.</p>
+<p>Next, we may specify a timeout.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;timeout&gt;</span>840<span class="nt">&lt;/timeout&gt;</span>
+</pre></div>
+</div>
+<p>The timeout is specified in seconds. If an experiment is simulated on the vizualization cluster, this also influences the cluster allocation time.
+Ab simulation may be shut down befire this timeout ends.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In the future, the platform may reject to simulate experiments with longer timeouts than granted for your account. Therefore,
+try to be realistic with what time you really need for the experiment.</p>
+</div>
+<p>The next thing that we need is a declaration of the environment model, i.e. the virtual room. This is done by the following XML:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;environmentModel</span> <span class="na">src=</span><span class="s">&quot;virtual_room/virtual_room.sdf&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;pose&gt;</span>
+        <span class="nt">&lt;x&gt;</span>0.0<span class="nt">&lt;/x&gt;</span>
+        <span class="nt">&lt;y&gt;</span>0.0<span class="nt">&lt;/y&gt;</span>
+        <span class="nt">&lt;z&gt;</span>0.0<span class="nt">&lt;/z&gt;</span>
+        <span class="nt">&lt;ux&gt;</span>0.0<span class="nt">&lt;/ux&gt;</span>
+        <span class="nt">&lt;uy&gt;</span>0.0<span class="nt">&lt;/uy&gt;</span>
+        <span class="nt">&lt;uz&gt;</span>1.0<span class="nt">&lt;/uz&gt;</span>
+        <span class="nt">&lt;theta&gt;</span>0.0<span class="nt">&lt;/theta&gt;</span>
+    <span class="nt">&lt;/pose&gt;</span>
+<span class="nt">&lt;/environmentModel&gt;</span>
+</pre></div>
+</div>
+<p>Here, we specify the path to the environment model (relative to the <strong>NRP_MODELS_DIRECTORY</strong> environment variable).
+Furthermore, we specify where the robot should be placed. The example shown can be used as default, setting the robot (we have not specified which robot to use, yet) in
+the center of the room.</p>
+<p>The next and probably most important thing to specify is the BIBI Configuration. Unlike the environment model, this path is relative to the
+file location of the experiment configuration. In the example, we assume the BIBI model to have the name <strong>husky_braitenberg.bibi</strong> and to reside in
+the same directory as the experiment configuration. If the BIBI model is shared among multiple experiments, the path may also contain relative
+path segments to load an existing BIBI model from a different experiment. However, the default experiments all have the BIBI models locally.
+An alternativ can be that all experiments for a given BIBI model share the same directory.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;bibiConf</span> <span class="na">src=</span><span class="s">&quot;husky_braitenberg.bibi&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>The BIBI Configuration itself specifies which robot model to use, which brain model to use and how connect the two of them using transfer functions.
+BIBI Configuration models have the file extension <strong>.bibi</strong>.</p>
+<p>Additionally to the pose of the robot, we may specify an initial position of the camera. This camera position is specified using two vectors. The first vector <em>cameraPosition</em>
+specifies the position of the camera while the second, <em>cameraLookAt</em>, specifies where the camera should look at. In comparison with the seven-dimensional robot pose, this specification
+suffices because camera positions are always upright.</p>
+<p>For example, a camera position 1.8m above the ground, looking downwards at a spot nearby is created with the following specification:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;cameraPose&gt;</span>
+    <span class="nt">&lt;cameraPosition</span> <span class="na">x=</span><span class="s">&quot;4.5&quot;</span> <span class="na">y=</span><span class="s">&quot;0&quot;</span> <span class="na">z=</span><span class="s">&quot;1.8&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;cameraLookAt</span> <span class="na">x=</span><span class="s">&quot;0&quot;</span> <span class="na">y=</span><span class="s">&quot;0&quot;</span> <span class="na">z=</span><span class="s">&quot;0.6&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/cameraPose&gt;</span>
+</pre></div>
+</div>
+<p>In theory, our ExD Configuration is already valid. However, we have not specified any interaction yet. Therefore, the environment will not interact with the state machine.
+To solve this, we may add state machines to the experiment. These state machines can either be defined as control state machines or evaluation state machines.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">At the moment, there is no technical difference between control state machines and evaluation state machines. The difference is just for documentation purposes. State machines of both groups
+control and evaluate the experiment.</p>
+</div>
+<p>State machines may either be defined using SMACH, a Python library for ROS, or through SCXML. In the former case, they should have the file extension <strong>.exd</strong>, in the latter case the file extension <strong>.scxml</strong>.
+In both cases, the specification of the used state machine is done relative to the experiment configuration file. For example, the specification to load a control state machine for screen switching,
+we require the following XML fragment:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;experimentControl&gt;</span>
+    <span class="nt">&lt;stateMachine</span> <span class="na">xsi:type=</span><span class="s">&quot;SMACHStateMachine&quot;</span>
+                  <span class="na">id=</span><span class="s">&quot;HuskyAwareScreenControlling&quot;</span>
+                  <span class="na">src=</span><span class="s">&quot;screen_switching_husky_aware_compatible.exd&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/experimentControl&gt;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">At the moment, state machines using SCXML are not integrated into the platform and therefore will not be executed.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">Experiment configuration advanced Tutorial</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="state_machines.html">Tutorial: Writing a state machine for an experiment</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

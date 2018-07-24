@@ -1,0 +1,366 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: A simple Braitenberg experiment with a Husky robot connected to a Spinnaker board &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="The Spinnaker Experiment Tutorial" href="index.html" />
+    <link rel="next" title="Developer Manual" href="../../developer_manual/index.html" />
+    <link rel="prev" title="The Spinnaker Experiment Tutorial" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/spinnaker/tutorial_injecting.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">The Spinnaker Experiment Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">The Spinnaker Experiment Tutorial</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../../developer_manual/index.html">Developer Manual</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-a-simple-braitenberg-experiment-with-a-husky-robot-connected-to-a-spinnaker-board">
+<h1>Tutorial: A simple Braitenberg experiment with a Husky robot connected to a Spinnaker board<a class="headerlink" href="#tutorial-a-simple-braitenberg-experiment-with-a-husky-robot-connected-to-a-spinnaker-board" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we connect a Spinnaker board to a simulated Husky robot in a Braitenberg-like experiment.
+We do this by altering a nest-based Husky Braitenberg experiment and port that to Spinnaker.</p>
+<div class="section" id="changing-the-simulator">
+<h2>Changing the simulator<a class="headerlink" href="#changing-the-simulator" title="Permalink to this headline">¶</a></h2>
+<p>At first, we need to change the simulation assembly to use the Spinnaker software instead of nest to simulate the
+neural network. Whereas synchronous, mono-threaded nest is currently set as the default simulation assembly mode,
+Spinnaker needs to be specified explicitly.</p>
+<p>To do this, we need to change the BIBI model to reflect this change. The BIBI model does not allow us directly
+to specify the used neural network simulator but instead allows us to chose between different simulation modes.
+This is to make sure that the selection of components work together well.</p>
+<p>To change the simulation mode, we need to add the following line in the BIBI file directly after the specification
+of the robot that should be simulated:</p>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;mode&gt;SynchronousSpinnakerSimulation&lt;/mode&gt;
+</pre></div>
+</div>
+<p>Here, SynchronousSpinnakerSimulation simply means that Spinnaker and the CLE are synchronized <em>eventually</em>.
+Currently, this is the only supported simulation mode for Spinnaker. This means we run the Spinnaker simulation in
+parallel to the gazebo simulation.</p>
+<p>An asynchronous Spinnaker simulation is basically a synchronous simulation with asynchronous communication and a
+very long CLE timestep. Therefore, the <em>SynchronousSpinnakerSimulation</em> configuration is also used for
+an asynchronous simulation using Spinnaker, just using a longer CLE timestep.</p>
+</div>
+<div class="section" id="converting-neural-membrane-potentials-to-robot-control-commands">
+<h2>Converting neural membrane potentials to robot control commands<a class="headerlink" href="#converting-neural-membrane-potentials-to-robot-control-commands" title="Permalink to this headline">¶</a></h2>
+<p>Next, we need to make sure that the communication is asynchronous. We start with the conversion of
+neural membrane potentials to robot commands. To realize this conversion, we need to integrate spikes of
+a given period, add a leak term and then we can use the result of this computation, scaled and transformed, as
+robot control command. The leaky integrator device encapsulates the leaky integration of spikes for us.</p>
+<p>Below, we depicted the Transfer Function to realize this conversion in the nest-based Braitenberg experiment:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;left_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;right_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">(</span><span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/cmd_vel&#39;</span><span class="p">,</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Twist</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">linear_twist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">left_wheel_neuron</span><span class="p">,</span> <span class="n">right_wheel_neuron</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The transfer function which calculates the linear twist of the husky robot based on the</span>
+<span class="sd">    voltage of left and right wheel neuron.</span>
+
+<span class="sd">    :param t: the current simulation time</span>
+<span class="sd">    :param left_wheel_neuron: the left wheel neuron device</span>
+<span class="sd">    :param right_wheel_neuron: the right wheel neuron device</span>
+<span class="sd">    :return: a geometry_msgs/Twist message setting the linear twist fo the husky robot movement.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Twist</span><span class="p">(</span>
+        <span class="n">linear</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Vector3</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">20.0</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">left_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span><span class="p">,</span> <span class="n">right_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span><span class="p">),</span>
+                                         <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                         <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">angular</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Vector3</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                          <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                          <span class="n">z</span><span class="o">=</span><span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">right_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span> <span class="o">-</span> <span class="n">left_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>At first, we need to take note that</p>
+<ul class="simple">
+<li>Spinnaker does not support population views, so <em>actors[1]</em> will not work</li>
+<li>Spinnaker currently does not support alpha-shaped post-synaptic currents, so we will use the exponential shaped one</li>
+</ul>
+<p>To address the first point, we create a separate population for every functional part of the network that we want to interface using Transfer Functions.
+To address the latter, we switch to leaky integrators using an exponential decay (since they are available in Spinnaker).</p>
+<p>To turn this into an asynchronous communication, we keep using the leaky integrator device type, but
+use it as trigger device for the TF. Therefore, the TF is no longer executed by the CLE but whenever there
+is a new value for the leaky integrator available.
+The implementation of the leaky integrator for Spinnaker even performs the leaky integration right on the Spinnaker chip, which
+saves bandwidth.</p>
+<p>By default, leaky integrators send the integrated spikes once every 10 timesteps. With the default setting
+that a timestep is 1ms, this gives a control rate of 100hz. In this tutorial, we will use a slower control rate of 10hz,
+so we set the timesteps to 100.</p>
+<p>However, we need to adjust the weight of the leaky integrator, simply because exciting a neuron with exponential decay is much harder
+than exciting a neuron with alpha-shaped decay. In experiments, we found that a weight of 2.0 is acceptable.</p>
+<p>Therefore, we arrive at the following:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;left_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_exp</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">timesteps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;right_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_exp</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">timesteps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">(</span><span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/cmd_vel&#39;</span><span class="p">,</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Twist</span><span class="p">),</span> <span class="n">trigger</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;left_wheel_neuron&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">linear_twist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">left_wheel_neuron</span><span class="p">,</span> <span class="n">right_wheel_neuron</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The transfer function which calculates the linear twist of the husky robot based on the</span>
+<span class="sd">    voltage of left and right wheel neuron.</span>
+
+<span class="sd">    :param t: the current simulation time</span>
+<span class="sd">    :param left_wheel_neuron: the left wheel neuron device</span>
+<span class="sd">    :param right_wheel_neuron: the right wheel neuron device</span>
+<span class="sd">    :return: a geometry_msgs/Twist message setting the linear twist fo the husky robot movement.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Twist</span><span class="p">(</span>
+        <span class="n">linear</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Vector3</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.02</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">left_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span><span class="p">,</span> <span class="n">right_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span><span class="p">),</span>
+                                         <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                         <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">angular</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Vector3</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                          <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                                          <span class="n">z</span><span class="o">=</span><span class="mf">0.07</span> <span class="o">*</span> <span class="p">(</span><span class="n">right_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span> <span class="o">-</span> <span class="n">left_wheel_neuron</span><span class="o">.</span><span class="n">voltage</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The scaling factors are somewhat arbitrary and have been set through try and error.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">An alternative to the small scaling factors would be smaller weights for the leaky integrators.
+Due to the current low precision of the leaky integrators, we do not recommend this, as the voltages may then be closer to zero
+and therefore very imprecise.</p>
+</div>
+</div>
+<div class="section" id="converting-images-to-robot-commands">
+<h2>Converting images to robot commands<a class="headerlink" href="#converting-images-to-robot-commands" title="Permalink to this headline">¶</a></h2>
+<p>In the converse direction, we need to transmit the camera image from the robot to the neural network.
+The original nest-based setup uses the Poisson spike generators to feed the image data into the network.
+However, at the time of writing this tutorial, we still have some connectivity issues. Therefore, in this tutorial,
+we are going to use spike injectors, a device type exclusively available for Spinnaker (at the moment, at least).</p>
+<p>Spike injectors are devices that simply inject a predefined amount of spikes into an existing neuron population.
+For this, the CLE adds a population of specialized neurons into the network that are able to receive commands from the
+host and omit a spike whenever they receive a command message. Further, a projection to a neuron population is created that
+the spike injector is connected to.</p>
+<p>A closed-loop connection using spike injectors has multiple advantages and disadvantages: On the plus, they allow to transmit
+rare and discrete events such as collisions to the neural network. On the contrary, if used to transmit (logically) continuous signals such
+as a camera image (that are only discretized for technical reasons), the closed loop massively depends on the frequency of
+data exchange: Whereas a Poisson spike generator continuously omits spikes, also between reconfigurations, a spike injector
+only omits spikes when it is asked to.</p>
+<p>However, we can convert the discrete signal of a spike injector to a continuous stream of spikes easily in the network
+through recurrences. In the example, we modify the neural network used for the example to a very simple recurrent network. We will use
+two populations of <code class="docutils literal"><span class="pre">IF_curr_exp</span></code> neurons that are connected to themselves. Their task is to repeat the input spike with a leak term.
+That is, we connect these neurons to themselves with a weight that is sufficient to keep them spiking.</p>
+<p>Therefore, the network is as follows:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>from hbp_nrp_cle.brainsim import simulator as sim
+
+left = sim.Population(5, sim.IF_curr_exp(), label=&quot;left&quot;)
+right = sim.Population(5, sim.IF_curr_exp(), label=&quot;right&quot;)
+
+self_connect = sim.StaticSynapse(weight=1.5, delay=sim.RandomDistribution(&#39;uniform&#39;, (1.0, 50.0))
+all_connector = sim.AllToAllConnector()
+sim.Projection(
+    presynaptic_population=right, postsynaptic_population=right,
+    connector=all_connector, synapse_type=self_connect, receptor_type=&quot;excitatory&quot;
+)
+sim.Projection(
+    presynaptic_population=left, postsynaptic_population=left,
+    connector=all_connector, synapse_type=self_connect, receptor_type=&quot;excitatory&quot;
+)
+</pre></div>
+</div>
+<p>Mapping a parameter to a spike injector works by simply adding a <em>MapSpikeSource</em> decorator for the parameter. Spike injectors
+allow to set the number of spikes to be injected as a parameter <strong>n</strong>. They also allow to specify weights and delays of the
+created synapse.</p>
+<p>The following decorator adds 10 spike injectors with the default weight 2.0 and default delay 1.0ms to the population <em>left</em>:</p>
+<div class="code python highlight-python"><div class="highlight"><pre>@nrp.MapSpikeSource(&quot;left_injector&quot;, nrp.brain.left, nrp.injector, n=10)
+</pre></div>
+</div>
+<p>The idea of this very simplistic first tutorial is to perform the data transmission in the Transfer Function and then
+stimulate the <em>left</em> and <em>right</em> population whose integrated spikes are then transferred back to robot commands.</p>
+<p>For that, we use a library function that is integrated in the NRP to analyze an image for its redness. This
+function is available in the <em>hbp_nrp_cle.tf_framework.tf_lib</em> module.</p>
+<p>Finally, we arrive at the following Transfer Function:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sensor_msgs.msg</span>
+<span class="kn">import</span> <span class="nn">hbp_nrp_cle.tf_framework.tf_lib</span> <span class="c1">#import detect_red</span>
+
+<span class="nd">@nrp.MapRobotSubscriber</span><span class="p">(</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span> <span class="s1">&#39;/husky/camera&#39;</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;left_injector&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;right_injector&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">injector</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">))</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">(</span><span class="n">triggers</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">eye_sensor_transmit</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">camera</span><span class="p">,</span> <span class="n">left_injector</span><span class="p">,</span> <span class="n">right_injector</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+    <span class="n">image_results</span> <span class="o">=</span> <span class="n">hbp_nrp_cle</span><span class="o">.</span><span class="n">tf_framework</span><span class="o">.</span><span class="n">tf_lib</span><span class="o">.</span><span class="n">detect_red</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">camera</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">found_left</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">found_right</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">if</span> <span class="n">image_results</span><span class="o">.</span><span class="n">left</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="n">image_results</span><span class="o">.</span><span class="n">go_on</span><span class="p">:</span>
+        <span class="n">found_left</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">last</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found red color left&quot;</span><span class="p">)</span>
+        <span class="n">right_injector</span><span class="o">.</span><span class="n">inject_spikes</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">image_results</span><span class="o">.</span><span class="n">right</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">&gt;</span> <span class="n">image_results</span><span class="o">.</span><span class="n">go_on</span><span class="p">:</span>
+        <span class="n">found_right</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">last</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found red color right&quot;</span><span class="p">)</span>
+        <span class="n">left_injector</span><span class="o">.</span><span class="n">inject_spikes</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">found_left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found_right</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">last</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">last</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Found no red color&quot;</span><span class="p">)</span>
+        <span class="n">right_injector</span><span class="o">.</span><span class="n">inject_spikes</span><span class="p">()</span>
+    <span class="n">last</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">found_left</span><span class="p">,</span> <span class="n">found_right</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="monitoring-spikes">
+<h2>Monitoring Spikes<a class="headerlink" href="#monitoring-spikes" title="Permalink to this headline">¶</a></h2>
+<p>Of course, we would like to monitor the spiking activity of the neural network in the running simulation.
+Unfortunately, at the time of writing, the monitoring system of the NRP is still used synchronously. That means,
+monitoring information that is used in the NRP, e.g. through the spike train widget, is only sent out at the
+rate of the CLE timestep. If you set this timestep to minutes or even hours, then monitoring information is only sent
+out at this interval. This is highly problematic as the monitoring tools currently also only use the time resolution of the CLE
+timestep. This means, the monitoring tools are currently mostly useless for Spinnaker simulations.</p>
+<p>While the monitoring tools are not adapted to Spinnaker, you can use the client logger to monitor spike activity.
+In particular, you could just create a Transfer Function that uses a spike recorder as a regular device.
+As any other device in Spinnaker, spike recorders are also enabled as trigger devices for Transfer Functions.</p>
+<p>However, unlike the leaky integrators where you can specify how often you would like to receive triggers, spike recorders
+trigger Transfer Functions whenever they receive a new UDP packet from the Spinnaker board containing new information on
+spiking activity.</p>
+<p>To monitor the activity of the right population, you could simply add the following Transfer Function:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;rec&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">spike_recorder</span><span class="p">)</span>
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">(</span><span class="n">triggers</span><span class="o">=</span><span class="s2">&quot;rec&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">live_monitor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">rec</span><span class="p">):</span>
+    <span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Spikes recorded: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">times</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If used as trigger devices, Spike recorders erase their recorded spiking activity after
+Transfer Functions have been triggered. Otherwise, the recording is cleared after the
+synchronized Transfer Functions have been executed. Spikes that arrive between the time a Transfer
+Function is executed and the time the spike recorder is reset, are lost.</p>
+</div>
+<p>In the same way, you can monitor any other neurons as well.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">The Spinnaker Experiment Tutorial</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../../developer_manual/index.html">Developer Manual</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

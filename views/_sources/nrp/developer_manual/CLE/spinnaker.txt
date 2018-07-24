@@ -1,0 +1,262 @@
+=============================================
+Using Spinnaker in the Neurorobotics Platform
+=============================================
+
+Spinnaker is a neuromorphic hardware capable to run neuroscientific experiments on dedicated hardware
+in real time. The NRP has specific support for Spinnaker communicating over Ethernet.
+
+Installing Spinnaker
+--------------------
+
+At the moment, we rely directly on the master branch of the Spinnaker tools. We do not use the released PyPy version
+as it is largely outdated. For instance, it does not support live updates of Poisson generators and does not work with PyNN version 0.9.
+
+.. note:: If you really want to run the NRP using the released PyPy version of their toolchain, manually set the PyNN and neo requirements of the CLE to 0.8.3 and 0.4, respectively, and run a build command
+
+Python Requirements
+^^^^^^^^^^^^^^^^^^^
+
+Activate the platform virtual env and install the Python dependencies.
+
+.. code:: bash
+
+    source $NRP_VIRTUAL_ENV/bin/activate
+    pip install pylru enum34 six "requests>=2.4.1" jsonschema "rig>=2.0.0,<3.0.0" "quantities>=0.12.1" "lazyarray>=0.2.9,<=0.2.9" "appdirs>=1.4.2,<2.0.0" "neo==0.5.1"
+    deactivate
+
+C Compiler
+^^^^^^^^^^
+
+Follow the `instructions to install a C compiler <http://spinnakermanchester.github.io/common_pages/4.0.0/Compiler.html>`
+
+Installing
+^^^^^^^^^^
+
+Create a directory for the spinnaker tools. In the remainder, we will assume it is ``$HBP/spinnaker``. 
+
+.. code:: bash
+
+    mkdir $HBP/spinnaker && cd $HBP/spinnaker
+    git clone https://github.com/SpiNNakerManchester/SupportScripts.git
+
+Next, you need to set up the C environment variables:
+
+.. code:: bash
+
+    export SPINN_DIRS=$HBP/spinnaker
+    export PATH=$PATH:$SPINN_DIRS/spinnaker_tools/tools
+    export PERL5LIB=$SPINN_DIRS/spinnaker_tools/tools
+    export NEURAL_MODELLING_DIRS=$HBP/spinnaker/sPyNNaker/neural_modelling
+
+Then run the support script to fetch all repositories and build everything.
+
+.. code:: bash
+
+    cd $HBP/spinnaker
+    source $NRP_VIRTUAL_ENV/bin/activate
+    SupportScripts/install.sh PyNN8
+    SupportScripts/automatic_make.sh
+    SupportScripts/setup.sh
+    python $HBP/spinnaker/sPyNNaker8/spynnaker8/setup-pynn.py
+    python -c "import pyNN.spiNNaker"
+    deactivate
+
+The last command of the previous batch should have created a file called *.spynnaker.cfg* in your home directory.
+Edit that with an editor of your choice and set *machineName* and *version* according to the board that you have.
+For a Spinn-3 board, that is *version=3* and *machineName=192.168.240.253*; for a 48-chip board, it is *version=5* and *machineName=192.168.240.1*.
+
+Accordingly, you should configure the ethernet adapter that is connected with your board to use the IP address *192.168.240.2* and subnet-mask
+*255.255.255.0*. The default gateway can be *0.0.0.0*. Check this network setup for example using the command ``ifconfig``. This command can also
+be used to change the network settings accordingly.
+
+To setup the ethernet connection using ethernet connection *eth0*, simply run the following:
+
+.. code:: bash
+    
+    sudo ifconfig eth0 192.168.240.2 netmask 255.255.255.0
+
+Additional help may be found in the `install manual <http://spinnakermanchester.github.io/development/devenv.html>`.
+
+.. note:: The very first integration of Spinnaker required a patching of the signal handlers. This is no longer necessary.
+
+Supported device types
+----------------------
+
+In the remainder the supported device types are listed together with a rough sketch of their implementation.
+
+Spike recorders
+^^^^^^^^^^^^^^^
+
+We have a spike recorder implementation. This implementation does *not* use the recording interface of Spinnaker
+provided via PyNN, but rather uses a live connection. This enables us to receive a packet whenever a neuron of the selected
+population has spiked. 
+
+.. note:: As the number of ethernet connections to a board is very limited (to about 7), we bundle all spike recorders into a single live connection.
+
+Because we get that package, spike recorders in Spinnaker can be used as trigger devices for Transfer Functions.
+That is, you can run a TF whenever a certain neuron has spiked at all. If this is not done, then the spike
+recorder simply aggregates all spike messages that it receives since the last CLE timestep.
+
+Leaky Integrator Exp
+^^^^^^^^^^^^^^^^^^^^
+
+The integration also uses leaky integrators to exchange data with the world simulation. That is, the spikes
+are integrated on the board and the neuron on the board sends a multicast command (through an LPG) to the host
+that carries the membrane potential.
+
+In addition to the usual parameters for the leaky integrators, the leaky integrator implementation for Spinnaker
+also supports a parameter *timesteps* that indicates the number of internal timesteps separating two consecutive packets.
+For example, when *timesteps* is set to 10, the default value, the packets are sent every 10ms of simulated time.
+These packets can of course be used to trigger Transfer Functions.
+
+Poisson generators
+^^^^^^^^^^^^^^^^^^
+
+The rate of Poisson generators is essentially a simple neuron parameter and can therefore be
+changed through the PyNN interface quite easily. However, these changes are only transmitted when *run* is called for
+the next time.
+
+Spinnaker also has a support for making regular Poisson generator populations aware of reconfiguration
+due to a command packet that carries the new rate as payload. In the implementation of Poisson generators,
+we use a combination of these techniques: As long as this control connection is not established, we use the regular
+PyNN interface to set the rate accordingly. When the ethernet connection to perform live changes of the rates is
+established, we use this one.
+
+.. note::
+    Poisson generators are the main reason we are using the developer install of the Spinnaker software and not the
+    released version. 
+
+Again, we bundle Poisson connections in order to save ethernet connections.
+
+Spike Injectors
+^^^^^^^^^^^^^^^
+
+Spinnaker also provides a technique to inject single spikes into a network, again using a separate ethernet connection.
+We use this connection for a device type introduced exclusively for Spinnaker: The spike injector device.
+
+A communicator component according to the spike injector interface is an object with an *inject_spikes()* method
+that you can use to insert single spikes into the connected population at a given point in time (for example as a response
+to some sensor input). Spike injectors further carry the parameters as any spike injecting device to set the weight,
+delay and connector of the spike injector. Further, there is a parameter *n* to specify the amount of spike injector nodes created
+for the device.
+
+
+Limitations
+-----------
+
+Anyways, the Spinnaker integration currently has some severe drawbacks compared to nest, which still is our standard simulator:
+
+* Spinnaker currently has no support for population views or assemblies. This is a problem for us,
+  because this means that you cannot record all neurons that are interesting for you at once. 
+* Spinnaker does not allow the network to be changed after the simulation has already started.
+  Given that all of our GUI editors are meant as live editors, this means you can hardly edit the experiment using GUIs
+* Resetting a simulation is not possible in Spinnaker (at least not as it is implemented it now). Thus,
+  we either have to rework the reset function a lot or disable it for Spinnaker simulations (we are working on the latter)
+* Pausing the simulation may take a very long time in the asynchronous mode, so we are also working
+  to disable this feature for Spinnaker simulations
+* Due to sockets left open after a simulation, we do not support running multiple Spinnaker simulations.
+  Currently, the simulation server needs to be restarted after each Spinnaker simulation. This will be fixed in
+  the future by running each simulation in its own process.
+
+Spinnaker only achieves realtime if you set the internal timestep to 1ms (which is the default for Spinnaker). Nest, however, runs with 0.1ms timestep. If you run Spinnaker with a timestep
+of 1.0ms (do that by inserting a call to the setup method to override the defaults we set in the platform), Spinnaker runs ten times slower than realtime. As an alternative,
+you can also change the hardware minimum timestep globally for your machine. You do that by editing the *.spynnaker.cfg* file in your home directory.
+
+Integration levels
+------------------
+
+In this section, we explain the integration levels implemented and/or planned in more detail.
+
+Synchronous
+^^^^^^^^^^^
+
+In the first level, we wanted to run Spinnaker in the exact same way we run nest. That is, we repeatedly 
+run the simulation for very short time slice. However, this causes quite a large overhead that slows 
+down the simulation to a realtime factor of about 1:30 even for a small simulation (since the overhead 
+of a run call for 100ms of simulated time is in the magnitude of seconds).
+
+To use the synchronous Spinnaker simulation, make sure you use the ``SynchronousSpinnakerSimulation`` mode
+and use transfer functions synchronized with the CLE (that is, do not use triggers).
+
+To reduce the communication overhead, in particular to reduce the need for recordings, the synchronous Spinnaker mode
+also uses the asynchronous communication with Spinnaker.
+
+Asynchronous
+^^^^^^^^^^^^
+
+The second level of the integration is the asynchronous Spinnaker integration. Here, the idea is to 
+drastically increase the timestep of the Spinnaker simulation (such that the overhead is reduced) and 
+have the communication with the robot asynchronous to the main simulation loop. 
+
+For that, one needs to use asynchronous transfer functions that realize such out-of-order data exchange. 
+As soon as all data exchange between the simulators happens asynchronously, one can safely increase the internal
+timestep of the simulation. For this, the maximal CLE timestep has been increased to an hour. However, on a local install,
+one can easily increase this limit locally by changing the value in the XML schema and then regenerate the code from it.
+Currently, all device implementations support an asynchronous mode. 
+
+The asynchronous Spinnaker integration allows to run a closed-loop neurorobotics experiment arbitrarily 
+close to real time (as long as your scene does not get too complex) at the expense that the world simulation 
+and the neural simulation may diverge and the features to pause or reset an experiment are no longer available.
+
+MUSIC
+^^^^^
+
+We also have the plan to integrate Spinnaker via MUSIC in order to achieve a low overhead of the simulation
+but still have a good synchronization between the simulators. This will be exploratory work in SGA-II. 
+
+Troubleshooting
+---------------
+
+In this section, several experiences of common problems are listed.
+
+My experiment only starts after some period of time
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is normal. Spinnaker does most of its overhead when the simulation is started for the first time.
+For a small experiment, it takes about half a minute to get everything running. In that period of time,
+the simulation is frozen and the simulation time freezes.
+
+You can actually consult the logs to see in particular what Spinnaker is doing.
+
+I cannot start a second Spinnaker experiment after the first one is terminated
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is a known issue. There are currently some open sockets that prevent a second Spinnaker simulation. However, as currently all simulations are performed
+within the same simulation server process, this means that at most one Spinnaker simulation can be run. Afterwards, the simulation server
+must be reset. This is a known problem and we are working on that.
+
+My neurons do not spike
+^^^^^^^^^^^^^^^^^^^^^^^
+
+At the time of writing, Spinnaker is limited in the neuron models that are supported. For example, the
+conductance-based leaky integrate and fire neuron model with alpha-shaped post-synaptic currents (``IF_cond_alpha``)
+that is used in many experiments based on nest is unavailable for Spinnaker. Rather, in Spinnaker you would
+use a neuron model with exponential-shaped decay (``IF_curr_exp``). However, this neuron model requires much more
+stimuli in order to spike at all, because the membrane potential decays much quicker.
+
+For example, if you want that a neuron spikes if it receives a single spike, you need synaptic weights of about 2.0.
+The default weight of a Poisson generator is 0.00015. Therefore, you would probably want to set the weight of a
+Poisson generator explicitly, otherwise your Poisson generator will not have an effect on the ``IF_curr_exp`` neuron
+due to the neuron model.
+
+My simulation is not working reliably
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+All communication that happens between the simulation server and the Spinnaker board is done through UDP connections.
+UDP does not provide reliable communication, so it may happen that some packets are simply not delivered. Therefore, if your simulation
+depends heavily on the advent of seldom, sparse events, this may be a problem and there is nothing we can do about it.
+
+However, the more likely case is that some of the UDP packets are blocked, perhaps by a Firewall. The NRP uses mainly ports 19996, 19997 and 19999
+for spike recorders, updates of Poisson generators and spike injectors. Please check that these ports are open.
+
+The precision of the leaky integrator is very low
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unfortunately, there is nothing we can do about that. The membrane potential is sent as an integer where it should
+rather be a S1615. 
+
+What is a S1615?
+^^^^^^^^^^^^^^^^
+
+A S1615 is a fixed-point number with 16 binary digits before and 15 binary digits after the point. The format is used in the communication
+of the Spinnaker software to the board quite extensively and limits the precision of data exchange.

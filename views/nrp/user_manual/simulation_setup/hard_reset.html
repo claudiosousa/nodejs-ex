@@ -1,0 +1,241 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Changing Simulated Models during a running simulation &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Simulation Setup" href="index.html" />
+    <link rel="next" title="Experiment configuration" href="experiment.html" />
+    <link rel="prev" title="Configuration parameters of devices" href="device_configurations.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/user_manual/simulation_setup/hard_reset.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">User Manual</a>
+                    
+                    <a href="index.html">Simulation Setup</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="device_configurations.html">Configuration parameters of devices</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="experiment.html">Experiment configuration</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="changing-simulated-models-during-a-running-simulation">
+<h1>Changing Simulated Models during a running simulation<a class="headerlink" href="#changing-simulated-models-during-a-running-simulation" title="Permalink to this headline">¶</a></h1>
+<p>During a simulation, it is possible to change the models simulated in each of the simulators separately.
+This may be done in order to continue to use the state of the other simulator or the internal state
+of transfer functions. Besides actually changing the models, such a change may imply a reset of the
+communication adapters and a reset of all Transfer Functions connected to adapter components
+issued by the communication adapter as well.</p>
+<ul class="simple">
+<li><strong>Changing the Robot</strong>
+For the default robot communication adapter (<code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.robotsim.RosCommunicationAdapter</span></code>),
+such a hard reset is not necessary as ROS topics are not closely coupled. In particular, it is transparent
+to a subscriber when a publisher vanishes and a new publisher is about to be created. As long as a
+new publisher publishes messages on the same topic, the subscriber does not get noticed at all.</li>
+<li><strong>Changing the Neuronal Network</strong>
+The situation is very different for the neuronal network simulation where the communication adapters
+may inject artificial neurons into the network. When the network is reset, these neurons cease to exist
+and must be reintroduced. This requires functionality to discard the current devices connected to any
+of the transfer functions and replace them by reconnecting the transfer functions to neurons.</li>
+</ul>
+<div class="section" id="implementation-of-changing-a-neuronal-network-under-the-hood">
+<h2>Implementation of Changing a Neuronal Network under the hood<a class="headerlink" href="#implementation-of-changing-a-neuronal-network-under-the-hood" title="Permalink to this headline">¶</a></h2>
+<p>The CLE has support for changing the neuronal network at runtime (during
+a simulation). For this, the following steps are performed:</p>
+<ol class="arabic simple">
+<li>If the CLE is currently running, stop it.</li>
+<li>If the brain adapter has already loaded a neuronal network, discard it.</li>
+<li>Load the new neural network through the brain control adapter.</li>
+<li>If populations have been renamed, rename also the population references in the transfer functions</li>
+<li>Perform a hard reset on the brain devices of the transfer functions.
+That is: Discard all devices created so far, then iterate through all the transfer functions and
+recreate all brain devices from scratch.</li>
+<li>If anything bad happens, for example if neurons are accessed that no longer exist, roll back to the previous
+brain. If necessary, also roll back the renaming of populations in the transfer functions</li>
+</ol>
+<p>In particular, the following is not done:</p>
+<ul class="simple">
+<li>Reset of the robot publishers and subscribers. In particular, if no new topic messages are sent, any
+topic subscriber will still have its old value.</li>
+<li>Reset of the TF variables to their initial values. This means that any stateful transfer functions will
+not be reset.</li>
+<li>Reset of the position of the robot or other models loaded in the robots environment.</li>
+</ul>
+<p>By reusing one of these configurations a reset of the entire simulation may not be needed
+after changing the neuronal network. This is in particular helpful, when only some parameters internal
+to the neuronal network have been adjusted.</p>
+</div>
+<div class="section" id="necessary-considerations-when-changing-a-neuronal-network">
+<h2>Necessary Considerations when changing a Neuronal Network<a class="headerlink" href="#necessary-considerations-when-changing-a-neuronal-network" title="Permalink to this headline">¶</a></h2>
+<p>The neuronal network represents the main control of the robot during a simulation and if this control
+is exchanged, the simulation may fail. Thus, when changing a neuronal network during a simulation, the
+following points ought to be taken into consideration:</p>
+<ul class="simple">
+<li>The simulation time is not reset. This means that the neuronal network will now have a different clock than
+the robotic simulation. They are still being synchronized by the CLE in the sense that they operate on
+the same speed but they may have different values.</li>
+<li>The CLE will try to create new devices for all transfer functions
+currently present in the Transfer Function Manager. This will execute the neuron selectors on the
+changed neuronal network. If this selection fails, if for example the network no longer contains
+a population with this name, then the previous neural network is restored.</li>
+</ul>
+<p>The last point means that as soon as you want to change the topology of the network and
+not just some connection or global variables, then these actions must be done very thoughtfully
+otherwise the simulation transitions to its failed state and then it cannot be resumed.</p>
+<p>In particular, you must ensure that all neurons that were previously connected to a transfer function
+still exist. This could be implemented by deleting all transfer functions which connect to neurons who
+will not be there in the new network, as only transfer functions that are in the transfer function manager
+when the network is changed will be reconnected.</p>
+<p>Furthermore, all new transfer functions need to be valid at the time they are added to the CLE. In
+particular, when a transfer function targets neurons that will be introduced by a new network,
+the neural network must be changed before the transfer function can be created.</p>
+<p>Overall, this implies the following workflow:</p>
+<ol class="arabic simple">
+<li>Delete all transfer functions which connect to neurons that will not exist when the neural network
+is changed</li>
+<li>Change the neural network</li>
+<li>Add transfer functions which connect to neurons newly introduced in the neural network</li>
+</ol>
+<p>Every other sequence will lead the simulation to a failed state.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Aside from technical restrictions, it can be thought that changing the neural
+network conflicts with biological plausibility, usually an important goal when working with spiking
+neural networks. This is the reason the functionality is mainly focused on simple parameter changes,
+e.g. to compensate for missing learning implementations or to adjust
+parameters that cannot be learnt.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="device_configurations.html">Configuration parameters of devices</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="experiment.html">Experiment configuration</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,281 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Specifications &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Neurorobotics Platform" href="../index.html" />
+    <link rel="next" title="Experiment files" href="experiment_files.html" />
+    <link rel="prev" title="ExD Backend" href="../developer_manual/ExDbackend/index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/nrp/specifications/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../index.html">Neurorobotics Platform</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="../developer_manual/ExDbackend/index.html">ExD Backend</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="experiment_files.html">Experiment files</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="specifications">
+<h1>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="experiment_files.html">Experiment files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="experiment_files.html#experiment-configuration-file">Experiment configuration file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment_files.html#experiment-thumbnail-file">Experiment thumbnail file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment_files.html#user-settings-file">User settings file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment_files.html#bibi-file">BIBI file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment_files.html#experiment-design-file">Experiment design file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="experiment_files.html#brain-environment-and-robot-models">Brain, environment and robot models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bibi_configuration.html">BIBI Model Specification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bibi_configuration.html#schema-document-properties">Schema Document Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibi_configuration.html#declared-namespaces">Declared Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bibi_configuration.html#global-declarations">Global Declarations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#element-bibi">Element: bibi</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="bibi_configuration.html#global-definitions">Global Definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-add">Complex Type: Add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-alltoallconnector">Complex Type: AllToAllConnector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-argument">Complex Type: Argument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-argumentreference">Complex Type: ArgumentReference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-bibiconfiguration">Complex Type: BIBIConfiguration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-bibitransferfunction">Complex Type: BIBITransferFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-brainmodel">Complex Type: BrainModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-call">Complex Type: Call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-chainselector">Complex Type: ChainSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-conffile">Complex Type: ConfFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-constant">Complex Type: Constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-constantstring">Complex Type: ConstantString</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-devicechannel">Complex Type: DeviceChannel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-devicegroupchannel">Complex Type: DeviceGroupChannel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-divide">Complex Type: Divide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-fixednumberpreconnector">Complex Type: FixedNumberPreConnector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-flowexpression">Complex Type: FlowExpression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-index">Complex Type: Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-indextemplate">Complex Type: IndexTemplate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-list">Complex Type: List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-listtemplate">Complex Type: ListTemplate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-local">Complex Type: Local</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-mapselector">Complex Type: MapSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-max">Complex Type: Max</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-min">Complex Type: Min</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-multineuronselector">Complex Type: MultiNeuronSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-multiply">Complex Type: Multiply</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-neuron2monitor">Complex Type: Neuron2Monitor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-neuron2robot">Complex Type: Neuron2Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-neuronconnector">Complex Type: NeuronConnector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-neuronconnectorref">Complex Type: NeuronConnectorRef</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-neurongroupselector">Complex Type: NeuronGroupSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-neuronselector">Complex Type: NeuronSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-neuronselectortemplate">Complex Type: NeuronSelectorTemplate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-onetooneconnector">Complex Type: OneToOneConnector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-operator">Complex Type: Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-population">Complex Type: Population</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-pythontransferfunction">Complex Type: PythonTransferFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-range">Complex Type: Range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-rangetemplate">Complex Type: RangeTemplate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-robot2neuron">Complex Type: Robot2Neuron</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-scale">Complex Type: Scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-simulationstep">Complex Type: SimulationStep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-subtract">Complex Type: Subtract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-synapsedynamics">Complex Type: SynapseDynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-synapsedynamicsref">Complex Type: SynapseDynamicsRef</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-topicchannel">Complex Type: TopicChannel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-transferfunction">Complex Type: TransferFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#complex-type-tsodyksmarkrammechanism">Complex Type: TsodyksMarkramMechanism</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-brainfilename">Simple Type: BrainFilename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-conftype">Simple Type: ConfType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-conftypeenumeration">Simple Type: ConfTypeEnumeration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-devicetype">Simple Type: DeviceType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-h5filename">Simple Type: H5Filename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-neurontarget">Simple Type: NeuronTarget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-pythonfilename">Simple Type: PythonFilename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-robottopicaddress">Simple Type: RobotTopicAddress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-scriptfilename">Simple Type: ScriptFilename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-sdffilename">Simple Type: SDFFilename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-templatepattern">Simple Type: TemplatePattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bibi_configuration.html#simple-type-timestep">Simple Type: TimeStep</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="device_parameters.html">Device Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#connectors">Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#ac-generator">AC Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#dc-generator">DC Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#fixed-spike-generator">Fixed Spike Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#leaky-integrator-alpha-shaped">Leaky Integrator (Alpha-shaped)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#leaky-integrator-exp-shaped">Leaky Integrator (Exp-Shaped)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#nc-generator">NC Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#poisson-generator">Poisson Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#population-rate">Population Rate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_parameters.html#spike-recorder">Spike Recorder</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ExDConfFile.html">Experiment Model Specification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ExDConfFile.html#schema-document-properties">Schema Document Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ExDConfFile.html#declared-namespaces">Declared Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ExDConfFile.html#global-declarations">Global Declarations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#element-exd">Element: ExD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ExDConfFile.html#global-definitions">Global Definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-bibiconf">Complex Type: BibiConf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-camerapose">Complex Type: CameraPose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-conffile">Complex Type: ConfFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-environmentmodel">Complex Type: EnvironmentModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-exd">Complex Type: ExD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-experimentcontrol">Complex Type: ExperimentControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-position">Complex Type: Position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-robotpose">Complex Type: RobotPose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-roslaunch">Complex Type: RosLaunch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-scxmlstatemachine">Complex Type: SCXMLStateMachine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-smachstatemachine">Complex Type: SMACHStateMachine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-statemachine">Complex Type: StateMachine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#complex-type-visualmodel">Complex Type: VisualModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#simple-type-conftype">Simple Type: ConfType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#simple-type-conftypeenumeration">Simple Type: ConfTypeEnumeration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#simple-type-maturitytype">Simple Type: MaturityType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#simple-type-physicsengine">Simple Type: PhysicsEngine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ExDConfFile.html#simple-type-thumbnailfile">Simple Type: ThumbnailFile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="../developer_manual/ExDbackend/index.html">ExD Backend</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="experiment_files.html">Experiment files</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

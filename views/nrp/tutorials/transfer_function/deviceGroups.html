@@ -1,0 +1,212 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Accessing multiple neurons with device groups &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Executing Transfer Functions outside the simulation loop" href="triggers.html" />
+    <link rel="prev" title="Tutorial: Monitoring neurons" href="monitoring.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/deviceGroups.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="monitoring.html">Tutorial: Monitoring neurons</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="triggers.html">Tutorial: Executing Transfer Functions outside the simulation loop</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-accessing-multiple-neurons-with-device-groups">
+<h1>Tutorial: Accessing multiple neurons with device groups<a class="headerlink" href="#tutorial-accessing-multiple-neurons-with-device-groups" title="Permalink to this headline">¶</a></h1>
+<p>In some applications, particularly when working with image data, it is not sufficient to work with single neurons.
+This may work with the simplified Braitenberg network because it only has a fixed amount of sensor neurons regardless of the image
+resolution. However, this is different in the general case when an image should be processed by hundreds or thousands of neurons.
+In this case, it is infeasible to create either hundreds of transfer functions that essentially do the same or have a single TF with hundreds of parameters.</p>
+<p>For this reason, device groups have been created. That is, a set of devices of the same kind (such as a thousand Poisson generators) can be accessed through a
+device group. Such a device group always has the same properties as the original device type but returns numpy arrays instead of simple values.
+Similarly, when an attribute is assigned a value and that value is a numpy array, the values are distributed to the devices accordingly. A device group
+also accepts a single value to be assigned to a property. In that case, this value is assigned to the respective property for all devices.</p>
+<p>To create a device group in Python, two ways are supported. You can either map a population of neurons to devices to attach them to, or create chains of neurons.
+Alternatively, you can use a combination of both.</p>
+<p>That means, instead of</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;left_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;right_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the following code will create a device group with both neurons:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;wheel_neurons&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">chain_neurons</span><span class="p">(</span><span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What this assignment will do is that it tells the TF Framework that the parameter <em>wheel_neurons</em> should be mapped to an array of leaky integrators.
+This array should stack a leaky integrator for <em>nrp.brain.actors[0]</em> and <em>nrp.brain.actors[1]</em>. Within the function, the device group allows
+two different modes of interaction, either by accessing the devices by array indices or by directly accessing the properties from the device group.
+In that case, the device group automatically collects the properties from the devices into a numpy array.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c1"># accessing the device for the left wheel by index</span>
+<span class="c1"># left_wheel_voltage is now a double</span>
+<span class="n">left_wheel_voltage</span> <span class="o">=</span> <span class="n">wheel_neurons</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">voltage</span>
+<span class="c1"># accessing the device voltages from all devices in the device group</span>
+<span class="c1"># wheel_voltage is now a numpy array</span>
+<span class="n">wheel_voltages</span> <span class="o">=</span> <span class="n">wheel_neurons</span><span class="o">.</span><span class="n">voltage</span>
+<span class="c1"># since the TF framework caches the voltages, they are equal</span>
+<span class="k">assert</span> <span class="n">left_wheel_voltage</span> <span class="o">==</span> <span class="n">wheel_voltages</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Conversely, the devices of a device group can also be configured together by passing a numpy array as an argument with the same length as there are devices in the device group.
+Alternatively, it is allowed to specify a single value. In this case, this value is passed to all devices in this device group.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;neurons&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">map_neurons</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_device_groups</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">neurons</span><span class="p">):</span>
+    <span class="c1"># We can assign the rates of each poisson generator individually</span>
+    <span class="n">neurons</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="mf">42.0</span>
+    <span class="c1"># Alternatively, we can configure all devices at once using a numpy array</span>
+    <span class="n">neurons</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">])</span>
+    <span class="c1"># Instead of a numpy array, we could also have used anything that is indexable as well, such as a list</span>
+    <span class="n">neurons</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">]</span>
+    <span class="c1"># If we wanted to set the rates for all devices to an equal rate, we can also use a single value</span>
+    <span class="c1"># This will set the rates to 42.0 for all devices</span>
+    <span class="n">neurons</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="mf">42.0</span>
+</pre></div>
+</div>
+<p>In many cases the size of a population to connect to is too large or even unknown when writing the transfer functions.
+In that case, we can map a collection such as a range to neuron connections to fulfill the same goal.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;wheel_neurons&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">map_neurons</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The intention behind this assignment is that the function <em>nrp.map_neurons</em> maps an index set to a list of neurons the neuronal simulation should connect to.
+The lambda expression may either return a single neuron specification or a list. In the latter case, the resulting lists get concatenated so that the function
+can be used to specify patterns.</p>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="monitoring.html">Tutorial: Monitoring neurons</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="triggers.html">Tutorial: Executing Transfer Functions outside the simulation loop</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

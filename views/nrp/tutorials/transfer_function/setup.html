@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Tutorial Setup &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Writing a BIBI Configuration" href="bibi_config.html" />
+    <link rel="prev" title="Transfer function advanced Tutorial" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/setup.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">Transfer function advanced Tutorial</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="bibi_config.html">Tutorial: Writing a BIBI Configuration</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-tutorial-setup">
+<h1>Tutorial: Tutorial Setup<a class="headerlink" href="#tutorial-tutorial-setup" title="Permalink to this headline">¶</a></h1>
+<p>The tutorial series starting with this section will introduce the TF framework given the simple Braitenberg vehicle experiment.</p>
+<p>In the Braitenberg experiment, a simple vehicle looks out for a red camera image.
+In our version, the vehicle is a robot model called Husky. This robot has four wheel motors and a camera sensor. The robot can be controlled via two ROS topics,
+one for the motors and one for the camera image. In particular via the motor topic, the Husky may be assigned both velocity and rotation. Via the camera topic,
+camera images can be obtained with about 25fps.</p>
+<p>To make the Husky robot detect red colors, the camera image must be analyzed. For this, a very simple neuronal network with only 8 neurons is used. This network can be seen in <a class="reference internal" href="#braitenberg-network"><span>Fig. 4</span></a>.</p>
+<div class="figure" id="id1">
+<span id="braitenberg-network"></span><img alt="../../../_images/braitenberg_network.png" src="../../../_images/braitenberg_network.png" />
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">The neuronal network of the Braitenberg Demo</span></p>
+</div>
+<p>The data from the camera is divided into red pixels on the right side, red pixels on the left side, as well as green and blue pixels all over the image. This image data is fed into
+five <strong>sensor neurons 0 to 4</strong>, shown in light yellow. The reason to have two neurons connected to the right pixels of either side is the technical restriction that a neuron in some simulators can only
+be either inhibitory or excitatory. The sensor neurons operate on the <strong>internal neuron 5</strong> shown in light blue and the <strong>actor neurons 6 and 7</strong> shown in green. The voltage of the actor neurons
+is then to be converted to motor voltages for the robot.</p>
+<p>In a typical setting for the TF framework, the neuronal network is already given, i.e. only the transfer functions need to be specified. These functions are shown in <a class="reference internal" href="#braitenberg-network"><span>Fig. 4</span></a> as thick blue arrows.
+You can see in <a class="reference internal" href="#braitenberg-network"><span>Fig. 4</span></a> the two different kinds of transfer functions, namely transfer functions from the robot sensors to the neuronal network as the blue arrows at the top and vice versa at the bottom.</p>
+<p>However, the Husky robot does not offer a topic with the left or right red pixels or the left wheel voltage. Thus, the task of the transfer functions (called TFs for brevity) is to <strong>bridge the gap between the neuronal network and the robot</strong>.
+In particular, the image stream as offered by the Husky needs to be analyzed for its right and left red pixels. Conversely, the left wheel and right wheel neuron voltages must be processed by a TF to convert them in a format that the Husky robot can understand.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The task of transfer functions (TFs) is to bridge between the neuronal simulator and the robot (world) simulator.</p>
+</div>
+<p>As a consequence, the Braitenberg demo consists of two TFs. The first <strong>Robot2Neuron TF</strong> converts the image stream from the Husky robot to spikes for the sensor neurons <em>0</em> to <em>4</em>.
+A second <strong>Neuron2Robot TF</strong> converts the wheel neurons voltages back to velocity commands that can be processed by the Husky.</p>
+<p>If you have understood the Braitenberg demo, you may want to continue with <a class="reference internal" href="bibi_config.html"><em>Tutorial: Writing a BIBI Configuration</em></a>.</p>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">Transfer function advanced Tutorial</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="bibi_config.html">Tutorial: Writing a BIBI Configuration</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

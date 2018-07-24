@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: throttling a Transfer Function &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: A custom device for reusable image processing" href="custom_devices.html" />
+    <link rel="prev" title="Tutorial: Executing Transfer Functions outside the simulation loop" href="triggers.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/throttling.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="triggers.html">Tutorial: Executing Transfer Functions outside the simulation loop</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="custom_devices.html">Tutorial: A custom device for reusable image processing</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-throttling-a-transfer-function">
+<h1>Tutorial: throttling a Transfer Function<a class="headerlink" href="#tutorial-throttling-a-transfer-function" title="Permalink to this headline">¶</a></h1>
+<p>In some applications, in particular when using multiple triggers as in the <a class="reference internal" href="triggers.html"><em>Tutorial: Executing Transfer Functions outside the simulation loop</em></a>,
+you need to throttle Transfer Functions so that they are only executed fewer times. For example,
+you experience that your camera is very fast sending new images but you actually only need to update much slower.
+For that, the NRP offers throttling of TFs. That is, you can specify that a Transfer Function runs at most at a given frequency.</p>
+<p>As an example, consider again the <em>eye_sensor_transmit</em> TF from the <a class="reference internal" href="triggers.html"><em>Tutorial: Executing Transfer Functions outside the simulation loop</em></a>. We basically want that the TF is only run
+if at least a certain time has passed since the last execution of that TF. To achieve that, we can specify a throttling to a maximum frequency.
+For example, we want the TF to run at the maximum frequency of 25hz. To achieve that, we set the throttling to 25:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapRobotSubscriber</span><span class="p">(</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span> <span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/camera&#39;</span><span class="p">,</span> <span class="n">sensor_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Image</span><span class="p">))</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;red_left_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;red_right_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;green_blue_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">(</span><span class="n">triggers</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span> <span class="n">throttling_rate</span><span class="o">=</span><span class="mf">25.0</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">eye_sensor_transmit</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">camera</span><span class="p">,</span> <span class="n">red_left_eye</span><span class="p">,</span> <span class="n">red_right_eye</span><span class="p">,</span> <span class="n">green_blue_eye</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>The frequency specifications may either be integers or floats. You can define a throttling frequency also for
+Transfer Functions that combine triggers with normal synchronized execution or do not use triggers at all.
+In that case, the TF will be called synchronized with the CLE, but at most with the given frequency, which may
+mean that some cycles are simply skipped for that TF.</p>
+<p>For example, the throttling rate of 25hz in the example above specifies that the TF is called at most
+every 40ms. Nevertheless, it is only called potentially when one of its triggers tell it to. Consider
+for instance that the camera sends a new image every 30ms, then the TF is actually called every 60ms (the
+smallest multiple of the trigger rate that is greater or equal to the minimum interval. If no throttling is
+specified, the minimum interval is 0 and the TF is always executed.</p>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="triggers.html">Tutorial: Executing Transfer Functions outside the simulation loop</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="custom_devices.html">Tutorial: A custom device for reusable image processing</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

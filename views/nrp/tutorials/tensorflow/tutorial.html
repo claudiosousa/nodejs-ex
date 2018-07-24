@@ -1,0 +1,248 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Scope &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Using Tensorflow in your experiment Tutorial" href="index.html" />
+    <link rel="next" title="Virtual Coach Tutorial" href="../virtual_coach/index.html" />
+    <link rel="prev" title="Using Tensorflow in your experiment Tutorial" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/tensorflow/tutorial.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Using Tensorflow in your experiment Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">Using Tensorflow in your experiment Tutorial</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../virtual_coach/index.html">Virtual Coach Tutorial</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="scope">
+<h1>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will teach you how to install and use TensorFlow within an NRP experiment. Upon completion you will be able to run a &#8220;Hello World&#8221; level experiment and be able to explore a more advanced experiment distributed with the NRP.</p>
+</div>
+<div class="section" id="installing-tensorflow-for-use-in-the-nrp">
+<h1>Installing TensorFlow for Use in the NRP<a class="headerlink" href="#installing-tensorflow-for-use-in-the-nrp" title="Permalink to this headline">¶</a></h1>
+<p>The NRP and TensorFlow have slightly different Python dependency versions for core libraries such as Numpy. Unfortunately, this means that TensorFlow cannot be directly installed in the same virtualenv as the NRP, but it can easily be installed separately and used within the platform.</p>
+<p>The most convenient way to install TensorFlow is in an isolated virtualenv. Steps are provided below, but for up to date instructions refer to: <a class="reference external" href="https://www.tensorflow.org/install/install_linux#installing_with_virtualenv">https://www.tensorflow.org/install/install_linux#installing_with_virtualenv</a>.</p>
+<ol class="arabic">
+<li><p class="first">Ensure you have Python 2.7 pip, dev, and virtualenv libraries installed.</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre>sudo apt-get install python-pip python-dev python-virtualenv
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Create and activate a virtualenv for TensorFlow, the steps below will assume installation into your ~/.opt directory used by the NRP. If you change this location, you will need to modify later steps.</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre>virtualenv ~/.opt/tensorflow_venv
+<span class="nb">source</span> ~/.opt/tensorflow_venv/bin/activate
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Upgrade pip within your virtualenv, this is required by TensorFlow.</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre>easy_install -U pip
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Install TensorFlow, select one of the options below depending on your GPU configuration.</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre>pip install --upgrade tensorflow       <span class="c1"># select this option if you have no or a non-Nvidia GPU</span>
+pip install --upgrade tensorflow-gpu   <span class="c1"># select this option if you have an Nvidia GPU with proper drivers</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Test your TensorFlow installation.</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre>python - <span class="s">&lt;&lt; _EOF</span>
+<span class="s">import tensorflow as tf</span>
+<span class="s">hello = tf.constant(&#39;Hello, TensorFlow!&#39;)</span>
+<span class="s">sess = tf.Session()</span>
+<span class="s">print(sess.run(hello))</span>
+<span class="s">_EOF</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Installing TensorFlow using the pip library will not include all CPU optimizations that may be possible if compiled natively. If performance is an issue, you may want to explore this option separately.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="building-a-hello-tensorflow-experiment">
+<h1>Building a &#8220;Hello, TensorFlow!&#8221; Experiment<a class="headerlink" href="#building-a-hello-tensorflow-experiment" title="Permalink to this headline">¶</a></h1>
+<p>Using TensorFlow within an experiment is now fairly straightforward. The structure of the pip installation of TensorFlow is too complex to simply add to your PYTHONPATH as is possible with other libraries. Instead we will need to use Python&#8217;s own site-package parsing library.</p>
+<p>You can easily embed the above &#8220;Hello, TensorFlow!&#8221; example within the NRP by adding a new Transfer Function:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.Robot2Neuron</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">hello_tensorflow</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+
+    <span class="c1"># make TensorFlow available from home directory installation</span>
+    <span class="kn">import</span> <span class="nn">site</span><span class="o">,</span> <span class="nn">os</span>
+    <span class="n">site</span><span class="o">.</span><span class="n">addsitedir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/.opt/tensorflow_venv/lib/python2.7/site-packages&#39;</span><span class="p">))</span>
+
+    <span class="c1"># output &quot;Hello, TensorFlow!&quot; to the graphical logger</span>
+    <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+    <span class="n">hello</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s1">&#39;Hello, TensorFlow!&#39;</span><span class="p">)</span>
+    <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">hello</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>This can be added to any of the templated experiments and starting the experiment will produce continuous &#8220;Hello, TensorFlow!&#8221; messages within the graphical client logger.</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="../../../_images/hello_tensorflow.png"><img alt="../../../_images/hello_tensorflow.png" class="align-center" src="../../../_images/hello_tensorflow.png" style="width: 75%;" /></a>
+</div></blockquote>
+<p>Now you can easily use TensorFlow to perform any task in the NRP!</p>
+</div>
+<div class="section" id="further-reading-a-more-complex-tensorflow-example-experiment">
+<h1>Further Reading: A More Complex TensorFlow Example Experiment<a class="headerlink" href="#further-reading-a-more-complex-tensorflow-example-experiment" title="Permalink to this headline">¶</a></h1>
+<p>If you would like to look at a more complex, self-documented example experiment within the NRP - please examine the &#8221;
+CodeJam 2017 Tutorial - TensorFlow Husky Braitenberg Experiment&#8221; experiment.</p>
+<p>This is a development maturity level experiment that requires additional TensorFlow model dependencies and editing of experiment files. It uses TensorFlow image classification to semantically interact with the environment and may be useful to examine before building your own TensorFlow based experiment.</p>
+<p>Please refer to the README documentation:</p>
+<blockquote>
+<div><div class="highlight-bash"><div class="highlight"><pre>$HBP/Experiments/tutorial_tensorflow_husky/README.txt
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">Using Tensorflow in your experiment Tutorial</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../virtual_coach/index.html">Virtual Coach Tutorial</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

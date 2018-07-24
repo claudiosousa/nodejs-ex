@@ -1,0 +1,233 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Interact with the simulation &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Web Cockpit" href="index.html" />
+    <link rel="next" title="Monitoring the simulation" href="6-gz3d-monitor-data.html" />
+    <link rel="prev" title="Inspect a robot" href="36-gz3d-inspect-robot.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/user_manual/user_interface/5-gz3d-interact.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">User Manual</a>
+                    
+                    <a href="index.html">Web Cockpit</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="36-gz3d-inspect-robot.html">Inspect a robot</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="6-gz3d-monitor-data.html">Monitoring the simulation</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="interact-with-the-simulation">
+<h1>Interact with the simulation<a class="headerlink" href="#interact-with-the-simulation" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>A core feature of the Web Cockpit is to let you interact with the objects of the scene, in order to see how the robot reacts.
+While doing that, you can view the changes in the brain by monitoring spikes, as explained in <a class="reference external" href="6-gz3d-monitor-data.html">Monitoring the simulation</a>.
+You can also check what the robot &#8220;sees&#8221; by displaying its camera view.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-robot-view-example.jpg"><img alt="../../../_images/gz3d-robot-view-example.jpg" class="align-center" src="../../../_images/gz3d-robot-view-example.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If the simulation scene is equipped with a <strong>screen</strong>, you can <em>change the color</em> of the screen.
+Right-click on the <strong>screen</strong> and a pop-up menu will show a color picker.
+In several of our template experiments, e.g., <em>Husky Braitenberg experiment in the SpaceBotCup</em>, the Husky robot is programmed to
+move towards red objects. You can observe this behavior by switching screens color to red.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-change-screen-color.jpg"><img alt="../../../_images/gz3d-change-screen-color.jpg" class="align-center" src="../../../_images/gz3d-change-screen-color.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Another way of analyzing the robot&#8217;s behavior is to <em>change the general light intensity</em> by <strong>using the light buttons</strong> on the toolbar.
+By doing this, the scene gets darker or brighter, but not the screens because they are supposed to be auto-luminescent like real screens.
+This changes the contrast between the screens and the environment and you may want to observe how it changes the spiking scheme or affects the robot&#8217;s behavior.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-decrease-light-intensity.jpg"><img alt="../../../_images/gz3d-decrease-light-intensity.jpg" class="align-center" src="../../../_images/gz3d-decrease-light-intensity.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can perturbate a robot by applying a force on its body or on the objects it is interating with. To do so, press the <strong>Apply Force</strong> button
+of the toolbar.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-apply-force-widgets.jpg"><img alt="../../../_images/gz3d-apply-force-widgets.jpg" class="align-center" src="../../../_images/gz3d-apply-force-widgets.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><p>A new widget containing a slider appears. It lets you control the factor by which the magnitude of the force vector
+drawn with your mouse is multiplied. In order to apply a force, click on an object and then dragg the mouse.
+The force vector is drawn in the plane which is parallel to your screen and which contains the point where you click.
+The default force amplifier factor is 1 and the largest value that can be set through the slider is 10.
+If the simulation is paused, the amplifier factor itself is multiplied by 75 and the force will be applied during only one time
+step when the user resumes to play. The total applied force in Newtons is given by the following formula:</p>
+<p><strong>Force = (Force Amplifier Factor) * (length of the vector drawn in the 3D scene)^3 N</strong>.</p>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>If you need to control precisely the direction and the magnitude of the applied force, you can use
+the <strong>advanced mode</strong>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-advanced-apply-force-widgets.jpg"><img alt="../../../_images/gz3d-advanced-apply-force-widgets.jpg" class="align-center" src="../../../_images/gz3d-advanced-apply-force-widgets.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>Once you have selected the <strong>advanced mode</strong> and clicked on the object where the force will be applied,
+two new widgets appear and let you specify the magnitude and the direction the force vector.
+The first widget lets you enter numbers. The second widget has two colored manipulators that help
+you adjust the force direction with the mouse.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>It is also possible to edit the environment at run-time by adding, moving or deleting objects.
+This is detailed in the <a class="reference external" href="7-gz3d-edit.html">Edit simulation</a> section.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="36-gz3d-inspect-robot.html">Inspect a robot</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="6-gz3d-monitor-data.html">Monitoring the simulation</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

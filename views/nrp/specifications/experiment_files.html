@@ -1,0 +1,341 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Experiment files &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Specifications" href="index.html" />
+    <link rel="next" title="BIBI Model Specification" href="bibi_configuration.html" />
+    <link rel="prev" title="Specifications" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/nrp/specifications/experiment_files.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="index.html">Specifications</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">Specifications</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="bibi_configuration.html">BIBI Model Specification</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="experiment-files">
+<h1>Experiment files<a class="headerlink" href="#experiment-files" title="Permalink to this headline">¶</a></h1>
+<p>This page describes the different configuration files a Neurorobotics experiment is made of.
+For a detailed description, please refer to the <a class="reference internal" href="index.html"><em>Specifications</em></a> section of this manual.</p>
+<p>An experiment is a sub-directory located in your storage space. You can access to it via
+the <strong>My Experiments</strong> tab of the web application, see <a class="reference external" href="user_interface/1-esv-main.rst">Clone an experiment and start a simulation</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>MyExperiment.exc : Called the &quot;Experiment Configuration file&quot;.
+                   It holds high level information such as name, description, timeout, environment model, ...
+
+MyExperiment.png : The experiment thumbnail image.
+                   This image is displayed on the web cockpit client on the experiment list
+
+MyExperiment.3ds : Graphical settings.
+                   This file stores web cockpit rendering settings, which are generally edited within the user interface.
+                   You can though also edit it manually.
+
+MyExperiment.bibi : The &quot;BIBI&quot; file.
+                    This file references the brain model to use, the robot model, and definitions of transfer functions
+
+MyExperiment.exd : Experiment design file.
+                   It defines state machines in python to automate your experiment life
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>These files reference models from robot, environment and brain libraries.
+They reference each other and can be named freely.
+Libraries are:</p>
+<ul class="simple">
+<li>Robot library in ~/.opt/nrpStorage/USER_DATA/&lt;user name&gt;/robots. Robot files are Gazebo SDF (.sdf) files.</li>
+<li>Environment library in ~/.opt/nrpStorage/USER_DATA/&lt;user name&gt;/environments. Environment files are Gazebo SDF (.sdf) files.</li>
+<li>Brain library in ~/.opt/nrpStorage/USER_DATA/&lt;user name&gt;/brains. Brain files are PyNN python (.py) files.</li>
+</ul>
+<p>The indicated paths are only valid if the Neurorobotics platform is installed on your computer.
+In any case, we encourage you to manage experiment files
+by means of the file manager of <strong>My Experiments</strong> tab, see <a class="reference external" href="user_interface/1-esv-main.rst">Clone an experiment and start a simulation</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/experiment-struct-diagram.png"><img alt="../../_images/experiment-struct-diagram.png" class="align-center" src="../../_images/experiment-struct-diagram.png" style="width: 30%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="experiment-configuration-file">
+<h2>Experiment configuration file<a class="headerlink" href="#experiment-configuration-file" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This is the main file for the experiment, in xml format.</p>
+<p>Extensive documentation on this file can be found in the user manual.
+Only the tags that are user definable are described here. The rest of the file should remain untouched.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;name&gt;</span> : Name of your experiment as it will be displayed in the Web Cockpit
+
+<span class="nt">&lt;description&gt;</span> : Short text (of about 50x6) characters describing the purpose and scientific interest of your experiment.
+                This is displayed in the Web Cockpit, in the experiment list, when your experiment is selected
+
+<span class="nt">&lt;timeout&gt;</span> : In seconds, this value sets the maximum lifetime of your experiment.
+            It will automatically shut down when the time out is reached, unless the user adds extra time when prompted.
+
+<span class="nt">&lt;configuration</span> <span class="na">type=</span><span class="s">&quot;3d-settings&quot;</span><span class="nt">&gt;</span> : Set the path to the 3DS file in the src field.
+
+<span class="nt">&lt;maturity&gt;</span> : Set to development to make your experiment available only in Web Cockpit&#39;s development user interface.
+             Set to production to make available in regular users&#39; interface.
+
+<span class="nt">&lt;environmentModel&gt;</span> : Set path to your environment SDF file in the src field.
+    <span class="nt">&lt;robotPose&gt;</span> Tag sets the initial position of the robot within the environment (in absolute coordinates).
+
+<span class="nt">&lt;bibiConf&gt;</span> : Set path to BIBI file in the src field.
+
+<span class="nt">&lt;experimentControl&gt;</span>
+    <span class="nt">&lt;stateMachine&gt;</span> : Leave type attribute as &quot;SMACHStateMachine&quot;.
+                     Set id attribute to any name you like.
+                     Set src attribute to the path of your EXD file.
+
+<span class="nt">&lt;cameraPose&gt;</span>
+    <span class="nt">&lt;cameraPosition&gt;</span> : initial position of the user&#39;s camera (user point of view on the scene).
+    <span class="nt">&lt;cameraLookAt&gt;</span> : initial angle of view of the user
+
+<span class="nt">&lt;rosLaunch&gt;</span> : set the path to a launch file for additional ROS nodes for this experiment in the src field
+
+<span class="nt">&lt;rngSeed&gt;</span> : set an RNG seed to use every experiment launch, if not specified a random RNG seed is used instead
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="experiment-thumbnail-file">
+<h2>Experiment thumbnail file<a class="headerlink" href="#experiment-thumbnail-file" title="Permalink to this headline">¶</a></h2>
+<p>This file should be a PNG 370x248 image. It is displayed as a thumbnail in the experiment list.</p>
+<p>It should be explicit about your experiment, ideally a good screen-shot.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="user-settings-file">
+<h2>User settings file<a class="headerlink" href="#user-settings-file" title="Permalink to this headline">¶</a></h2>
+<p>This file, in JSON format, defines graphical rendering settings and navigation settings as well.
+In general, you will prefer to set it using the graphical settings editor, as explained in the user manual.
+If you want to edit the file itself, then here are the tags descriptions.</p>
+<div class="highlight-none"><div class="highlight"><pre>shadows : &quot;true&quot;/&quot;false&quot;. Turn on/off shadows
+
+antiAliasing : &quot;true&quot;/&quot;false&quot;. When enabled, it will smooth the pixels to avoid pixel aliasing.
+
+ssao : &quot;true&quot;/&quot;false&quot;. turn on/off ambient occlusion
+    ssaoClamp : float. Distance to ambient occlusion.
+    ssaoLumInfluence : float 0 to 1. The lower, the darkest the shadow.
+
+rgbCurve : color correction.
+    red : array of &quot;[x,y]&quot; dots on a spline curve that defines the red profile. If empty, the profile is linear.
+    green : idem
+    blue : idem
+
+levelsInBlack : float 0 to 1. lower level for histogram normalization
+levelsInGamma : float 0 to 2. mid-tone level for histogram normalization
+levelsInWhite : float 0 to 1. upper level for histogram normalization
+levelsOutBlack : float 0 to 1. lower bound for 2nd level normalization
+levelsOutWhite : float 0 to 1. upper bound for 2nd level normalization
+
+skyBox : path to sky box images in the assets (usually predefined and selectable in graphical editor)
+
+sun : empty or &quot;SIMPLELENSFLARE&quot;
+
+bloom : &quot;true&quot;/&quot;false&quot;. Enable bloom effect.
+    bloomStrength : float 0 to 1. Strength of bloom effect.
+    bloomRadius : float. Radius of bloom effect.
+    bloomThreshold : float 0 to 1. Intensity level threshold for bloom effect.
+
+fog : &quot;true&quot;/&quot;false&quot;. Enable fog.
+    fogDensity : float. Fog density.
+    fogColor : hexadecimal RGB.
+
+pbrMaterial : &quot;true&quot;/&quot;false&quot;. Enable PBR materials.
+
+defaultCameraMode : &quot;free-camera&quot;/&quot;lookatrobot&quot;. The camera will follow the robot motion if &quot;lookatrobot&quot; is selected.
+cameraSensitivity :
+    translation : float 0.05 to 2. Control the translation increment of the camera when moved through GUI
+    rotation : float 0.1 to 2. Control the angle increment of the camera when rotated through GUI
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="bibi-file">
+<h2>BIBI file<a class="headerlink" href="#bibi-file" title="Permalink to this headline">¶</a></h2>
+<p>The Brain and Body Interface (BIBI) file is in the XML format.</p>
+<p>An extensive documentation on the BIBI file can be found in <a class="reference internal" href="../tutorials/transfer_function/bibi_config.html"><em>Tutorial: Writing a BIBI Configuration</em></a>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;brainModel&gt;</span>
+    <span class="nt">&lt;file&gt;</span> : Path to the brain model file
+    <span class="nt">&lt;populations&gt;</span> : Defines neuron populations. Should match the population in your brain file.
+        population : Attribute set to &quot;sensors&quot; or &quot;actors&quot; or &quot;record&quot;, depending on the neuron type.
+                     &quot;type&quot; set to &quot;Range&quot; or &quot;List&quot;.
+                     If set to Range, you have to set the &quot;from&quot; and &quot;to&quot; attributes.
+                     If set to List, you have to set the &quot;element&quot; attributes.
+
+<span class="nt">&lt;bodyModel&gt;</span> : Path to the robot SDF file.
+
+<span class="nt">&lt;transferFunction&gt;</span> : Defines a transfer function. The regular type of transfer functions is &quot;PythonTransferFunction&quot;.
+                     In that case, the transfer function can be defined in a separate python files referenced in the &quot;src&quot; attribute, or entered as python code in the <span class="cp">&lt;![CDATA&gt;</span> element.
+
+                     Set the type attribute to &quot;Neuron2Monitor&quot; to monitor neurons.
+                     Their spikes will be displayed in the spikes pane in the Web Cockpit, and logged.
+                     &quot;name&quot; attributes is the name of this special transfer function.
+                     <span class="nt">&lt;device&gt;</span> should be set to type=&quot;SpikeRecorder&quot; and the neurons to record should be defined with the <span class="nt">&lt;neurons&gt;</span> element with a Range attribute, as in the population attribute of <span class="nt">&lt;populations&gt;</span>.
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="experiment-design-file">
+<h2>Experiment design file<a class="headerlink" href="#experiment-design-file" title="Permalink to this headline">¶</a></h2>
+<p>The EXD file is a Python file that uses the SMACH state machines framework.</p>
+<p><a class="reference internal" href="../tutorials/experiment/state_machines.html"><em>Tutorial: Writing a state machine for an experiment</em></a> describes how to set up these state machines.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="brain-environment-and-robot-models">
+<h2>Brain, environment and robot models<a class="headerlink" href="#brain-environment-and-robot-models" title="Permalink to this headline">¶</a></h2>
+<p>Model files are not described here because they are external inputs to the Neurorobotics Platform.</p>
+<p>The brain file is a standard <a class="reference external" href="http://neuralensemble.org/PyNN/">PyNN</a> file. Environment and robot models are plain SDF Gazebo files.</p>
+<p>There is a comprehensive documentation of the SDF format <a class="reference external" href="http://sdformat.org">here</a>.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">Specifications</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="bibi_configuration.html">BIBI Model Specification</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

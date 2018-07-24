@@ -1,0 +1,420 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The transfer functions editor &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="Edit the experiment" href="index.html" />
+    <link rel="next" title="Manage python and other resources" href="gz3d-resources-tab.html" />
+    <link rel="prev" title="Edit the simulation" href="7-gz3d-edit-simulation.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/nrp/user_manual/user_interface/edit/7-gz3d-tf-editor.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../../index.html">User Manual</a>
+                    
+                    <a href="../index.html">Web Cockpit</a>
+                    
+                    <a href="index.html">Edit the experiment</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="7-gz3d-edit-simulation.html">Edit the simulation</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="gz3d-resources-tab.html">Manage python and other resources</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="the-transfer-functions-editor">
+<h1>The transfer functions editor<a class="headerlink" href="#the-transfer-functions-editor" title="Permalink to this headline">¶</a></h1>
+<p>The transfer functions editor eases off the specification of transfer functions.
+The main features of this editor are described below.</p>
+<p>Let us briefly recall what transfer functions are: Python scripts, that transform robot sensor data into spike
+input for the brain and brain spike output into commands for the robot actuators. Actually, transfer functions are what you will most likely want to edit.</p>
+<p>The editor displays these scripts and enables the user to change them. Users should have knowledge of the expected
+syntax and of the brain spike and robot interfaces.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/tf-editor.jpg"><img alt="../../../../_images/tf-editor.jpg" class="align-center" src="../../../../_images/tf-editor.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><p>In the introduction text of the pane, a link takes the user to the relevant documentation.</p>
+<ul class="simple">
+<li>Clicking on <strong>Apply</strong> submits the changes in a transfer function to the current simulation. The user should see the effect on the robot&#8217;s behavior immediately.</li>
+<li>Clicking on <strong>Delete</strong> removes this transfer function from the simulation.</li>
+<li>Clicking on <strong>New</strong> at the top of the editor creates a new transfer function template that you can edit.</li>
+<li>The <strong>Download</strong> and <strong>Upload</strong> buttons enable saving or loading of a local set of transfer functions. It can be useful to switch between multiple versions.</li>
+<li><strong>Save</strong> permanently saves the functions to the experiment</li>
+</ul>
+<p>When a transfer function is newly created or transfer functions are uploaded, they are automatically checked
+for syntax errors and applied. Furthermore, there are several restrictions for Python code that is to be uploaded to the Platform
+for safety reasons. Mainly, this affects the <code class="docutils literal"><span class="pre">import</span></code> statement that is limited to a selected list of modules
+and statements with leading double underscores. If the module that you wish to import is failing to load,
+please contact us for inclusion (see <a class="reference internal" href="../../../../contact-and-support.html#contact"><span>Contact &amp; Support</span></a>).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Currently, the NRP does not perform a <em>semantic</em> validation of modified and/or uploaded transfer functions.
+That means that if the transfer function tries to address neurons that are not present in the currently selected
+brain model, this semantic error cannot be processed and will cause the simulation to stop. Note that the same
+accounts also for modifications to the brain model.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Monitoring is implemented with a special transfer function called &#8220;all_neurons_spike_monitor&#8221; in our template experiments. If you delete or alter this transfer function, monitoring might not work properly.</p>
+</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The transfer functions editor splits into three main views.
+The view on the left allows you to select transfer functions while
+the view in the middle allows you to edit transfer functions body.
+If the <strong>Script</strong> tab is active, the NRP python decorators are hidden and a third view
+is displayed. This third view shows the list of neuron populations and
+three other widgets that help you create devices, monitors, ROS publishers and subscribers.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/tf-editor-raw-script.jpg"><img alt="../../../../_images/tf-editor-raw-script.jpg" class="align-center" src="../../../../_images/tf-editor-raw-script.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>If the <strong>Raw Script</strong> tab is active, the NRP python decorators are displayed and
+you have full control of the python code.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="transfer-functions-selection">
+<h2>Transfer functions selection<a class="headerlink" href="#transfer-functions-selection" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/tf-selection.jpg"><img alt="../../../../_images/tf-selection.jpg" class="align-center" src="../../../../_images/tf-selection.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The view on the left is used to select the transfer function to be inspected or modified.
+It also includes buttons to delete the selected transfer function or create a new one.
+Moreover, each selected transfer function can be enabled or disabled.
+A disabled transfer function will not be executed until it is re-enabled.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="the-script-and-raw-script-tabs">
+<h2>The Script and Raw Script tabs<a class="headerlink" href="#the-script-and-raw-script-tabs" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/tf-script.jpg"><img alt="../../../../_images/tf-script.jpg" class="align-center" src="../../../../_images/tf-script.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The <strong>Script</strong> tab displays the user-written python.
+The <strong>Raw Script</strong> tab displays, in addition, the definition name of the function and the python decorators which can be generated by means of the graphical interface.
+The definition name of the transfer function is the name used in the left view to refer to it.
+Changes become effective in the simulation only after the <strong>Apply</strong> button is pressed. <strong>Apply all</strong> will apply the
+changes of every transfer function. Pressing <strong>Save to storage</strong> will save your changes persistently in your storage space.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="populations">
+<h2>Populations<a class="headerlink" href="#populations" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/populations.jpg"><img alt="../../../../_images/populations.jpg" class="align-center" src="../../../../_images/populations.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The <strong>Populations</strong> widget on the right displays a read-only information about user-defined neuron populations of the brain model.
+Populations are listed and each population item can be expanded so as to unveil the features of its neurons: you can read for instance
+the value of the resting potential or the refractory period. This information can be useful when designing transfer functions.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="connect-to-brain">
+<h2>Connect to brain<a class="headerlink" href="#connect-to-brain" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/connect-to-brain.jpg"><img alt="../../../../_images/connect-to-brain.jpg" class="align-center" src="../../../../_images/connect-to-brain.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The <strong>Connect to brain</strong> widget displays the list of brain devices and brain monitors.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/expanded-device.jpg"><img alt="../../../../_images/expanded-device.jpg" class="align-center" src="../../../../_images/expanded-device.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>Each device or monitor can be expanded to display its configuration.
+The configuration can be modified from the graphical interface.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/add-neuron-io.jpg"><img alt="../../../../_images/add-neuron-io.jpg" class="align-center" src="../../../../_images/add-neuron-io.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>Pressing the <strong>+</strong> button of the <strong>Connect to brain</strong> widget displays
+the list of neuron populations with a tick box for each neuron. This way you can select a subset of a population
+to instantiate a device (brain input) or a monitor (brain output).</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="connect-to-robot">
+<h2>Connect to robot<a class="headerlink" href="#connect-to-robot" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/connect-to-robot.jpg"><img alt="../../../../_images/connect-to-robot.jpg" class="align-center" src="../../../../_images/connect-to-robot.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The <strong>Connect to robot</strong> widget displays the list of ROS publishers and subscribers created by
+the selected transfer function.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/add-robot-topic.jpg"><img alt="../../../../_images/add-robot-topic.jpg" class="align-center" src="../../../../_images/add-robot-topic.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>Pressing the <strong>+</strong> button of the <strong>Connect to robot</strong> widget displays the list of all the available ROS topics that can be used to communicate with the robot.
+Clicking on a robot topic selects this topic and then, a new topic channel can be created in the
+selected transfer function by clicking on <strong>Add Publisher</strong> or <strong>Add Subscriber</strong></div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="global-variables">
+<h2>Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h2>
+<p>Global variables allow you to share information accross transfer functions.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/global-variables.jpg"><img alt="../../../../_images/global-variables.jpg" class="align-center" src="../../../../_images/global-variables.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The <strong>Global variables</strong> widget displays the list of user defined global variables.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/expanded-global-variable.jpg"><img alt="../../../../_images/expanded-global-variable.jpg" class="align-center" src="../../../../_images/expanded-global-variable.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>Each global variable can be expanded so that is value can be edited.
+Pressing the <strong>+</strong> button will create a new variable that you can edit by expanding its item.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The type of the variable currently can be one of the following:</p>
+<ul class="simple">
+<li>Integer</li>
+<li>String</li>
+<li>CSV Recorder</li>
+<li>Retina configuration</li>
+</ul>
+<p>Based on the type of variable, different configuration options apply. For a CSV recorder, the user is asked to
+specify file name and headers. For a retina configuration, the configuration file is requested. For integer or
+string variables, the initial value is required.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="7-gz3d-edit-simulation.html">Edit the simulation</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="gz3d-resources-tab.html">Manage python and other resources</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

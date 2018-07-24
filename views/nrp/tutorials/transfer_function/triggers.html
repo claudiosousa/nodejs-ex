@@ -1,0 +1,205 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Executing Transfer Functions outside the simulation loop &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: throttling a Transfer Function" href="throttling.html" />
+    <link rel="prev" title="Tutorial: Accessing multiple neurons with device groups" href="deviceGroups.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/triggers.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="deviceGroups.html">Tutorial: Accessing multiple neurons with device groups</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="throttling.html">Tutorial: throttling a Transfer Function</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-executing-transfer-functions-outside-the-simulation-loop">
+<h1>Tutorial: Executing Transfer Functions outside the simulation loop<a class="headerlink" href="#tutorial-executing-transfer-functions-outside-the-simulation-loop" title="Permalink to this headline">¶</a></h1>
+<p>Transfer Functions by default run synchronized to the neural network and the world simulation due to
+the advantages in reproducibility. However, some applications have special demands where Transfer
+Functions should be able to be executed independent of the simulation loop, for example when a new
+sensor value arrives or when a special event happens.</p>
+<p>For these applications, the NRP allows to define custom triggers for Transfer Functions. That is,
+you can define that certain devices of the TF should be used to indicate when the TF should be run.</p>
+<div class="section" id="calling-transfer-functions-when-a-new-image-arrives">
+<h2>Calling Transfer Functions when a new image arrives<a class="headerlink" href="#calling-transfer-functions-when-a-new-image-arrives" title="Permalink to this headline">¶</a></h2>
+<p>As an example, consider the <em>eye_sensor_transmit</em> TF from the <a class="reference internal" href="robot2neuron.html"><em>Tutorial: Writing a Robot2Neuron TF</em></a>. You might want to specify
+that you would like to run this TF not only with the timestep of the CLE (by default every 20ms),
+but simply whenever there is a new camera image coming from the robot. To do that, all you need to do is simply
+to define the <em>camera</em> device as a trigger for this TF.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapRobotSubscriber</span><span class="p">(</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span> <span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/camera&#39;</span><span class="p">,</span> <span class="n">sensor_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Image</span><span class="p">))</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;red_left_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;red_right_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;green_blue_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">(</span><span class="n">triggers</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">eye_sensor_transmit</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">camera</span><span class="p">,</span> <span class="n">red_left_eye</span><span class="p">,</span> <span class="n">red_right_eye</span><span class="p">,</span> <span class="n">green_blue_eye</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>This specification is done by simply assigning the parameter name to the triggers of the TF. If you specify
+a string that is not the name of a parameter, an exception will be raised.</p>
+</div>
+<div class="section" id="multiple-triggers">
+<h2>Multiple triggers<a class="headerlink" href="#multiple-triggers" title="Permalink to this headline">¶</a></h2>
+<p>Transfer Functions also allow to define multiple triggers. In that case, the TF will be run whenever
+<em>any</em> of the trigger devices signals that the TF could run. If we extend the <em>eye_sensor_transmit</em> TF
+with a second camera, the header of that TF would as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapRobotSubscriber</span><span class="p">(</span><span class="s2">&quot;camera1&quot;</span><span class="p">,</span> <span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/camera1&#39;</span><span class="p">,</span> <span class="n">sensor_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Image</span><span class="p">))</span>
+<span class="nd">@nrp.MapRobotSubscriber</span><span class="p">(</span><span class="s2">&quot;camera2&quot;</span><span class="p">,</span> <span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/camera2&#39;</span><span class="p">,</span> <span class="n">sensor_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Image</span><span class="p">))</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;red_left_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;red_right_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;green_blue_eye&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">sensors</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">poisson</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">(</span><span class="n">triggers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;camera1&quot;</span><span class="p">,</span> <span class="s2">&quot;camera2&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">eye_sensor_transmit</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">camera1</span><span class="p">,</span> <span class="n">camera2</span><span class="p">,</span> <span class="n">red_left_eye</span><span class="p">,</span> <span class="n">red_right_eye</span><span class="p">,</span> <span class="n">green_blue_eye</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>In other words, you can simply use lists to provide multiple triggers.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you specify a trigger, this means that the TF does not take part in the normal TF execution
+logic. Thus, if you assign an empty list to the triggers of a TF, that TF will never be run.</p>
+</div>
+</div>
+<div class="section" id="triggers-and-synchronized-execution">
+<h2>Triggers and synchronized execution<a class="headerlink" href="#triggers-and-synchronized-execution" title="Permalink to this headline">¶</a></h2>
+<p>In case you need both out-of-order execution through triggers <em>and</em> normal synchronized execution,
+you can achieve such a scenario by simply adding <em>t</em> to the trigger list.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="deviceGroups.html">Tutorial: Accessing multiple neurons with device groups</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="throttling.html">Tutorial: throttling a Transfer Function</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

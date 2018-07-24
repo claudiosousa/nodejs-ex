@@ -1,0 +1,406 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Transfer Functions with PyTF &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Simulation Setup" href="index.html" />
+    <link rel="next" title="Configuration parameters of devices" href="device_configurations.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/user_manual/simulation_setup/transfer_functions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">User Manual</a>
+                    
+                    <a href="index.html">Simulation Setup</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="introduction.html">Introduction</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="device_configurations.html">Configuration parameters of devices</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="transfer-functions-with-pytf">
+<h1>Transfer Functions with PyTF<a class="headerlink" href="#transfer-functions-with-pytf" title="Permalink to this headline">¶</a></h1>
+<p>Abstraction is about concentrating on the essential parts of a system. To explain what we
+see as essential in the connection between a robot and a spiking
+neuronal network, we begin with the explanation of the domain-specific language (DSL) that captures
+these essential parts.</p>
+<div class="figure" id="id1">
+<span id="closed-loop"></span><img alt="../../../_images/closedLoop.png" src="../../../_images/closedLoop.png" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">A Closed Loop between Neuronal Networks and Robots</span></p>
+</div>
+<p>Our main way of connecting spiking neuronal networks with robots
+are transfer functions which you can see in <a class="reference internal" href="#closed-loop"><span>Fig. 1</span></a>.
+Transfer functions consist of connections between the simulators
+and some code which details how the data of one simulator should be
+transmitted to the other. The code is mainly trivial as the
+purpose of most transfer functions is limited to transmission, simple
+arithmetic adjustments and multiplexing the data from different parts of
+the simulators. The role of the simulators is to some extent
+interchangeable, in that they take information from other simulators and output
+information into other simulators, but the way how this is implemented differs for
+spiking neuronal networks and robots.</p>
+<div class="section" id="abstract-syntax">
+<h2>Abstract Syntax<a class="headerlink" href="#abstract-syntax" title="Permalink to this headline">¶</a></h2>
+<p>The basic idea behind PyTF is that the specification of a
+transfer function (that is how the input from a transfer function is
+converted to a robot control signal) can be written as a regular
+Python function. The role of PyTF is to wrap Python functions
+into transfer functions, map their parameters to parts of either a
+neuronal network or a robot simulation and manage the execution of this
+function.</p>
+<div class="figure" id="id2">
+<span id="transfer-functions"></span><img alt="../../../_images/transferFunctions.png" src="../../../_images/transferFunctions.png" />
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">The abstract syntax of PyTF</span></p>
+</div>
+<p>The abstract syntax of PyTF to achieve this functionality is depicted in
+<a class="reference internal" href="#transfer-functions"><span>Fig. 2</span></a>. A transfer function consists of an
+underlying Python function and parameter mapping specifications.
+Multiple types of parameter mappings exist in order to connect to either
+a neuronal simulation or a robotics simulation. In principle, we
+differentiate between mappings to the neuronal network
+(<code class="docutils literal"><span class="pre">SpikeMapping</span></code>), to the robotics simulation (<code class="docutils literal"><span class="pre">RobotMapping</span></code>) and to
+internal variables. The mapping specifications for the simulators each
+have subclasses to specify whether the parameter is an input or an output
+to/from the simulation.</p>
+<p>As the parameter mapping specifications are contained in the transfer
+functions, a transfer function does not have external references. In
+particular, the deployment of transfer functions could be distributed to
+multiple nodes which is useful if the transfer functions contain some computational
+expensive logic.</p>
+<p>All parameter mappings share an attribute specifying which parameter
+they belong to and a method to create a device from the mapping
+specification. This creates an adapter component instance in the case of a
+mapping to a simulation or just yields a reference to a local or global
+variable. For this, a reference to the surrounding TF Manager is passed
+into the mapping specification that contains references to the
+communication adapters for both neuronal and robotics simulation. The
+mapping specifications can then create the device independently of the
+concrete simulator used at either side.</p>
+<p>PyTF has two subtypes of transfer functions, <code class="docutils literal"><span class="pre">Robot2Neuron</span></code> and
+<code class="docutils literal"><span class="pre">Neuron2Robot</span></code>, represented by the upper and lower transfer functions
+in <a class="reference internal" href="#closed-loop"><span>Fig. 1</span></a>. The rationale behind this decision is
+simply to order transfer functions in the unlikely case that a control
+topic is both read from and written to. Thus, <code class="docutils literal"><span class="pre">Robot2Neuron</span></code> transfer
+functions are executed first. On the other hand, <code class="docutils literal"><span class="pre">Neuron2Robot</span></code>
+transfer functions often result in sending a message to a particular
+robot control topic. For this rather common case, the class contains a
+reference to a publisher so that the transfer function may simply use
+the return value of the function to publish on this topic. Other than
+that, the type of transfer functions has no implications on the allowed
+parameter mappings. In particular, a <code class="docutils literal"><span class="pre">Robot2Neuron</span></code> transfer function
+may for example also contain a publisher or a spike sink.</p>
+</div>
+<div class="section" id="neuron-access-patterns">
+<h2>Neuron Access Patterns<a class="headerlink" href="#neuron-access-patterns" title="Permalink to this headline">¶</a></h2>
+<p>Whereas robot control signals or sensory inputs from the robot can be
+bundled in arbitrary data structures sent over ROS, the interface of a
+neuron is determined through its underlying neuron model. In many cases
+this interface is limited to a few parameters such as the membrane
+potential or a history of spikes. As a consequence, a single control
+signal for a robot is often multiplexed to a multitude of neurons and
+vice versa sensory inputs such as a camera image are fed into a
+multitude of neurons. Therefore, transfer functions are often required to
+connect multiple neurons at once.</p>
+<p>Spikes (the usual interface of a neuron in a
+spiking neural network) are discrete in time whereas control commands for
+robots usually consist of continuous data sent to the robot in short
+intervals. Likewise, sensory inputs from the robot that will be
+transmitted to the neural network need to be discretized to spikes. To
+perform these conversions, there are multiple approaches. This includes
+integration of spikes to obtain continuous data from spikes and
+generating a current of spikes either constantly or according to some
+probability distribution, most notably Poisson distributions.</p>
+<p>In PyTF users can choose between a set of predefined access patterns.
+Each connection to a particular set of neurons and
+according to a given access pattern is realized by an object we call a
+device (as this terminology is also partially used in the neural
+simulators) where the access pattern is called the device type.
+Depending on whether the device is an input into the network (spike
+source) or an output (spike sink), different device types apply. Each
+device can be connected to arbitrary many neurons that can be selected
+by navigating through the populations of the neuronal network model.</p>
+<p>We support the following spike source device types:</p>
+<ol class="arabic simple">
+<li><strong>Current Generators:</strong> The current generators for direct current,
+alternating current or noisy current do not generate spikes but
+inject currents of the specified type into all of the connected
+neurons. These devices receive the amplitude of the generated current
+as inputs. Here, the noisy current generator is rather a tool to test
+whether the neuronal network currently simulated is robust with
+regard to noise rather than being a good choice to encode sensory
+inputs.</li>
+<li><strong>Poisson Generator:</strong> A Poisson generator issues spikes according to
+a Poisson distribution. Here, the inverse of the <span class="math">\(\lambda\)</span>
+parameter can be set in accordance to sensory inputs. This inverse
+reflects the rate in which spikes are generated by this device.</li>
+<li><strong>Fixed Frequency Generator:</strong> A fixed frequency generator
+deterministically generates spikes at a given frequency. Here, the
+frequency is set as a parameter and can be adjusted to sensory
+inputs. Unlike the other spike generators, this device type is not
+directly implemented in neuronal simulators but can be implemented by
+connecting a current generator with an integrate-and-fire neuron.</li>
+</ol>
+<p>This selection is based on the observation that neural simulators (in
+particular Nest) let simulated neurons communicate through the delivery
+of spikes and currents. Based on the experiments we have performed so far
+using the platform, we believe that this list is sufficient for most
+applications. However, we plan to support new device types should they
+be demanded by users of the NRP.</p>
+<p>The following spike sinks are supported:</p>
+<ol class="arabic simple">
+<li><strong>Leaky Integrators:</strong> The concept of leaky integrators is to simply
+integrate spikes coming from a neuron under observation and add a
+leak term to it. The rationale behind this is that in spiking
+neuronal networks, the membrane potential is highly fragile. Shortly
+after a spike has been issued, the membrane potential is reset and
+therefore, it has a high importance whether any measurement is taken
+before or after a neuron spikes. Therefore, we augment the neuronal
+network with an additional leaky integrate-and-fire neuron with an
+infinite threshold potential (so that it never spikes) and measure
+the membrane potential of this neuron. The result is much less
+fragile and therefore appropriate to be used for robot control
+signals.</li>
+<li><strong>Population Rate:</strong> Another very common pattern is to simply take the
+average incoming spike rate of a neuron or a range of neurons. This
+is again relatively stable and can be used for translation into robot
+control signals.</li>
+<li><strong>Spike Recorder:</strong> The simplest thing a spike sink can do is to
+simply record all spikes issued to a neuron under observation.
+However, this has two major drawbacks. At first, the communication
+overhead is increased since all spikes are transmitted between the
+neuronal simulation and the transfer function but more importantly the
+transfer function has to make sense of this series of spikes. This
+allows great flexibility as this approach is extensible, but it
+is not suited for general use.</li>
+</ol>
+<p>Again, this list contains the device types that we think are suitable for a
+range of applications and we do not claim that this list is
+sufficient for all experiments. This list is subject to change.
+Rarely used device types may be removed whereas device
+types frequently asked for may be added.</p>
+<p>The implementation on how exactly a given device type is created is
+up to the communication adapter that will create the
+appropriate communication objects. For example, the leaky integrator
+device can be implemented in Nest by simply inserting a new
+integrate-and-fire neuron with adequately set parameters and an infinite
+spiking threshold so that the result is directly available as the
+membrane potential of the additionally inserted neuron. This is possible
+since the Nest simulator runs in main memory and therefore allows
+different modes of communication. Other simulators such as SpiNNaker are only based
+on spike-based communication. Here, the implementation of the
+leaky integrator would be to record the spikes and to do the
+integration manually.</p>
+<p>Each of these device types have their own additional configuration such
+as weights and delays in which the spikes are issued to spike generators
+or from existing neurons into leaky integrators. On the other hand, all
+devices share the connection specification towards the neuronal
+simulator, that we call <code class="docutils literal"><span class="pre">NeuronSelector</span></code> (cf. <a class="reference internal" href="#transfer-functions"><span>Fig. 2</span></a>).
+This is a function that given a model of the neuronal network selects the
+neuron a device should be connected to. This includes entire populations but
+also views and assemblies.</p>
+<p>While a single device is sufficient to transmit simple sensory data to
+the network or issue command control signals to the robot, the
+transmission of complex sensory inputs such as camera images requires
+multiple devices connected to different neurons each. This is the reason
+that a device mapping can specify not only a single but multiple neuron
+selectors. In the case that multiple neuron selectors are present, the framework
+won&#8217;t create just a single device but one for each neuron selector.</p>
+<p>The advantage of these device groups is that they aggregate the values
+from individual devices to arrays, making this a suitable choice when
+the data in the robotics simulator is available as an
+array. This is the case for camera inputs that can then transmitted to an array of Poisson generators.
+Furthermore, device groups can be configured comfortably as in these scenarios
+devices usually share large proportions of their configuration.</p>
+</div>
+<div class="section" id="mapping-to-python">
+<h2>Mapping to Python<a class="headerlink" href="#mapping-to-python" title="Permalink to this headline">¶</a></h2>
+<p>Applying a typical query-and-command programming interface for managing
+transfer functions would presumably result in verbose schematic code.
+Thus, we use techniques from the
+area of domain-specific languages to raise the abstraction level of the
+target platform by means of an internal DSL, PyTF. With PyTF, we obtain
+a more concise representation of transfer functions. Users can specify
+transfer functions as regular Python functions decorated with their
+connections to neuronal and world simulators. The coordination regarding
+data synchronization and simulation orchestration is hidden in the
+platform abstractions.</p>
+<p>We chose an internal DSL and Python as a host language because
+Python is popular both among robotics and neuroscience users. Given the
+research results from Meyerovich that suggest that developers
+do not like to change their primary language, we wanted to make the
+barrier for neuroscientists as low as possible. There is a Python API for both the neuronal
+simulations and the robotics side. Large parts of the
+framework are implemented in Python and this allows an easy
+implementation of the DSL as a Python API.</p>
+<p>To implement transfer functions in PyTF, we have decided on using the Python decorator
+syntax. A first set of decorators turn a regular Python function into a
+transfer function and a second set specifies parameter
+mappings. Everything else, including the neuron access
+patterns and device types is specified as parameters for these
+decorators.</p>
+<p>A consequence of this design is the name of the classes in the abstract
+syntax. They are named to be as understandable as possible.</p>
+<p>In particular, the classes <code class="docutils literal"><span class="pre">Neuron2Robot</span></code> and <code class="docutils literal"><span class="pre">Robot2Neuron</span></code> create
+a new transfer function object with no reference to any regular Python
+function. When used as a decorator and applied to a Python function, the
+underlying Python function of the transfer function is set and
+placeholders for the parameter mappings are created (Python allows to
+retrieve the parameter names of a method using the <code class="docutils literal"><span class="pre">inspect</span></code> module).</p>
+<p>The mapping specification classes <code class="docutils literal"><span class="pre">MapSpikeSource</span></code>, <code class="docutils literal"><span class="pre">MapSpikeSink</span></code>,
+<code class="docutils literal"><span class="pre">MapVariable</span></code>, <code class="docutils literal"><span class="pre">MapRobotPublisher</span></code> and <code class="docutils literal"><span class="pre">MapRobotSubscriber</span></code> then
+create a parameter mapping specification object that when called with a
+transfer function replaces the according placeholder with themselves and
+returns the transfer function to allow other parameters to be mapped. If
+no appropriate placeholder exists, an error message is thrown.</p>
+<p>The configuration for mapping specifications is passed as arguments to
+the decorator representing the parameter mapping. Here, the device
+mappings are interesting as they allow the most detailed
+configuration. In particular, they contain a specification to which
+neurons a device should be connected as a function selecting the neurons
+for a given model of the neuronal network. However, as we do not want
+our users to bother with the details of lambda functions, we created a small API to allow them to write
+such functions as if they were operating on an assumed neuronal network
+model directly.</p>
+<p>To specify multiple neuron selectors, a list of neuron selectors must be
+passed into the neuronal network constructor. In PyTF, we support a
+mapping operator that construct such lists of neuron selectors based on
+a lambda function and a concatenation operator to express more complex
+patterns. These operators make use of the knowledge that neuron
+selectors must not be nested deeper than in one list (i.e. it is not
+permitted to specify a list of a list of neuron selectors for a device)
+and flatten these lists when required.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="introduction.html">Introduction</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="device_configurations.html">Configuration parameters of devices</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

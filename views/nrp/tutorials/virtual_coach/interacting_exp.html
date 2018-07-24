@@ -1,0 +1,295 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Interacting with an Experiment from the Virtual Coach &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Virtual Coach Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Running Batch Simulations with the Virtual Coach" href="batch_simulations.html" />
+    <link rel="prev" title="Tutorial: Launching an Experiment from the Virtual Coach" href="launching_exp.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/virtual_coach/interacting_exp.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Virtual Coach Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="launching_exp.html">Tutorial: Launching an Experiment from the Virtual Coach</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="batch_simulations.html">Tutorial: Running Batch Simulations with the Virtual Coach</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-interacting-with-an-experiment-from-the-virtual-coach">
+<h1>Tutorial: Interacting with an Experiment from the Virtual Coach<a class="headerlink" href="#tutorial-interacting-with-an-experiment-from-the-virtual-coach" title="Permalink to this headline">¶</a></h1>
+<p>In the previous section we successfully launched a simulation of the Template Husky experiment. In this tutorial, we will interact with the simulation through the Virtual Coach.</p>
+<div class="section" id="getting-and-setting-simulation-states">
+<h2>Getting and Setting Simulation States<a class="headerlink" href="#getting-and-setting-simulation-states" title="Permalink to this headline">¶</a></h2>
+<p>When an experiment is launched, it is initially in the <cite>paused</cite> state. This means the experiment has to be explicitly started. In general, we can query the simulation state by calling:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The state of the simulation is returned as a string. In this case calling get_state() will return <cite>paused</cite>. The possible states we can set a simulation to are <cite>paused</cite>, <cite>started</cite> and <cite>stopped</cite> using these calls respectively:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">pause</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="transfer-functions">
+<h2>Transfer Functions<a class="headerlink" href="#transfer-functions" title="Permalink to this headline">¶</a></h2>
+<p>From the Virtual Coach, we can view transfer functions, modify them, delete them, or add new ones. The transfer functions unique identifiers are their function names. To know the names of the transfer functions defined in an experiments, we can call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">print_transfer_functions</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>which would just print out the names of the transfer functions. In the case of the Template Husky experiment, this call will print out: <cite>turn_around</cite>, <cite>csv_spike_monitor</cite>, <cite>all_neurons_spike_monitor</cite>, <cite>grab_image</cite>, and <cite>csv_joint_state_monitor</cite>. To actually see the code of a transfer function, we can use the get_transfer_function call, which takes the transfer function name as a parameter and returns the code in a string. We will get the code of the turn-around transfer function and store it in a variable:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">turn_around_tf</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">get_transfer_function</span><span class="p">(</span><span class="s1">&#39;turn_around&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you&#8217;re using a jupyter notebook, you can use the <cite>%load</cite> command to load the transfer function code in a cell. This will allow you to see the code syntax highlighted and properly indented and will make it easier to modify the functions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="o">%</span><span class="n">load</span> <span class="n">turn_around_tf</span>
+</pre></div>
+</div>
+<p>This should load this function in a new cell in the jupyter notebook:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hbp_nrp_cle.tf_framework</span> <span class="kn">as</span> <span class="nn">nrp</span>
+<span class="kn">from</span> <span class="nn">hbp_nrp_cle.robotsim.RobotInterface</span> <span class="kn">import</span> <span class="n">topic</span>
+<span class="kn">import</span> <span class="nn">geometry_msgs.msg</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;output_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">neurons</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">(</span><span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/cmd_vel&#39;</span><span class="p">,</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Twist</span><span class="p">))</span>
+<span class="c1"># Example TF: get output neuron voltage and output constant on robot actuator. You could do something with the voltage here and command the robot accordingly.</span>
+<span class="k">def</span> <span class="nf">turn_around</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">output_neuron</span><span class="p">):</span>
+    <span class="n">voltage</span><span class="o">=</span><span class="n">output_neuron</span><span class="o">.</span><span class="n">voltage</span>
+    <span class="k">return</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Twist</span><span class="p">(</span><span class="n">linear</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Vector3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+                                   <span class="n">angular</span><span class="o">=</span><span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Vector3</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You can modify the code however you want and then save it as a string. Here we&#8217;ll just increase the angular velocity by modifying the last line in the above code and replacing the number 5 with 10. We will save the modified code as a string in the variable turn_around_tf:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">turn_around_tf</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">import hbp_nrp_cle.tf_framework as nrp</span>
+<span class="s2">from hbp_nrp_cle.robotsim.RobotInterface import topic</span>
+<span class="s2">import geometry_msgs.msg</span>
+<span class="s2">@nrp.MapSpikeSink(&quot;output_neuron&quot;, nrp.brain.neurons[1], nrp.leaky_integrator_alpha)</span>
+<span class="s2">@nrp.Neuron2Robot(Topic(&#39;/husky/cmd_vel&#39;, geometry_msgs.msg.Twist))</span>
+<span class="s2"># Example TF: get output neuron voltage and output constant on robot actuator. You could do something with the voltage here and command the robot accordingly.</span>
+<span class="s2">def turn_around(t, output_neuron):</span>
+<span class="s2">    voltage=output_neuron.voltage</span>
+<span class="s2">    return geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(0,0,0),</span>
+<span class="s2">                                   angular=geometry_msgs.msg.Vector3(0,0,10))</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This modified transfer function will only make the robot spin faster in this experiment. If you open your frontend web cockpit and join the running experiment, you will see the robot spinning faster once we actually apply the transfer function. To apply the transfer function we use the call edit_transfer_function which takes as parameters the name of the transfer function to be modified and the modified code.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">edit_transfer_function</span><span class="p">(</span><span class="s1">&#39;turn_around&#39;</span><span class="p">,</span> <span class="n">turn_around_tf</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Virtual Coach will maintain the simulation state after setting the transfer function. This means that if the simulation was running, the Virtual Coach will modify the transfer function and then automatically start the simulation again.</p>
+<p>As a user you can also delete transfer functions from the Virtual Coach. You just need to provide the name of the transfer function and use it in the following call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">delete_transfer_function</span><span class="p">(</span><span class="s1">&#39;turn_around&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will delete the turn_around transfer function we just modified. After that you will notice that the robot stopped spinning since the transfer function responsible for that behavior has been deleted. If you want more proof that the transfer function has been deleted, you can revisit the print_transfer_functions call and make sure that it doesn&#8217;t print out turn_around.</p>
+<p>We can also add new transfer functions. For this we only need to provide the transfer function code as a string parameter to the add_transfer_function function. We don&#8217;t have to provide a name since the name will just be the function&#8217;s name. Remember that transfer functions definition names have to be unique, so duplicate function names will result in errors. Here we&#8217;ll create a new transfer function with the default transfer function code you get when adding a new transfer function from the web cockpit.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">new_transfer_function</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">@nrp.Robot2Neuron()</span>
+<span class="s2">def transferfunction_0(t):</span>
+<span class="s2">    if (t%2 &lt; 0.02):</span>
+<span class="s2">        clientLogger.info(&#39;Time: &#39;, t)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">sim</span><span class="o">.</span><span class="n">add_transfer_function</span><span class="p">(</span><span class="n">new_transfer_function</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This transfer function will log the simulation time to the log console every two seconds.</p>
+</div>
+<div class="section" id="state-machines">
+<h2>State Machines<a class="headerlink" href="#state-machines" title="Permalink to this headline">¶</a></h2>
+<p>Through the Virtual Coach, users can interact with the simulation state machines the same way they can with the transfer functions. Currently we have only one experiment that contains a state machine. Let&#8217;s start it and see how we can interact with the state machines.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span> <span class="o">=</span> <span class="n">vc</span><span class="o">.</span><span class="n">launch_experiment</span><span class="p">(</span><span class="s1">&#39;ScreenSwitchingHuskyExperimnent&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the experiment has been started, we can retrieve the names of the defined state machines.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">print_state_machines</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This call should print out <cite>HuskyAwareScreenControlling</cite>. To retrieve the code of the state machine, we will have to use its name we just got.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sm</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">get_state_machine</span><span class="p">(</span><span class="s1">&#39;HuskyAwareScreenControlling&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Since state machines are also python scripts, we can load them in jupyter notebooks with the <cite>%load</cite> command like we did with the transfer functions. Additionally, we can also edit and delete them, or add new ones, exactly like we interact with transfer functions. Below are the calls for editing, deleting and adding state machines.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">edit_state_machine</span><span class="p">(</span><span class="n">state_machine_name</span><span class="p">,</span> <span class="n">state_machine_code</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">delete_state_machine</span><span class="p">(</span><span class="n">state_machine_name</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">add_state_machine</span><span class="p">(</span><span class="n">state_machine_name</span><span class="p">,</span> <span class="n">state_machine_code</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The only difference between interacting with state machines and transfer functions is that the state machines&#8217; are not the python function names. Therefore, when adding a new state machine, the user has to explicitly give it a name.</p>
+</div>
+<div class="section" id="getting-csv-data">
+<h2>Getting CSV Data<a class="headerlink" href="#getting-csv-data" title="Permalink to this headline">¶</a></h2>
+<p>Currently in all our template experiments, Spike and Joint data are being saved to csv files. Data being saved to csv files are, however, not limited to Spike and Joint data. You can access all csv data from the Virtual Coach and plot or analyze the data. To know what kind of data is being saved to csv files in an experiment, you can print out the names of the csv files first using this call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">print_csv_file_names</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the case of the Template Husky experiment, this will print out <cite>all_spikes.csv</cite> and <cite>all_joints_positions.csv</cite>. We can now get the data from any one of these files. Note that these files will be populated only if a simulation has been running. Here we will get and print out the Spike data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spikes</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">get_csv_data</span><span class="p">(</span><span class="s1">&#39;all_spikes.csv&#39;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span>
+<span class="p">[[</span><span class="s1">u&#39;id&#39;</span><span class="p">,</span> <span class="s1">u&#39;time&#39;</span><span class="p">,</span> <span class="s1">u&#39;Simulation_reset&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">u&#39;8.0&#39;</span><span class="p">,</span> <span class="s1">u&#39;0.10000000000000001&#39;</span><span class="p">,</span> <span class="s1">u&#39;RESET&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">u&#39;10.0&#39;</span><span class="p">,</span> <span class="s1">u&#39;2.6000000000000001&#39;</span><span class="p">,</span> <span class="s1">u&#39;&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">u&#39;8.0&#39;</span><span class="p">,</span> <span class="s1">u&#39;57.200000000000003&#39;</span><span class="p">,</span> <span class="s1">u&#39;&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>In the code snippet above you can notice the additional <cite>Simulation_reset</cite> column in that automatically keeps track of &#8216;reset&#8217; events.</p>
+<p>We can also write our own custom functions to plot the data we got. The following is a custom function that will plot each spike from the csv file as a blue dot. Note also that the first line in the csv data is a header that need to be accounted for when plotting.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplt</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [ms]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Neuron ID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">spike</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">spike</span> <span class="ow">in</span> <span class="n">spikes</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">spike</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="k">for</span> <span class="n">spike</span> <span class="ow">in</span> <span class="n">spikes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]],</span> <span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reset-functionality">
+<h2>Reset Functionality<a class="headerlink" href="#reset-functionality" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to reset certain aspects of the simulation from the Virtual Coach, exactly as it is possible from the web cockpit. There are four reset types possible from the Virtual Coach: <cite>Robot Frame</cite>, <cite>Environment</cite>, <cite>Brain</cite>, and the <cite>Full Simulation</cite>. You can reset all simulation aspects with the same call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s1">&#39;robot_pose&#39;</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want to look at more concrete example experiments run from the Virtual Coach, you can check out the hbp_nrp_virtual_coach/examples directory.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="launching_exp.html">Tutorial: Launching an Experiment from the Virtual Coach</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="batch_simulations.html">Tutorial: Running Batch Simulations with the Virtual Coach</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

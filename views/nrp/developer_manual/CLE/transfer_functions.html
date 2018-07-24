@@ -1,0 +1,405 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Transfer Functions &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Closed Loop Engine" href="index.html" />
+    <link rel="next" title="Using Spinnaker in the Neurorobotics Platform" href="spinnaker.html" />
+    <link rel="prev" title="Closed Loop Engine Architecture" href="cle_architecture.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/developer_manual/CLE/transfer_functions.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Developer Manual</a>
+                    
+                    <a href="index.html">Closed Loop Engine</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="cle_architecture.html">Closed Loop Engine Architecture</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="spinnaker.html">Using Spinnaker in the Neurorobotics Platform</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="transfer-functions">
+<h1>Transfer Functions<a class="headerlink" href="#transfer-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>The transfer functions describe how spikes from the neuronal simulation are to be translated into
+commands for a robot and how the sensor data from the robot should be translated back to spikes.
+This translation is written/specified by the users of the Neurorobotics project, who are neuroscientists.
+Thus, a framework is provided to make the specification of these transfer functions as easy as
+possible for the users by abstracting away the technical details as much as possible. This framework is
+referred to as Transfer Functions framework (TF framework).</p>
+<p>The TF framework is part of the CLE: <a class="reference internal" href="cle_architecture.html"><em>CLE architecture</em></a></p>
+</div>
+<div class="section" id="functional-requirements">
+<h2>Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The neurons of the NEST brain simulator occasionally send spikes (these are messages with no data content except
+for the neuron that sent it and a timestamp). Furthermore, the NEST brain simulator is clocked, which means that
+spikes can only be sent at the speed ratio of the brain simulation. However, a neuron does not have
+to spike in every time-frame.</p>
+<p>The transfer functions transfer this spike data into a continuous data stream for the robot. This means that for
+every robot topic, a message is sent for every time-step even if no neuron that the
+transfer function needs has spiked. As a consequence, all transfer functions must be evaluated
+at every time-step. The time resolution for the transfer functions is not necessarily the same
+as for the brain simulation, it can instead be a multiple of it. Typical time resolutions that we are using
+are 5ms for the brain simulation and 100ms for the TFs. Within this time span, a neuron may spike up
+to 100/5=20 times.</p>
+<p>For this reason, the spike data from the neuronal simulation is only accessed indirectly through so
+called devices. In a neuronal simulation, devices are little programs that are injected into a neuronal
+network, they run with the same clock as the neuronal simulation and can be accessed from outside. A
+typical example is a leaky integrator that basically returns the voltage of a neuron.
+<strong>However, within the TF framework, we also refer to the adapter objects that connect these devices with the TF framework devices</strong>,
+so we identify these adapters with the devices that they adapt.</p>
+<p>A transfer function may access spikes of an arbitrary number of neurons and the spikes of a neuron may be used
+by an arbitrary number of transfer functions. Consecutive neurons can be grouped together in arrays to make
+the specification of transfer functions easier. A transfer function may require
+spikes of both grouped and single neurons.</p>
+<p>Transfer functions create (or read from, depending on the direction) multiple typed robot topics. The
+user (i.e. the neuroscientist) is responsible for ensuring that the data sent to a particular robot topic
+matches the type of the topic. This can also be checked by a compiler, although this feature is not
+mandatory and depends on the specification language of the transfer function.</p>
+<p>A common requirement for all transfer functions is that they hold a state. Furthermore, the state
+should be sharable among multiple transfer functions to allow maximal flexibility of the framework.
+The transfer functions should have a specified execution order to get an intuitive understanding of
+side effects.</p>
+<p>For the transfer functions from the robot sensors to the neuronal simulator, the TF
+framework should establish the minimal amount of assumptions on the spike generation schemes,
+i.e. there should be no restriction on the pattern in which spikes are sent to the neurons. However,
+neuroscientists should be able to specify common spike generation schemes like frequencies, i.e. to
+send spikes to a particular neuron in a frequency that is higher than the incoming rate of
+sensor data.</p>
+</div>
+<div class="section" id="technical-requirements">
+<h2>Technical Requirements<a class="headerlink" href="#technical-requirements" title="Permalink to this headline">¶</a></h2>
+<p>In the neuroscience community, the programming language Python has gained a good popularity. Thus,
+it is important to allow neuroscientists to write TFs in Python if they want. Further considerations to use C++
+were abandoned, as the simulator is also controlled using Python. Furthermore, we can
+use CPython to convert Python code to C if want to reduce the performance impact of using Python.</p>
+</div>
+<div class="section" id="architecture-overview">
+<h2>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permalink to this headline">¶</a></h2>
+<p>The transfer functions are a part of the Closed Loop Engine (CLE) and are situated between the
+neuronal simulator (“the brain”) and Gazebo (our world simulation engine (WSE)). Thus, they have an
+interface to the neuronal simulator on one side and an interface to Gazebo on the other.
+However, to ensure that we can test the transfer functions separately, the communication to the
+neuronal simulator and to Gazebo is hidden behind interfaces and the functionality is provided to
+the TF framework by adapters.</p>
+<p><a class="reference internal" href="#tf-overview"><span>Fig. 11</span></a> shows the architecture of the CLE. The transfer functions are the
+important component in the middle that transfers data between the two simulators, the neuronal
+simulator at the one side and the world simulation engine at the other. Both Simulators are accessed
+through adapters that represent their functionality and can be replaced with appropriate mocks when
+necessary. The transfer functions are controlled by the Closed Loop Controller which is responsible
+for orchestrating the transfer functions with the simulations. The ROS adapter implements the Robot
+Communication Adapter interface via publishing and subscribing to ROS topics, whereas the PyNN Brain
+Adapter fulfills its interface by delegating the calls to NEST via the PyNN interface. This common
+interface allows us to use either NEST, SpiNNaker, Neuron or a mock.</p>
+<div class="figure align-center" id="id1">
+<span id="tf-overview"></span><img alt="../../../_images/architecture_overview.png" src="../../../_images/architecture_overview.png" />
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Architecture of the Closed Loop Engine</span></p>
+</div>
+<p>The interfaces relevant for the above architecture of the CLE are shown in <a class="reference internal" href="#tf-interfaces"><span>Fig. 12</span></a>.
+The transfer functions provide three methods that initialize them and call the transfer functions in
+either direction.</p>
+<div class="figure align-center" id="id2">
+<span id="tf-interfaces"></span><img alt="../../../_images/architecture_interfaces.png" src="../../../_images/architecture_interfaces.png" />
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Interfaces of the Closed Loop Engine</span></p>
+</div>
+<p>The transfer functions rely on the interfaces for the robot communication
+and the communication to the neuronal simulator. Both communication adapters provide an interface to
+initialize them and register the data which will eventually be retrieved or sent. For this purpose, the
+transfer functions call the appropriate adapter to create a communication object that can be used to
+send or receive data. Appropriate interfaces for such communication objects exist for both robot and
+neuronal simulator sides.</p>
+<p>The neuronal simulator interface is dependent on the used device type whereas
+the interface for the robot adapter is fixed. This is due to the fact that all robot properties are
+exposed through topics, whereas the data from the neuronal simulation are most efficiently fetched
+using devices. That is, the neuronal simulation is instrumented with devices that run within the
+neuronal simulator and get executed by the neuronal simulator for every time-step of the neuronal
+simulator. These devices can either record the spikes in a certain way or are allowed to issue spikes.
+Typically, these devices have a low configuration overhead, a frequency-based spike generator for
+instance only needs the frequency in which to issue spikes.</p>
+<p>The supported spike detectors are a voltage device and a spike recorder device. The first
+simply records the voltage of a neuron at a given time, whereas the spike recorder records whether a
+particular neuron has spiked over the last period of time. The supported spike generation patterns
+include for the start a fixed frequency, a Poisson-based spike generation and a pattern spike
+generator.</p>
+<p>The TF framework communicates with the neuronal simulator only
+through such devices in order to minimize the communication overhead and maximize performance.</p>
+<p>An important requirement for the TF framework is that the TF node should only receive spikes that it needs,
+and likewise for the robot topics. To lower the amount of specification
+that we need from the user, this information is extracted from the specification of the
+transfer functions.</p>
+<p>There are two different kinds of transfer functions. The first kind,
+Neuron2Robot, transfers spikes from the neuronal simulator to topics for the WSE. The other kind,
+Robot2Neuron transfers data the opposite way.</p>
+<p>A transfer function consists of three parts.</p>
+<p>The first part is specifying in the transfer function the data sources from which it receives data. For
+Neuron2Robot, this is typically neuronal simulator devices (a transfer function may receive input
+from multiple devices), whereas for Robot2Neuron it is robot topics, where again multiple topics are
+allowed. However, both Neuron2Robot and Robot2Neuron transfer functions may consume data from either
+simulation.</p>
+<p>The second part of the transfer function specifies where the output data should be sent.
+For a Neuron2Robot transfer function, this typically is a
+robot topic but there is no limitation. Both Neuron2Robot and Robot2Neuron transfer functions may
+target robot topics, brain devices or a combination of both.</p>
+<p>The third part of a transfer function is the actual function, i.e. how the robot
+topics and device configuration (either for sending or receiving data) are connected. This specification
+can be done through arbitrary Python code. The data source is fed into the function as a formal
+parameter, whereas the return value is taken and sent to the target sink, i.e. the targeted robot
+topic or device. Further communication is possible through communication objects directly.</p>
+<p>A quick overview on how these concepts are implemented in the TF framework can be found <a class="reference internal" href="../../tutorials/transfer_function/index.html"><em>here</em></a>.</p>
+</div>
+<div class="section" id="transfer-function-framework-architecture">
+<h2>Transfer Function Framework Architecture<a class="headerlink" href="#transfer-function-framework-architecture" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="initialization">
+<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<p>The Initialization of a TF node is straightforward. In the initialization, the TF node
+initializes the adapters for both the robot and neuronal simulator. The initialization also includes
+the setup and registration of the transfer functions, i.e. to connect the transfer functions with their
+necessary communication objects.</p>
+<p>These communication objects (robot publishers or subscribers, brain devices) are declared in
+annotations of the transfer function that map a parameter to a given communication object specification.
+The transfer function manager resolves this specification and creates an appropriate communication
+object for this request.</p>
+<div class="figure align-center" id="id3">
+<span id="tf-initialization"></span><img alt="../../../_images/tf_initialization.png" src="../../../_images/tf_initialization.png" />
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Initialization of a TF node</span></p>
+</div>
+<p>The sequence of the initialization is shown in <a class="reference internal" href="#tf-initialization"><span>Fig. 13</span></a>. The initialization of
+the TF node is triggered from the closed loop controller, either through in-process communication or
+remotely. The TF node then makes sure that the dependent adapters are initialized and creates the
+communication objects necessary for the transfer functions.</p>
+<p>However, the sequence in Figure 3 only visualizes the normal case that Neuron2Robot transfer functions
+actually transfer neuronal spike data to robot streams and likewise for Robot2Neuron. In the general
+case, a Neuron2Robot transfer function may also generate spikes or use a topic subscriber whereas a
+Robot2Neuron transfer function may access neuronal spike sinks such as voltmeters as well. The
+distinction between Neuron2Robot and Robot2Neuron is merely to adjust the effort necessary to run the
+transfer functions in either direction so that they can be executed in parallel.
+Thus, the registration at the communication adapter is routed through the parameter mapping object,
+i.e. the annotation that maps the parameter to the communication object.</p>
+</div>
+<div class="section" id="running-the-transfer-functions">
+<h3>Running the transfer functions<a class="headerlink" href="#running-the-transfer-functions" title="Permalink to this headline">¶</a></h3>
+<p>Due to the requirement that transfer functions must run even in the case where no neurons needed by a
+transfer function spiked, we need the TF framework to run clocked synchronized with the NEST brain
+simulation, but with a lower time resolution than the neuronal simulator. Responsible for this
+synchronization is the closed loop controller, which calls the transfer functions.</p>
+<p>As the spikes from a neuron can be accessed by multiple transfer functions, the current state of a
+device from the neuronal simulator is cached in the TF node. The same holds for robot topics, where
+incoming messages are buffered to be processed by transfer functions separately.</p>
+<p>The sequence diagram for a TF node implementing transfer functions in both directions is shown in
+<a class="reference internal" href="#tf-iteration"><span>Fig. 14</span></a>. At any time, the TF node may receive incoming data from the robot via
+callbacks of subscribed ROS topics. These calls simply update the current cached state of the robot
+sensors.</p>
+<div class="figure align-center" id="id4">
+<span id="tf-iteration"></span><img alt="../../../_images/tf_iteration.png" src="../../../_images/tf_iteration.png" />
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Iteration of a TF node</span></p>
+</div>
+<p>Once again, only the standard case where Neuron2Robot transfer functions transfer from the neuronal
+simulator to the robot and vice versa for the Robot2Neuron transfer functions is shown. Furthermore,
+unlike in Figure 4, refreshing the devices on either side is now done directly by the Closed Loop
+controller and no longer by the TF manager.</p>
+<p>Eventually, the closed loop controller calls the TF node to either run all transfer functions
+transferring data from the neuronal simulator to the WSE or vice versa. These calls may also be done
+in parallel and so the methods to run transfer functions must be thread-safe.</p>
+<p>When the closed loop controller asks the TF node to call all transfer functions that transfer robot
+messages to spikes for the neuronal simulator, the TF node runs all Robot2Neuron transfer functions.
+Within the body of these functions, the device status may be updated. This device is given to the
+transfer function as a formal parameter. For the data source, the cached values from the buffered
+robot messages are used.</p>
+<p>Conversely, the closed loop adapter may also call the TF node to run the transfer functions from the
+neuronal simulator to robot messages. For this, the TF node will call the brain adapter to refresh
+all cached device states. Then, the Neuron2Robot transfer functions are called. They take the current
+cached device status as input and return some value or the default value None. The return value of
+these transfer functions is sent to the predefined robot message by the TF framework. However
+Neuron2Robot transfer functions are also allowed to send messages on their own within their function
+body.</p>
+<p>All transfer functions are evaluated at every simulation loop of the Closed Loop Engine, but
+possibly on a lower time resolution than the neuronal simulator. They operate on buffered data from
+the robot sensors, but also get a flag indicating whether these values have changed since the last
+loop. Transfer functions are evaluated in order of their appearance in the specification so that side
+effects happen in an intuitive manner. Sophisticated spike generation patterns are the subject of further
+helper classes.</p>
+<p>The patterns for the spike generators are supported by custom spike generator classes, which are
+implemented separately and called within the transfer function. This design makes it easier to import
+other spike generators as neuroscience discovers new spike generation patterns.</p>
+</div>
+<div class="section" id="device-specification">
+<h3>Device specification<a class="headerlink" href="#device-specification" title="Permalink to this headline">¶</a></h3>
+<p>Unlike the robotic simulation whose elements are identified simply by a topic and its type, the
+interaction mechanisms to interact with the neuronal simulator are richer, particularly because the
+neuronal simulation typically runs on a higher time resolution than the TFs and any interaction needs
+to run with maximum performance which often requires specialized solutions.</p>
+<p>There are two main elements that make up a device specification.</p>
+<div class="section" id="device-type-specification">
+<h4>Device type specification<a class="headerlink" href="#device-type-specification" title="Permalink to this headline">¶</a></h4>
+<p>The first one is a specification of the device type and the second one is the specification of the
+neurons that should be connected to the device.</p>
+<p>The device type specification is very simple if predefined device types are used. This includes the
+following spike sinks:</p>
+<ul class="simple">
+<li>Spike Recorder: Simply tells whether any spike was issued to the device</li>
+<li>Leaky integrator alpha: Gets the membrane voltage of a current-based LIF neuron with alpha-shaped post-synaptic currents</li>
+<li>Leaky integrator exp: Gets the membrane voltage of a current-based LIF neuron with decaying-exponential post-synaptic current</li>
+<li>Population Rate: Gets the frequency of incoming spikes</li>
+</ul>
+<p>and the following spike sources:</p>
+<ul class="simple">
+<li>Fixed frequency: Generates spikes at a fixed frequency. The rate sets the frequency in which spikes are generated.</li>
+<li>Poisson: Generates spikes based on a Poisson distribution. The rate sets the parameter of the Poisson distribution.</li>
+<li>AC, DC and NC source: Issue current to connected neurons. The amplitude defines the maximal current issued to the neurons.</li>
+</ul>
+<p>Details on the device types can be found in the brain interface module <code class="xref py py-mod docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface</span></code></p>
+<p>Additionally, developers may add custom devices that can take over the coupling to a neuronal
+simulator given a brain communication adapter, see <a class="reference internal" href="../../tutorials/transfer_function/deviceGroups.html"><em>Tutorial: Accessing multiple neurons with device groups</em></a></p>
+</div>
+<div class="section" id="neuron-selection-specification">
+<h4>Neuron selection specification<a class="headerlink" href="#neuron-selection-specification" title="Permalink to this headline">¶</a></h4>
+<p>The second specification item for a device is the specification of the neurons that should be
+connected to the device. Whereas robot topics can be easily identified by their topic names, we
+designed the neuron selection to be adjustable by the developer. At the same time, we want the neuron
+selection to be decoupled from the brain in order to decouple it from the actual neuronal simulator.</p>
+<p>This decoupling is especially important since the neuron selection must be possible before the brain
+(i.e. the neuronal network that is to be simulated) is initialized. This is because the TFs are
+decoupled from the brain simulation and can thus be specified before the brain is loaded. The brain
+must only be available when the TF manager is initialized and binds the TFs to a particular brain
+communication adapter and robot communication adapter.</p>
+<p>For this reason, we invented a property path indexing mechanism. That means that we record the
+navigation from an assumed brain model root element and replay the navigation as soon as we have the
+brain model initialized.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="cle_architecture.html">Closed Loop Engine Architecture</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="spinnaker.html">Using Spinnaker in the Neurorobotics Platform</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

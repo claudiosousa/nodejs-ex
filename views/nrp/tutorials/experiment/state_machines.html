@@ -1,0 +1,573 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Writing a state machine for an experiment &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Experiment configuration advanced Tutorial" href="index.html" />
+    <link rel="next" title="The Spinnaker Experiment Tutorial" href="../spinnaker/index.html" />
+    <link rel="prev" title="Tutorial: Writing an Experiment Configuration" href="ex_configuration.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/experiment/state_machines.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Experiment configuration advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="ex_configuration.html">Tutorial: Writing an Experiment Configuration</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../spinnaker/index.html">The Spinnaker Experiment Tutorial</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-writing-a-state-machine-for-an-experiment">
+<span id="state-machines"></span><h1>Tutorial: Writing a state machine for an experiment<a class="headerlink" href="#tutorial-writing-a-state-machine-for-an-experiment" title="Permalink to this headline">¶</a></h1>
+<p>The NRP is designed to use state machines to control and evaluate experiments. A state machine controlling an experiment can monitor any simulation properties published on ROS topics (e.g. simulation time, sensor output, spiking activity of brain), it can also publish on ROS topics or call ROS services. A state machine evaluating the success of an experiment has the same capabilities for monitoring a simulation and should either publish a success or failure message to the NRP ROS status topic.</p>
+<p>The NRP uses SMACH for executing state machines, hence state machines have to be specified in Python.</p>
+<div class="section" id="controlling-an-experiment">
+<h2>Controlling an experiment<a class="headerlink" href="#controlling-an-experiment" title="Permalink to this headline">¶</a></h2>
+<p>The following examples show how to specify state machines for certain tasks.</p>
+<div class="section" id="trigger-an-action-after-30-seconds-of-simulation-time">
+<h3>Trigger an action after 30 seconds of simulation time<a class="headerlink" href="#trigger-an-action-after-30-seconds-of-simulation-time" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1"># We need to import smach</span>
+<span class="kn">import</span> <span class="nn">smach</span>
+<span class="c1"># This package contains some state implementations that make life easier when working with the platform</span>
+<span class="kn">import</span> <span class="nn">hbp_nrp_excontrol.nrp_states</span> <span class="kn">as</span> <span class="nn">states</span>
+
+<span class="c1"># State machines must be named sm or state_machine, otherwise the platform will not see them</span>
+<span class="n">sm</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span>
+<span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;ACTION_PREEMPTED&#39;</span><span class="p">,</span> <span class="s1">&#39;ACTION_ERROR&#39;</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
+    <span class="c1"># This state will wait until the simulation time reaches 30s</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION&#39;</span><span class="p">,</span>
+                           <span class="n">states</span><span class="o">.</span><span class="n">WaitToClockState</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">})</span>
+
+    <span class="c1"># This state will set the color of the right screen to red</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;ACTION&#39;</span><span class="p">,</span>
+                           <span class="n">states</span><span class="o">.</span><span class="n">SetMaterialColorServiceState</span><span class="p">(</span><span class="s1">&#39;right_vr_screen&#39;</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="s1">&#39;screen_glass&#39;</span><span class="p">,</span>
+                                                               <span class="s1">&#39;Gazebo/Red&#39;</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION_ERROR&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION_PREEMPTED&#39;</span><span class="p">})</span>
+
+<span class="c1"># Starting, stopping and pausing of the state machine is handled by the platform</span>
+</pre></div>
+</div>
+<p>This basic example contains a simple state machine which waits for 30s of simulation time to pass and then sets the color of the right screen to red. It demonstrates the purpose of state machines in the platform.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The state machine will be run automatically in the platform. For this to work, the variable holding a reference to
+the state machine must be named <em>sm</em> or <em>state_machine</em>.</p>
+</div>
+</div>
+<div class="section" id="trigger-an-action-based-on-user-interaction">
+<h3>Trigger an action based on user interaction<a class="headerlink" href="#trigger-an-action-based-on-user-interaction" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently, the ExD back-end directly executes ROS services upon receiving user interactions/events. In the future the name of the user interaction should be published on a ROS topic to allow the control state machine to execute the user interaction/event.</p>
+</div>
+</div>
+<div class="section" id="trigger-an-action-based-on-a-monitored-property">
+<h3>Trigger an action based on a monitored property<a class="headerlink" href="#trigger-an-action-based-on-a-monitored-property" title="Permalink to this headline">¶</a></h3>
+<p>The MonitorState function allows us to monitor any available ROS topic. Thus, monitoring a property can be done in the same way as monitoring simulation time. The generic ROS Monitor state can be used, but we recommend the usage of a specific
+state implementation for monitoring spike rates.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">condition_spike_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rate</span> <span class="o">&lt;</span> <span class="mi">10</span>
+
+<span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION&#39;</span><span class="p">,</span>
+                       <span class="n">states</span><span class="o">.</span><span class="n">MonitorSpikeRateState</span><span class="p">(</span><span class="s2">&quot;left_wheel_neuron_rate_monitor&quot;</span><span class="p">,</span>
+                                                    <span class="n">condition_spike_cb</span><span class="p">),</span>
+                       <span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>In this example a neuron monitor, set up in the according BIBI configuration file, is used to monitor brain activity and uses it as condition for an event.</p>
+</div>
+</div>
+<div class="section" id="client-logging">
+<h2>Client Logging<a class="headerlink" href="#client-logging" title="Permalink to this headline">¶</a></h2>
+<p>&#8216;Client logs&#8217; is a logging mechanism that aims to help users develop and debug their state machines and transfer functions.
+All triggered client logs will be visible by the user in a specific window from within the running simulation.</p>
+<div class="section" id="triggering-client-logs">
+<h3>Triggering client logs<a class="headerlink" href="#triggering-client-logs" title="Permalink to this headline">¶</a></h3>
+<p>The ClientLogger allows the user to trigger client logs in order to help the debugging of state machines.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">from</span> <span class="nn">smach</span> <span class="kn">import</span> <span class="n">StateMachine</span>
+<span class="kn">from</span> <span class="nn">hbp_nrp_excontrol.nrp_states</span> <span class="kn">import</span> <span class="n">RobotPoseMonitorState</span>
+<span class="kn">from</span> <span class="nn">hbp_nrp_excontrol.logs</span> <span class="kn">import</span> <span class="n">clientLogger</span>
+
+<span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Start SM&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">robot_pose_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="n">clientLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;pos: x: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span>
+                      <span class="s2">&quot;, y: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span>
+                      <span class="s2">&quot;, z: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="bp">True</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">])</span>
+<span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;initial_condition&#39;</span><span class="p">,</span>
+                     <span class="n">RobotPoseMonitorState</span><span class="p">(</span><span class="n">robot_pose_cb</span><span class="p">),</span>
+                     <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;initial_condition&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;initial_condition&#39;</span><span class="p">,</span>
+                                  <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>In this example, we are interested in having a state machine that will change state when the robot is at the right or left limit of the scene.
+We know that the RobotPoseMonitorState allows us to have a condition on the robot coordinates (x,y,z), but we don&#8217;t know exactly what values correspond to positions we want to watch for.
+By using the clientLogger in that function watching the robot position, we can log the (x,y,z) values as we drive the robot in the scene to the target positions.
+We can then collect the values at the target position and use them in the state condition.</p>
+</div>
+<div class="section" id="state-client-logger">
+<h3>State client logger<a class="headerlink" href="#state-client-logger" title="Permalink to this headline">¶</a></h3>
+<p>The ClientLogState is a state that triggers a client log.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">from</span> <span class="nn">smach</span> <span class="kn">import</span> <span class="n">StateMachine</span>
+<span class="kn">from</span> <span class="nn">hbp_nrp_excontrol.nrp_states</span> <span class="kn">import</span> <span class="n">RobotPoseMonitorState</span><span class="p">,</span> <span class="n">ClientLogState</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;wait_for_husky_left&quot;</span><span class="p">,</span>
+        <span class="n">RobotPoseMonitorState</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ud</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="ow">not</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span>
+                    <span class="p">(</span><span class="o">-</span><span class="mf">2.5</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">1.8</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">))),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_husky_left&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;log_husky_at_left&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;log_husky_at_left&quot;</span><span class="p">,</span>
+        <span class="n">ClientLogState</span><span class="p">(</span><span class="s2">&quot;Husky is at the LEFT!&quot;</span><span class="p">),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_husky_right&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;wait_for_husky_right&quot;</span><span class="p">,</span>
+        <span class="n">RobotPoseMonitorState</span><span class="p">(</span><span class="k">lambda</span> <span class="n">ud</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="ow">not</span> <span class="p">((</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span>
+                    <span class="p">(</span><span class="mf">1.8</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mf">2.5</span><span class="p">)</span> <span class="ow">and</span>
+            <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">))),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_husky_right&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;log_husky_at_right&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;log_husky_at_right&quot;</span><span class="p">,</span>
+        <span class="n">ClientLogState</span><span class="p">(</span><span class="s2">&quot;Husky is at the RIGHT!&quot;</span><span class="p">),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_husky_left&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, we are using the positions we collected in the section above and we expect the state machine to change state as the robot position alternates from left to right.
+To test the validity of our parameters, we&#8217;ve added the ClientLogState(&#8220;Husky is at the LEFT/RIGHT!&#8221;) states that will log messages as the state machines transitions from one state to the other.
+By moving the robot around and observing the log messages (&#8220;Husky is at the LEFT/RIGHT!&#8221;) appear in the simulation, the user can verify that the transitions occur at the expected robot position.</p>
+</div>
+<div class="section" id="trigger-an-action-based-on-a-monitored-client-log">
+<h3>Trigger an action based on a monitored client log<a class="headerlink" href="#trigger-an-action-based-on-a-monitored-client-log" title="Permalink to this headline">¶</a></h3>
+<p>The WaitForClientLogState function allows us to monitor for a specific client log.
+The action is triggered when a log message contains the given string. The check is case sensitive.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">from</span> <span class="nn">smach</span> <span class="kn">import</span> <span class="n">StateMachine</span>
+<span class="kn">from</span> <span class="nn">hbp_nrp_excontrol.nrp_states</span> <span class="kn">import</span> <span class="n">WaitForClientLogState</span><span class="p">,</span> <span class="n">SetMaterialColorServiceState</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;wait_for_red_log&quot;</span><span class="p">,</span>
+        <span class="n">WaitForClientLogState</span><span class="p">(</span><span class="s1">&#39;left_tv_red&#39;</span><span class="p">),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_red_log&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;set_left_screen_red&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;set_left_screen_red&quot;</span><span class="p">,</span>
+        <span class="n">SetMaterialColorServiceState</span><span class="p">(</span><span class="s1">&#39;left_vr_screen&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;body&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;screen_glass&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;Gazebo/Red&#39;</span><span class="p">),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_blue_log&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;wait_for_blue_log&quot;</span><span class="p">,</span>
+        <span class="n">WaitForClientLogState</span><span class="p">(</span><span class="s1">&#39;left_tv_blue&#39;</span><span class="p">),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_blue_log&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;set_left_screen_blue&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="s2">&quot;set_left_screen_blue&quot;</span><span class="p">,</span>
+        <span class="n">SetMaterialColorServiceState</span><span class="p">(</span><span class="s1">&#39;left_vr_screen&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;body&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;screen_glass&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;Gazebo/Blue&#39;</span><span class="p">),</span>
+        <span class="n">transitions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;succeeded&#39;</span><span class="p">:</span> <span class="s1">&#39;wait_for_red_log&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;aborted&#39;</span><span class="p">:</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;PREEMPTED&#39;</span><span class="p">}</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>In this example, we want the state machine to change its state when a specific client log containing the keywords &#8216;left_tv_red&#8217; or &#8216;left_tv_blue&#8217; is observed.</p>
+</div>
+</div>
+<div class="section" id="combined-events">
+<h2>Combined events<a class="headerlink" href="#combined-events" title="Permalink to this headline">¶</a></h2>
+<p>The following examples show how to combine several events into a single state machine.</p>
+<div class="section" id="multiple-time-events-as-sequence">
+<h3>Multiple time events as sequence<a class="headerlink" href="#multiple-time-events-as-sequence" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">smach</span>
+<span class="kn">from</span> <span class="nn">smach</span> <span class="kn">import</span> <span class="n">CBState</span>
+<span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">import</span> <span class="nn">hbp_nrp_excontrol.nrp_states</span> <span class="kn">as</span> <span class="nn">states</span>
+
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+
+
+<span class="nd">@smach.cb_interface</span><span class="p">(</span><span class="n">input_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;finished&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">action_30_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">):</span>
+    <span class="c1"># ... do something</span>
+    <span class="k">return</span> <span class="s1">&#39;finished&#39;</span>
+
+
+<span class="nd">@smach.cb_interface</span><span class="p">(</span><span class="n">input_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;finished&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">action_60_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">):</span>
+    <span class="c1"># ... do something</span>
+    <span class="k">return</span> <span class="s1">&#39;finished&#39;</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span>
+<span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;ACTION_PREEMPTED&#39;</span><span class="p">,</span> <span class="s1">&#39;ACTION_ERROR&#39;</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION_30&#39;</span><span class="p">,</span>
+                           <span class="n">states</span><span class="o">.</span><span class="n">WaitToClockState</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_30&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION_30&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">})</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;ACTION_30&#39;</span><span class="p">,</span> <span class="n">CBState</span><span class="p">(</span><span class="n">action_30_cb</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;finished&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_60&#39;</span><span class="p">})</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION_60&#39;</span><span class="p">,</span>
+                           <span class="n">states</span><span class="o">.</span><span class="n">WaitToClockState</span><span class="p">(</span><span class="mi">60</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_60&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION_60&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">})</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;ACTION_60&#39;</span><span class="p">,</span> <span class="n">CBState</span><span class="p">(</span><span class="n">action_60_cb</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;finished&#39;</span><span class="p">:</span> <span class="s1">&#39;FINISHED&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>In this example the first event is triggered after 30 seconds and the second one after 60 seconds. The actions of both events are implemented by <a class="reference external" href="http://wiki.ros.org/smach/Tutorials/CBState">CBState</a>, simply executing a callback.</p>
+</div>
+<div class="section" id="multiple-conditions-for-a-single-event">
+<h3>Multiple conditions for a single event<a class="headerlink" href="#multiple-conditions-for-a-single-event" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">smach</span>
+<span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">import</span> <span class="nn">hbp_nrp_excontrol.nrp_states</span> <span class="kn">as</span> <span class="nn">states</span>
+
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+
+
+<span class="k">def</span> <span class="nf">condition_spike_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+
+    <span class="k">return</span> <span class="n">rate</span> <span class="o">&lt;</span> <span class="mi">10</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">Concurrence</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">],</span>
+                       <span class="n">default_outcome</span><span class="o">=</span><span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="n">input_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[],</span>
+                       <span class="n">outcome_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">:{</span><span class="s1">&#39;CONDITION_30&#39;</span><span class="p">:</span><span class="s1">&#39;invalid&#39;</span><span class="p">,</span> <span class="s1">&#39;CONDITION_SPIKE&#39;</span><span class="p">:</span><span class="s1">&#39;invalid&#39;</span><span class="p">},</span>
+                                      <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">:{</span><span class="s1">&#39;CONDITION_30&#39;</span><span class="p">:</span><span class="s1">&#39;preempted&#39;</span><span class="p">},</span>
+                                      <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">:{</span><span class="s1">&#39;CONDITION_SPIKE&#39;</span><span class="p">:</span><span class="s1">&#39;preempted&#39;</span><span class="p">}})</span>
+<span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">Concurrence</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION_30&#39;</span><span class="p">,</span> <span class="n">states</span><span class="o">.</span><span class="n">WaitToClockState</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">Concurrence</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION_SPIKE&#39;</span><span class="p">,</span> <span class="n">states</span><span class="o">.</span><span class="n">MonitorSpikeRateState</span><span class="p">(</span><span class="s2">&quot;left_wheel_spike_rate&quot;</span><span class="p">,</span>
+                                                                          <span class="n">condition_spike_cb</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This example shows how to combine multiple conditions for a single event by using a <a class="reference external" href="http://wiki.ros.org/smach/Tutorials/Concurrence%20container">Concurrence Container</a>. Both conditions, simulation time larger than 30 seconds and brain activity above threshold, have to be met. The order the conditions become true doesn&#8217;t matter.</p>
+</div>
+<div class="section" id="multiple-independent-events-in-a-single-state-machine">
+<h3>Multiple independent events in a single state machine<a class="headerlink" href="#multiple-independent-events-in-a-single-state-machine" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">smach</span>
+<span class="kn">from</span> <span class="nn">smach</span> <span class="kn">import</span> <span class="n">CBState</span>
+<span class="kn">import</span> <span class="nn">smach_ros</span>
+<span class="kn">import</span> <span class="nn">hbp_nrp_excontrol.nrp_states</span> <span class="kn">as</span> <span class="nn">states</span>
+
+<span class="kn">from</span> <span class="nn">std_msgs.msg</span> <span class="kn">import</span> <span class="n">String</span>
+
+
+<span class="nd">@smach.cb_interface</span><span class="p">(</span><span class="n">input_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;finished&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">action_30_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">):</span>
+    <span class="c1"># ... do something</span>
+    <span class="k">return</span> <span class="s1">&#39;finished&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">condition_spike_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rate</span> <span class="o">&lt;</span> <span class="mi">10</span>
+
+
+<span class="nd">@smach.cb_interface</span><span class="p">(</span><span class="n">input_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;finished&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">action_spike_cb</span><span class="p">(</span><span class="n">user_data</span><span class="p">):</span>
+    <span class="c1"># ... do something</span>
+    <span class="k">return</span> <span class="s1">&#39;finished&#39;</span>
+
+<span class="n">sm_one</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;ACTION_PREEMPTED&#39;</span><span class="p">,</span> <span class="s1">&#39;ACTION_ERROR&#39;</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">sm_one</span><span class="p">:</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION_30&#39;</span><span class="p">,</span>
+                           <span class="n">states</span><span class="o">.</span><span class="n">WaitToClockState</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_30&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION_30&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">})</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;ACTION_30&#39;</span><span class="p">,</span> <span class="n">CBState</span><span class="p">(</span><span class="n">action_30_cb</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;finished&#39;</span><span class="p">:</span> <span class="s1">&#39;FINISHED&#39;</span><span class="p">})</span>
+
+<span class="n">sm_two</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">,</span>
+                                      <span class="s1">&#39;ACTION_PREEMPTED&#39;</span><span class="p">,</span> <span class="s1">&#39;ACTION_ERROR&#39;</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">sm_two</span><span class="p">:</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION_SPIKE&#39;</span><span class="p">,</span>
+                           <span class="n">states</span><span class="o">.</span><span class="n">MonitorSpikeRateState</span><span class="p">(</span><span class="s2">&quot;left_wheel_neuron_rate_monitor&quot;</span><span class="p">,</span>
+                                                        <span class="n">condition_spike_cb</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_SPIKE&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION_SPIKE&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">})</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;ACTION_SPIKE&#39;</span><span class="p">,</span> <span class="n">CBState</span><span class="p">(</span><span class="n">action_spike_cb</span><span class="p">),</span>
+                           <span class="p">{</span><span class="s1">&#39;finished&#39;</span><span class="p">:</span> <span class="s1">&#39;FINISHED&#39;</span><span class="p">})</span>
+
+<span class="n">sm</span> <span class="o">=</span> <span class="n">smach</span><span class="o">.</span><span class="n">Concurrence</span><span class="p">(</span><span class="n">outcomes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">],</span>
+                       <span class="n">default_outcome</span><span class="o">=</span><span class="s1">&#39;ERROR&#39;</span><span class="p">,</span> <span class="n">input_keys</span><span class="o">=</span><span class="p">[],</span> <span class="n">output_keys</span><span class="o">=</span><span class="p">[],</span>
+                       <span class="n">outcome_map</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">:{</span><span class="s1">&#39;SM_ONE&#39;</span><span class="p">:</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">,</span> <span class="s1">&#39;SM_TWO&#39;</span><span class="p">:</span><span class="s1">&#39;FINISHED&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;SM_ONE&#39;</span><span class="p">:</span><span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">,</span>
+                                                            <span class="s1">&#39;SM_TWO&#39;</span><span class="p">:</span><span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">}})</span>
+
+<span class="k">with</span> <span class="n">sm</span><span class="p">:</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">Concurrence</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;SM_ONE&#39;</span><span class="p">,</span> <span class="n">sm_one</span><span class="p">)</span>
+    <span class="n">smach</span><span class="o">.</span><span class="n">Concurrence</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;SM_TWO&#39;</span><span class="p">,</span> <span class="n">sm_two</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This example shows how to combine multiple events in a single state machine by nesting <a class="reference external" href="http://wiki.ros.org/smach/Tutorials/StateMachine%20container">State Machine Containers</a> (events) into a <a class="reference external" href="http://wiki.ros.org/smach/Tutorials/Concurrence%20container">Concurrence Container</a>. The concurrence container terminates a soon as both nested state machines (events) terminate.</p>
+</div>
+</div>
+<div class="section" id="evaluating-experiment-result">
+<h2>Evaluating experiment result<a class="headerlink" href="#evaluating-experiment-result" title="Permalink to this headline">¶</a></h2>
+<p>A state machine for evaluating the success of an experiment does not differ from an experiment control state machine in terms of capabilities. However, it should have exactly two final states: one publishing a &#8216;success&#8217; message on the CLE status topic and one publishing a &#8216;failure&#8217; message.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently, the frontend is not able to visualize success or failure messages.</p>
+</div>
+</div>
+<div class="section" id="special-states">
+<h2>Special States<a class="headerlink" href="#special-states" title="Permalink to this headline">¶</a></h2>
+<p>The following examples demonstrate the application of some special state implementations that are designed to make controlling an experiment easier.</p>
+<div class="section" id="spawn-objects">
+<h3>Spawn Objects<a class="headerlink" href="#spawn-objects" title="Permalink to this headline">¶</a></h3>
+<p>The NRP has an integrated state implementation class <strong>ModelSpawnServiceState</strong>, designed to spawn objects dynamically from a state machine. As the name suggests, it can be used to spawn simple objects.
+This state supports the following parameters:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">model_name:</th><td class="field-body">The name of the newly spawned object. This can either be a constant string, a function or a SMACH callback. In the latter cases, it must accept two arguments: The user data of the state chart and the last model name. The first last model name is <em>None</em>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">geometry:</th><td class="field-body">The geometry of the newly spawned object in an SDF format</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">position:</th><td class="field-body">The position at which the object should be spawned. This is specified in world coordinates. Alternative, a function or a SMACH callback can be provided, again using two arguments for the state chart user data and the last position.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">rotation:</th><td class="field-body">The rotation of the spawned object. This must be constant.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">can_collide:</th><td class="field-body">A flag indicating whether the object can collide with other objects</td>
+</tr>
+<tr class="field-even field"><th class="field-name">gravity_factor:</th><td class="field-body">This specifies to which degree gravity should affect the newly spawned object. The state also allows True (full gravity=1) or False (no gravity=0). Default is 1.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">kinematic:</th><td class="field-body">A factor specifying the kinematics. This can also be True=1 or False=0. By default, kinematics are enabled.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">mass:</th><td class="field-body">The mass of the spawned object. By default, this is 1.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">color:</th><td class="field-body">A Gazebo color name. By default, the object is spawned in grey (<em>Gazebo/Grey</em>)</td>
+</tr>
+</tbody>
+</table>
+<p>In addition, the NRP contains several state implementations to make spawning of simple shapes easier. These states do not allow to specify a <em>geometry</em> directly, but rather through other arguments.</p>
+<ul class="simple">
+<li><strong>SpawnSphere</strong> spawns a sphere. An additional <em>radius</em> parameter determines the radius of the spawned sphere and defaults to 1m. The default position is (0,0,0), same as the default rotation.  Kinematics and collision are disabled by default.</li>
+<li><strong>SpawnCylinder</strong> spawns a cylinder. The shape of the cylinder is determined by the <em>length</em> and <em>radius</em> parameters. Same as spheres, cylinders by default have no kinematics and do not collide.</li>
+<li><strong>SpawnBox</strong> spawns a box. The size of the box is specified by a vector <em>size</em> and defaults to (1,1,1).</li>
+</ul>
+</div>
+<div class="section" id="destroy-objects">
+<h3>Destroy Objects<a class="headerlink" href="#destroy-objects" title="Permalink to this headline">¶</a></h3>
+<p>There is also a special state to easily destroy objects in the scene: <strong>ModelDestroyServiceState</strong> or simpler <strong>DestroyModel</strong>. It accepts exactly one parameter <em>model_name</em> which can be either a constant string or a callback function specifying
+name of the object to be deleted depending on the state chart user data and the last destroyed model name.</p>
+</div>
+<div class="section" id="change-model-position-and-orientation">
+<h3>Change Model Position and Orientation<a class="headerlink" href="#change-model-position-and-orientation" title="Permalink to this headline">¶</a></h3>
+<p>There is a separate state to change the position, rotation and scale of any given object. This state is called <strong>SetModelServiceState</strong> or simpler <strong>SetPose</strong>. It accepts the following arguments:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">model_name:</th><td class="field-body">The name of the object. This can either be a constant string, a function or a SMACH callback. In the latter cases, it must accept two arguments: The user data of the state chart and the last model name. The first last model name is <em>None</em>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">position:</th><td class="field-body">The position to which the object should be moved. This is specified in world coordinates. Alternative, a function or a SMACH callback can be provided, again using two arguments for the state chart user data and the last position.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">rotation:</th><td class="field-body">The rotation of the object. This can be either a constant vector or a function returning the latter.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">scale:</th><td class="field-body">A factor to which the object should be scaled. Alternatively, a function returning this scaling factor depending on the state chart user data and the previous scale factor is allowed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="ex_configuration.html">Tutorial: Writing an Experiment Configuration</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../spinnaker/index.html">The Spinnaker Experiment Tutorial</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,1703 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Experiment Model Specification &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Specifications" href="index.html" />
+    <link rel="next" title="Contact &amp; Support" href="../../contact-and-support.html" />
+    <link rel="prev" title="Device Parameters" href="device_parameters.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/nrp/specifications/ExDConfFile.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="index.html">Specifications</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="device_parameters.html">Device Parameters</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../../contact-and-support.html">Contact &amp; Support</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="experiment-model-specification">
+<h1>Experiment Model Specification<a class="headerlink" href="#experiment-model-specification" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="schema-document-properties">
+<h2>Schema Document Properties<a class="headerlink" href="#schema-document-properties" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Target Namespace:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig">http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Element Qualifiers:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">By default, local element declarations belong to this schema&#8217;s target namespace.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Attribute Qualifiers:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">By default, local attribute declarations have no namespace.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Imports:</th><td class="field-body">This schema imports schema(s) from the following namespace(s):
+- <a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2015/ExDConfig/scxml">http://schemas.humanbrainproject.eu/SP10/2015/ExDConfig/scxml</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="declared-namespaces">
+<h2>Declared Namespaces<a class="headerlink" href="#declared-namespaces" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Prefix</th>
+<th class="head">Namespace</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>(default)</td>
+<td><a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig">http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig</a></td>
+</tr>
+<tr class="row-odd"><td>xml</td>
+<td><a class="reference external" href="http://www.w3.org/XML/1998/namespace">http://www.w3.org/XML/1998/namespace</a></td>
+</tr>
+<tr class="row-even"><td>xsd</td>
+<td><a class="reference external" href="http://www.w3.org/2001/XMLSchema">http://www.w3.org/2001/XMLSchema</a></td>
+</tr>
+<tr class="row-odd"><td>xsi</td>
+<td><a class="reference external" href="http://www.w3.org/2001/XMLSchema-instance">http://www.w3.org/2001/XMLSchema-instance</a></td>
+</tr>
+<tr class="row-even"><td>bibi</td>
+<td><a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2014/BIBI">http://schemas.humanbrainproject.eu/SP10/2014/BIBI</a></td>
+</tr>
+<tr class="row-odd"><td>sc</td>
+<td><a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2015/ExDConfig/scxml">http://schemas.humanbrainproject.eu/SP10/2015/ExDConfig/scxml</a></td>
+</tr>
+<tr class="row-even"><td>tns</td>
+<td><a class="reference external" href="http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig">http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="global-declarations">
+<h2>Global Declarations<a class="headerlink" href="#global-declarations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="element-exd">
+<h3>Element: ExD<a class="headerlink" href="#element-exd" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ExD</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ExD</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The root element of a experiment configuration model must be an ExD object.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="xml-instance-representation">
+<h4>XML Instance Representation<a class="headerlink" href="#xml-instance-representation" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;ExD&gt; ExD &lt;/ExD&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="global-definitions">
+<h2>Global Definitions<a class="headerlink" href="#global-definitions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="complex-type-bibiconf">
+<h3>Complex Type: BibiConf<a class="headerlink" href="#complex-type-bibiconf" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">BibiConf</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes the BIBI configuration used for this experiment. It is described using a reference to the BIBI model in the src attribute and an attribute processes to specify the number of processes that should be used to run the experiment. The default value for processes is 1.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="properties">
+<h4>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-src">
+<h5>Attribute src<a class="headerlink" href="#attribute-src" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The path to the BIBI configuration that specifies the model, the neural network and the connection between those.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-processes">
+<h5>Attribute processes<a class="headerlink" href="#attribute-processes" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">processes</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">positiveInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Default Value:</th><td class="field-body">1</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">The number of processes that should be used to run the neural network simulation. If this value is larger than 1, a dedicated simulation setup for distributed simulation of the neural network is used.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id1">
+<h4>XML Instance Representation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [1]&quot; processes=&quot;positiveInteger [0..1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-camerapose">
+<h3>Complex Type: CameraPose<a class="headerlink" href="#complex-type-camerapose" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">CameraPose</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a camera pose. Unlike the robot pose, a camera pose is specified using a position of the camera and a point to which the camera looks at. The camera is always rotated with the up vector z (0,0,1).</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id2">
+<h4>Properties<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-cameraposition">
+<h5>Element cameraPosition<a class="headerlink" href="#element-cameraposition" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">cameraPosition</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Position</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The position of the camera</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-cameralookat">
+<h5>Element cameraLookAt<a class="headerlink" href="#element-cameralookat" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">cameraLookAt</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">Position</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The position to which the camera should look at</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id3">
+<h4>XML Instance Representation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;cameraPosition&gt; Position &lt;/cameraPosition&gt; [1]
+   &lt;cameraLookAt&gt; Position &lt;/cameraLookAt&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-conffile">
+<h3>Complex Type: ConfFile<a class="headerlink" href="#complex-type-conffile" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ConfFile</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a configuration entry. Configuration entries are used for multiple purposes, therefore the type of the configuration entry is set explicitly in an attribute called type. The actual configuration is referenced as a file through the src attribute.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id4">
+<h4>Properties<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h5>Attribute src<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The path to the file that acts as configuration. Files specified as configuration are automatically considered whe an experiment is deployed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-type">
+<h5>Attribute type<a class="headerlink" href="#attribute-type" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ConfType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The type of the configuration entry describes what this entry is used for. The NRP allows both predefined and custom entries.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id6">
+<h4>XML Instance Representation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [1]&quot; type=&quot;ConfType [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-environmentmodel">
+<h3>Complex Type: EnvironmentModel<a class="headerlink" href="#complex-type-environmentmodel" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">EnvironmentModel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type defines the necessary configuration for an environment. It combines the specification of an environment model through the src attribute and a robot pose using the element robotPose.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id7">
+<h4>Properties<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-robotpose">
+<h5>Element robotPose<a class="headerlink" href="#element-robotpose" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">robotPose</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">RobotPose</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The position of the robot</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id8">
+<h5>Attribute src<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">A path to an SDF file that specifies the scene</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id9">
+<h4>XML Instance Representation<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [1]&quot;&gt;
+   &lt;robotPose&gt; RobotPose &lt;/robotPose&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-exd">
+<h3>Complex Type: ExD<a class="headerlink" href="#complex-type-exd" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ExD</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type is the root type for an experiment configuration.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id10">
+<h4>Properties<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-name">
+<h5>Element name<a class="headerlink" href="#element-name" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This element denotes the name of the experiment as it appears in the experiment list.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-thumbnail">
+<h5>Element thumbnail<a class="headerlink" href="#element-thumbnail" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">thumbnail</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ThumbnailFile</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This element references a path to a thumbnail that is used to give the user a forecast to the experiment.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-description">
+<h5>Element description<a class="headerlink" href="#element-description" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">description</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">This description will appear in the experiment description and provide a short description explaining what the experiment is all about.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-timeout">
+<h5>Element timeout<a class="headerlink" href="#element-timeout" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">timeout</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The timeout of an experiment is the time an experiment is allowed to run by default, specified in seconds. If that time has elapsed, the users are asked whether they want to extend the runtime of the simulation. On the servers, this will only be allowed if the timeout fits within the cluster allocation.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-configuration">
+<h5>Element configuration<a class="headerlink" href="#element-configuration" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">configuration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ConfFile</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">An experiment may have multiple configuration entries. Despite configuration entries can be specified in anywhere in the ExD element, they must appear together.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-maturity">
+<h5>Element maturity<a class="headerlink" href="#element-maturity" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">maturity</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">MaturityType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The maturity of an experiment determines whether it is shown by default to the user or only browsable in dev mode.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-environmentmodel">
+<h5>Element environmentModel<a class="headerlink" href="#element-environmentmodel" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">environmentModel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">EnvironmentModel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The environment model of an experiment specifies the used world file for a simulation and the pose where the robot should be spawned.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-visualmodel">
+<h5>Element visualModel<a class="headerlink" href="#element-visualmodel" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">visualModel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">VisualModel</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">With the visual model, an experiment can specify an alternatively used model for the frontend visualization. This is helpful in case the robot model used in gazebo is very detailed and thus hard to visualize on the client. On the server, there may be more resources available to simulate more complex models.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-bibiconf">
+<h5>Element bibiConf<a class="headerlink" href="#element-bibiconf" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">bibiConf</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">BibiConf</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The bibiConf element of an experiment configuration specifies the</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-experimentcontrol">
+<h5>Element experimentControl<a class="headerlink" href="#element-experimentcontrol" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">experimentControl</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ExperimentControl</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The experiment control lists all state machines that control the experiment.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-experimentevaluation">
+<h5>Element experimentEvaluation<a class="headerlink" href="#element-experimentevaluation" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">experimentEvaluation</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">ExperimentControl</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The experiment evaluation element lists all state machines that evaluate the success of a simulated experiment.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-camerapose">
+<h5>Element cameraPose<a class="headerlink" href="#element-camerapose" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">cameraPose</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">CameraPose</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The camera pose specifies the initial position of the camera when a simulation is started.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-roslaunch">
+<h5>Element rosLaunch<a class="headerlink" href="#element-roslaunch" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">rosLaunch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">RosLaunch</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The roslaunch element species the path to a ROSLaunch file that is executed when the experiment is simulated. If no file is specified, no ROSLaunch file is executed at the beginning of an experiment.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-rngseed">
+<h5>Element rngSeed<a class="headerlink" href="#element-rngseed" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">rngSeed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">positiveInteger</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">If specified, this element specifies the random number generator seed. If this field is left blank, a seed is generated and therefore, the simulation is not 100% deterministic. If a seed is specified here, this seed is used for the robot and neural simulation, making the simulation much more deterministic.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-physicsengine">
+<h5>Element physicsEngine<a class="headerlink" href="#element-physicsengine" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">physicsEngine</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">PhysicsEngine</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">If specified, this element denotes the physics simulator that should be used. We currently support either ODE or OpenSim.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id11">
+<h4>XML Instance Representation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;name&gt; string &lt;/name&gt; [1]
+   &lt;thumbnail&gt; ThumbnailFile &lt;/thumbnail&gt; [1]
+   &lt;description&gt; string &lt;/description&gt; [1]
+   &lt;timeout&gt; double &lt;/timeout&gt; [0..1]
+   &lt;configuration&gt; ConfFile &lt;/configuration&gt; [0..*]
+   &lt;maturity&gt; MaturityType &lt;/maturity&gt; [0..1]
+   &lt;environmentModel&gt; EnvironmentModel &lt;/environmentModel&gt; [1]
+   &lt;visualModel&gt; VisualModel &lt;/visualModel&gt; [0..1]
+   &lt;bibiConf&gt; BibiConf &lt;/bibiConf&gt; [1]
+   &lt;experimentControl&gt; ExperimentControl &lt;!-- Uniqueness Constraint - uniqueExperimentControlSelector - tns:stateMachineField(s) - @id--&gt;&lt;/experimentControl&gt; [0..1]
+   &lt;experimentEvaluation&gt; ExperimentControl &lt;!-- Uniqueness Constraint - uniqueExperimentEvaluationSelector - tns:stateMachineField(s) - @id--&gt;&lt;/experimentEvaluation&gt; [0..1]
+   &lt;cameraPose&gt; CameraPose &lt;/cameraPose&gt; [0..1]
+   &lt;rosLaunch&gt; RosLaunch &lt;/rosLaunch&gt; [0..1]
+   &lt;rngSeed&gt; positiveInteger &lt;/rngSeed&gt; [0..1]
+   &lt;physicsEngine&gt; PhysicsEngine &lt;/physicsEngine&gt; [0..1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-experimentcontrol">
+<h3>Complex Type: ExperimentControl<a class="headerlink" href="#complex-type-experimentcontrol" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ExperimentControl</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type depicts a list of state machines</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id12">
+<h4>Properties<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-statemachine">
+<h5>Element stateMachine<a class="headerlink" href="#element-statemachine" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">stateMachine</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">StateMachine</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1..*]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The actual state machines of this list of state machines</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>XML Instance Representation<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;...&gt;
+   &lt;stateMachine&gt; StateMachine &lt;/stateMachine&gt; [1..*]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-position">
+<h3>Complex Type: Position<a class="headerlink" href="#complex-type-position" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">Position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a position with x, y and z coordinates.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id14">
+<h4>Properties<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-x">
+<h5>Attribute x<a class="headerlink" href="#attribute-x" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">x</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The x coordinate of the position</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-y">
+<h5>Attribute y<a class="headerlink" href="#attribute-y" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">y</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The y coordinate of the position</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-z">
+<h5>Attribute z<a class="headerlink" href="#attribute-z" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">z</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The z coordinate of the position</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>XML Instance Representation<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... x=&quot;double [1]&quot; y=&quot;double [1]&quot; z=&quot;double [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-robotpose">
+<h3>Complex Type: RobotPose<a class="headerlink" href="#complex-type-robotpose" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">RobotPose</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type represents a robot pose. It consists of a position part (x, y and z coordinates) and a rotation part (roll, pitch and yaw). All fields are double precision values.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id16">
+<h4>Properties<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id17">
+<h5>Attribute x<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">x</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The x coordinate of the robot position</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id18">
+<h5>Attribute y<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">y</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The y coordinate of the robot position</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id19">
+<h5>Attribute z<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">z</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The z coordinate of the robot position</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-roll">
+<h5>Attribute roll<a class="headerlink" href="#attribute-roll" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">roll</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-pitch">
+<h5>Attribute pitch<a class="headerlink" href="#attribute-pitch" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">pitch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-yaw">
+<h5>Attribute yaw<a class="headerlink" href="#attribute-yaw" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">yaw</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id20">
+<h4>XML Instance Representation<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... x=&quot;double [1]&quot; y=&quot;double [1]&quot; z=&quot;double [1]&quot; roll=&quot;double [1]&quot; pitch=&quot;double [1]&quot; yaw=&quot;double [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-roslaunch">
+<h3>Complex Type: RosLaunch<a class="headerlink" href="#complex-type-roslaunch" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">RosLaunch</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a Ros Launchfile configuration.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id21">
+<h4>Properties<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id22">
+<h5>Attribute src<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The path to a ROSLaunch file</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id23">
+<h4>XML Instance Representation<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-scxmlstatemachine">
+<h3>Complex Type: SCXMLStateMachine<a class="headerlink" href="#complex-type-scxmlstatemachine" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>StateMachine &lt; SCXMLStateMachine (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">SCXMLStateMachine</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes an SCXML state machine. SCXML is a W3C standard for state charts. However, state machines in this format are currently not run. State machines in SCXML are currently not interpreted.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id24">
+<h4>Properties<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element">
+<h5>Element<a class="headerlink" href="#element" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body"></td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">anyType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id25">
+<h5>Attribute src<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id26">
+<h4>XML Instance Representation<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [0..1]&quot;&gt; &lt;!-- &#39;StateMachine&#39; super type was not found in this schema. Some elements and attributes may be missing. --&gt;
+   &lt;scxml&gt; ... &lt;/scxml&gt; [0..1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-smachstatemachine">
+<h3>Complex Type: SMACHStateMachine<a class="headerlink" href="#complex-type-smachstatemachine" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>StateMachine &lt; SMACHStateMachine (by extension)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">SMACHStateMachine</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type depicts a SMACH state machine. It is specified using a path to the source code of the state machine.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id27">
+<h4>Properties<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id28">
+<h5>Attribute src<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">The path to an Python script that describes the state machine. This script has to have a variable with global scope that must have the name sm or stateMachine.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id29">
+<h4>XML Instance Representation<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [1]&quot;&gt; &lt;!-- &#39;StateMachine&#39; super type was not found in this schema. Some elements and attributes may be missing. --&gt;
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-statemachine">
+<h3>Complex Type: StateMachine<a class="headerlink" href="#complex-type-statemachine" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td><ul class="first last simple">
+<li>SMACHStateMachine (by extension)</li>
+<li>SCXMLStateMachine (by extension)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">StateMachine</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">yes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This abstract type depicts a state machine. Currently, State Machines in SMACH or SCXML are supported, though state machines in SCXML are currently ignored.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id30">
+<h4>Properties<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="attribute-id">
+<h5>Attribute id<a class="headerlink" href="#attribute-id" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Documentation:</th><td class="field-body">Any state machine must have an identifier. This identifier is used to communicate with the state machine and therefore must be an identifier.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id31">
+<h4>XML Instance Representation<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... id=&quot;string [1]&quot;/&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-type-visualmodel">
+<h3>Complex Type: VisualModel<a class="headerlink" href="#complex-type-visualmodel" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">VisualModel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type defines a visual model (for example for the robot) as used in the frontend.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id32">
+<h4>Properties<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="element-visualpose">
+<h5>Element visualPose<a class="headerlink" href="#element-visualpose" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">visualPose</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">RobotPose</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Nillable:</th><td class="field-body">no</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Abstract:</th><td class="field-body">no</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id33">
+<h5>Attribute src<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">src</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="attribute-scale">
+<h5>Attribute scale<a class="headerlink" href="#attribute-scale" title="Permalink to this headline">¶</a></h5>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">scale</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">double</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Multiplicity:</th><td class="field-body">[0..1]</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id34">
+<h4>XML Instance Representation<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<div class="code xml highlight-python"><div class="highlight"><pre>&lt;... src=&quot;string [1]&quot; scale=&quot;double [0..1]&quot;&gt;
+   &lt;visualPose&gt; RobotPose &lt;/visualPose&gt; [1]
+&lt;/...&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-type-conftype">
+<h3>Simple Type: ConfType<a class="headerlink" href="#simple-type-conftype" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ConfType</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Union of following types: ConfTypeEnumerationstring</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a configuration type which can be a standard configuration type or a custom type. The latter is just any string.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simple-type-conftypeenumeration">
+<h3>Simple Type: ConfTypeEnumeration<a class="headerlink" href="#simple-type-conftypeenumeration" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; ConfTypeEnumeration (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ConfTypeEnumeration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringvalue comes from list: {&#8216;3d-settings&#8217;}</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This enumeration lists the standard configuration types used in the NRP.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="members">
+<h4>Members<a class="headerlink" href="#members" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>3d-settings</li>
+</ul>
+</div>
+</div>
+<div class="section" id="simple-type-maturitytype">
+<h3>Simple Type: MaturityType<a class="headerlink" href="#simple-type-maturitytype" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; MaturityType (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">MaturityType</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringvalue comes from list: {&#8216;development&#8217;|&#8217;production&#8217;}</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a maturity of an experiment. It can either be development or production.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id35">
+<h4>Members<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>development</li>
+<li>production</li>
+</ul>
+</div>
+</div>
+<div class="section" id="simple-type-physicsengine">
+<h3>Simple Type: PhysicsEngine<a class="headerlink" href="#simple-type-physicsengine" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; PhysicsEngine (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">PhysicsEngine</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringvalue comes from list: {&#8216;ode&#8217;|&#8217;opensim&#8217;}</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This enumeration contains the physics engines supported by the NRP. This includes the standard physics engine ODE and OpenSim.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id36">
+<h4>Members<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>ode</li>
+<li>opensim</li>
+</ul>
+</div>
+</div>
+<div class="section" id="simple-type-thumbnailfile">
+<h3>Simple Type: ThumbnailFile<a class="headerlink" href="#simple-type-thumbnailfile" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Super-types</td>
+<td>string &lt; ThumbnailFile (by restriction)</td>
+</tr>
+<tr class="row-even"><td>Sub-types</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Name:</th><td class="field-body">ThumbnailFile</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Content:</th><td class="field-body">Base XSD Type: stringpattern = [a-zA-Z0-9._-/]*.(png|gif|jp[e]?g)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Documentation:</th><td class="field-body">This type denotes a path to an image file. The supported extensions are .png, .jpg, .jpeg and .gif. The file name must not contain whitespaces.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="device_parameters.html">Device Parameters</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../../contact-and-support.html">Contact &amp; Support</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,322 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Device Parameters &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Specifications" href="index.html" />
+    <link rel="next" title="Experiment Model Specification" href="ExDConfFile.html" />
+    <link rel="prev" title="BIBI Model Specification" href="bibi_configuration.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/nrp/specifications/device_parameters.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="index.html">Specifications</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="bibi_configuration.html">BIBI Model Specification</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="ExDConfFile.html">Experiment Model Specification</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="device-parameters">
+<h1>Device Parameters<a class="headerlink" href="#device-parameters" title="Permalink to this headline">¶</a></h1>
+<p>Devices in the CLE can be configured with additional parameters depending on the type of device created. The purpose of this section is to document these parameters and their default values.
+With these configurations, a user may override some parameters in the device creation.</p>
+<p>For example, suppose you would like to set the default amplitude of a DC source to zero. That is, you may create a device using the following code:</p>
+<div class="code Python highlight-python"><div class="highlight"><pre>@MapSpikeSource(&quot;Parameter&quot;, nrp.map_neurons(range(600), lambda i: nrp.brain.sensors[i]), nrp.dc_source)
+</pre></div>
+</div>
+<p>The following code should do the trick. Note that you just add the parameter &#8220;amplitude = 0.0&#8221; at the end of the device.</p>
+<div class="code Python highlight-python"><div class="highlight"><pre>@MapSpikeSource(&quot;Parameter&quot;, nrp.map_neurons(range(600), lambda i: nrp.brain.sensors[i]), nrp.dc_source, amplitude = 0.0)
+</pre></div>
+</div>
+<p>The following lists the possible configuration options for each device type with their default values.</p>
+<div class="section" id="connectors">
+<h2>Connectors<a class="headerlink" href="#connectors" title="Permalink to this headline">¶</a></h2>
+<p>A <em>connector</em> may be used to specify default values for weights and delays that are then used across
+multiple devices. Further, a connector may have a mode that determines whether the spikes should be
+delivered to all, to one or to a fixed number of connected neurons. If a connector is specified, the
+connector must specify a mode. If no connector is specified, an AllToAll connector is used.
+Connectors are specified as dictionaries with the following entries:</p>
+<ul class="simple">
+<li>weight (optional)</li>
+<li>delay (optional)</li>
+<li>mode (OneToOne, AllToAll, Fixed)</li>
+</ul>
+<p>A fixed number pre connector must also specify a number (n) that defaults to 1.</p>
+</div>
+<div class="section" id="ac-generator">
+<h2>AC Generator<a class="headerlink" href="#ac-generator" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>amplitude: 0.0</li>
+<li>offset: 0.0</li>
+<li>frequency: 10.0</li>
+<li>phase: 0.0</li>
+<li>start: 0.0</li>
+<li>stop: infinity</li>
+</ul>
+</div>
+<div class="section" id="dc-generator">
+<h2>DC Generator<a class="headerlink" href="#dc-generator" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>amplitude: 0.0</li>
+<li>start: 0.0</li>
+<li>stop: infinity</li>
+</ul>
+</div>
+<div class="section" id="fixed-spike-generator">
+<h2>Fixed Spike Generator<a class="headerlink" href="#fixed-spike-generator" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>initial_rate: 0.0</li>
+<li>cm: 1.0</li>
+<li>tau_m: 1000.0</li>
+<li>tau_refrac: sim.state.dt</li>
+<li>v_thresh: -50.0</li>
+<li>v_reset: -100.0</li>
+<li>v_rest: -100.0</li>
+<li>connector: None</li>
+<li>weight: None</li>
+<li>delay: None</li>
+<li>source: None</li>
+<li>receptor_type: excitatory</li>
+<li>synapse_type: None</li>
+<li>label: None</li>
+</ul>
+<p>If no weight is specified, neither in the device nor in a connector, random weights are chosen from
+a uniform distribution from [0.0, 0.01] ([-0.01, 0.0] if the connection is inhibitory and the connected neurons are
+conductance-based).</p>
+<p>By default, a static synapse is created with the specified weight and delay. Alternatively, a Tsodyks-Markram synapse can be created.</p>
+</div>
+<div class="section" id="leaky-integrator-alpha-shaped">
+<h2>Leaky Integrator (Alpha-shaped)<a class="headerlink" href="#leaky-integrator-alpha-shaped" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>v_thresh: infinity</li>
+<li>cm: 1.0</li>
+<li>tau_m: 10.0</li>
+<li>tau_syn_E: 2.</li>
+<li>tau_syn_I: 2.</li>
+<li>v_rest: 0.0</li>
+<li>v_reset: 0.0</li>
+<li>tau_refrac: 0.1</li>
+<li>i_offset: 0.0</li>
+<li>connector: None</li>
+<li>weight: None</li>
+<li>delay: 0.1</li>
+<li>source: None</li>
+<li>receptor_type: excitatory</li>
+<li>synapse_type: None</li>
+<li>label: None</li>
+<li>rng: None</li>
+</ul>
+<p>A leaky integrator device is always initialized with the resting potential v_rest.</p>
+<p>If no weight is specified, neither in the device nor in a connector, weights are set to 0.01 (-0.01 if the connection is inhibitory).</p>
+<p>By default, a static synapse is created with the specified weight and delay. Alternatively, a Tsodyks-Markram synapse can be created.</p>
+</div>
+<div class="section" id="leaky-integrator-exp-shaped">
+<h2>Leaky Integrator (Exp-Shaped)<a class="headerlink" href="#leaky-integrator-exp-shaped" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>v_thresh: infinity</li>
+<li>cm: 1.0</li>
+<li>tau_m: 20.0</li>
+<li>tau_syn_E: .5</li>
+<li>tau_syn_I: .5</li>
+<li>v_rest: 0.0</li>
+<li>v_reset: 0.0</li>
+<li>tau_refrac: 0.1</li>
+<li>i_offset: 0.0</li>
+<li>connector: None</li>
+<li>weight: None</li>
+<li>delay: RandomDistribution(uniform, [0.1, 2.0])</li>
+<li>source: None</li>
+<li>receptor_type: excitatory</li>
+<li>synapse_type: None</li>
+<li>label: None</li>
+<li>rng: None</li>
+</ul>
+<p>A leaky integrator device is always initialized with the resting potential v_rest.</p>
+<p>If no weight is specified, neither in the device nor in a connector, random weights are chosen from
+a uniform distribution from [0.0, 0.01] ([-0.01, -0.0] if the connection is inhibitory).</p>
+<p>By default, a static synapse is created with the specified weight and delay. Alternatively, a Tsodyks-Markram synapse can be created.</p>
+</div>
+<div class="section" id="nc-generator">
+<h2>NC Generator<a class="headerlink" href="#nc-generator" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>mean: 0.0</li>
+<li>stdev: 1.0</li>
+<li>dt: sim.state.dt</li>
+<li>start: 0.0</li>
+<li>stop: infinity</li>
+</ul>
+</div>
+<div class="section" id="poisson-generator">
+<h2>Poisson Generator<a class="headerlink" href="#poisson-generator" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>duration: infinity</li>
+<li>start: 0.0</li>
+<li>rate: 0.0</li>
+<li>connector: None</li>
+<li>weight: 0.00015</li>
+<li>delay: 0.1</li>
+<li>source: None</li>
+<li>receptor_type: excitatory</li>
+<li>synapse_type: None</li>
+<li>label: None</li>
+<li>rng: None</li>
+<li>n: 1</li>
+</ul>
+<p>If no weight is specified, neither in the device nor in a connector, random weights are chosen from
+a uniform distribution from [0.0, 0.01] ([-0.01, -0.0] if the connection is inhibitory).</p>
+<p>By default, a static synapse is created with the specified weight and delay. Alternatively, a Tsodyks-Markram synapse can be created.</p>
+<p>The parameter <em>n</em> specifies how many Poisson generators should be created in the network that realize
+the Poisson generator device.</p>
+</div>
+<div class="section" id="population-rate">
+<h2>Population Rate<a class="headerlink" href="#population-rate" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>tau_fall: 20.0</li>
+<li>tau_rise: 10.0</li>
+</ul>
+</div>
+<div class="section" id="spike-recorder">
+<h2>Spike Recorder<a class="headerlink" href="#spike-recorder" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>use_ids: True</li>
+</ul>
+<p>The spike recorder returns an array with all the spikes of the respective population.
+By default, the neurons are identified using their global IDs of the underlying simulator.
+However, by setting <strong>use_ids</strong> to <em>False</em>, this behavior changes and the recorder returns the
+indices of the neurons within the monitored population. If that population is a view, the index of
+the neuron within the view is used for the spike recorder.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="bibi_configuration.html">BIBI Model Specification</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="ExDConfFile.html">Experiment Model Specification</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

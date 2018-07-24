@@ -1,0 +1,301 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Closed Loop Engine Architecture &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Closed Loop Engine" href="index.html" />
+    <link rel="next" title="Transfer Functions" href="transfer_functions.html" />
+    <link rel="prev" title="Closed Loop Engine" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/developer_manual/CLE/cle_architecture.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Developer Manual</a>
+                    
+                    <a href="index.html">Closed Loop Engine</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">Closed Loop Engine</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="transfer_functions.html">Transfer Functions</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="closed-loop-engine-architecture">
+<h1>Closed Loop Engine Architecture<a class="headerlink" href="#closed-loop-engine-architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>The Closed Loop Engine (CLE) is responsible for transferring data between the neuronal brain
+simulator and the world simulation engine (WSE). This includes the synchronization of the
+simulations and the coordination of the data transfer.</p>
+<div class="figure" id="id1">
+<span id="architecture-overview"></span><a class="reference internal image-reference" href="../../../_images/architecture_overview.png"><img alt="../../../_images/architecture_overview.png" src="../../../_images/architecture_overview.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Overview of HBP SP10</span></p>
+</div>
+<p><a class="reference internal" href="#architecture-overview"><span>Fig. 7</span></a> shows the overview of the Neurorobotics subproject SP10 of the
+Human Brain Project (HBP). The Closed Loop Engine (CLE) is the mediator between the world simulation
+and the brain simulation. The CLE is highlighted in the figure. The architecture of this component
+is the purpose of this document.</p>
+</div>
+<div class="section" id="functional-requirements">
+<h2>Functional Requirements<a class="headerlink" href="#functional-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The goal of the CLE is to couple a brain simulation to a world simulation (robot simulation), such
+that the brain simulation can control the robots behavior. The transmission of the sensor data to
+the brain and in the other way from the neurons spikes to actual robot commands is done through
+communication components called transfer functions. These transfer functions are written by the users
+of the platform (neuroscientists).</p>
+<p>Transferring data in one direction, i.e. either from the world simulation to the brain or vice
+versa, is referred to as an open loop. The management of both directions is called a closed loop as
+it enables information to loop through the system.</p>
+<p>The CLE controls the following:</p>
+<ul class="simple">
+<li>when to transfer data (done by the Closed Loop Controller)</li>
+<li>which data to transfer (done by the TF manager)</li>
+<li>when to trigger simulation steps (done by the Closed Loop Controller).</li>
+</ul>
+<p>All of these requirements must be fulfilled independently from the brain simulation and robot
+simulation.</p>
+</div>
+<div class="section" id="technical-requirements">
+<h2>Technical Requirements<a class="headerlink" href="#technical-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The world simulation currently runs on a middleware called the Robot Operating System (ROS). ROS is
+primarily designed for the Ubuntu operating system although it does run on other Linux systems.
+We are using NEST for our brain simulation. NEST can be installed on most Linux systems and can be
+controlled remotely using a Python module called PyNN.</p>
+<p>Transfer functions have the strict requirement that they must be written in Python
+or in an XML syntax. The latter is described in the <a class="reference internal" href="../../specifications/bibi_configuration.html"><em>BIBI Model Specification</em></a>.</p>
+<p>Overall, it should be possible to run the CLE in real-time mode, such that the simulated time does
+not differ too much from the real time. This can be achieved by adjusting the time-step in which the simulation is run.
+This is possible for all models that do not contain too many neurons nor an overly complicated robot.</p>
+</div>
+<div class="section" id="architecture-of-the-cle">
+<h2>Architecture of the CLE<a class="headerlink" href="#architecture-of-the-cle" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id2">
+<span id="architecture-components"></span><img alt="../../../_images/architecture_components.png" src="../../../_images/architecture_components.png" />
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Component Diagram of the Closed Loop Engine</span></p>
+</div>
+<p><a class="reference internal" href="#architecture-components"><span>Fig. 8</span></a> shows the architecture of the CLE in a UML component diagram.
+The data transfer is managed from the world simulation (currently Gazebo and unlikely to change) to
+the neuronal brain simulator (currently NEST, but in the future we will support other simulators such as
+SpiNNaker). The CLE basically consists of two lanes. The upper lane consisting of the ROS Adapter,
+the Transfer Functions and the PyNN Adapter is responsible for the data transfer, whereas the lower
+lane consisting of ROS Controller, Closed Loop Controller and PyNN Controller is responsible for
+the control management.</p>
+<p>The ROS Adapter and ROS Controller communicate with Gazebo through ROS topics, whereas the PyNN Adapter
+and the PyNN Controller communicate with NEST via the PyNN interface, which allows us to switch from
+NEST to other neuronal simulators such as Neuron or SpiNNaker. The interfaces between the components
+of the CLE are manifested in abstract python classes. The communication between these components is
+done by using in-process communication. Although the architecture allows the possibility to distribute
+the system at a later stage.</p>
+<div class="figure align-center" id="id3">
+<span id="architecture-interfaces"></span><img alt="../../../_images/architecture_interfaces.png" src="../../../_images/architecture_interfaces.png" />
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Interfaces of the Closed Loop Engine</span></p>
+</div>
+<p>The interfaces relevant for the above architecture of the CLE are shown in
+<a class="reference internal" href="#architecture-interfaces"><span>Fig. 9</span></a>. The transfer functions provide three methods that initialize
+them and call the transfer functions in either direction.</p>
+<div class="figure" id="id4">
+<span id="architecture-interactions"></span><a class="reference internal image-reference" href="../../../_images/architecture_interactions.png"><img alt="../../../_images/architecture_interactions.png" src="../../../_images/architecture_interactions.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Interactions within the CLE</span></p>
+</div>
+<p>The interaction of the components within the CLE are shown in
+<a class="reference internal" href="#architecture-interactions"><span>Fig. 10</span></a>. The data transfer is handled in the upper lane, whereas the
+control of the simulation is done in the lower lane. The dotted lines mark the component boundaries
+within the lanes. Objects drawn on the dotted lines are interfaces between the components.</p>
+<p>The center of the upper lane is the Transfer Functions Manager (TF manager) which organizes the data
+transfer. It consists of a set of transfer functions and knows which transfer functions require
+which communication objects to send or receive data. It requests these communication objects from
+the respective communication adapters (robot communication adapter or brain communication adapter).
+These adapters then map these communication objects to artifacts in the simulation or instrument the
+simulation with new artifacts. In Fig.4, the Camera Sensor and the Left Motor exist and just need to
+be connected by the Robot Adapter. The artificial neuron implementing the voltmeter requested by the
+transfer functions is injected to the brain simulation by the brain adapter. Similar, devices such
+as the spike generator are implemented by an instrumentation of the neuronal simulation. This is done
+by the brain adapter. The Transfer Function Manager connects these communication objects to the
+transfer functions that need them. This way, the transfer functions have a uniform programming model
+to access a device or robot topic independently from the concrete simulation.</p>
+<p>Details on the TF framework architecture can be found here: <a class="reference internal" href="transfer_functions.html"><em>Transfer Functions</em></a>.</p>
+<p>The main work for the TF manager is completed after the initialization, when all transfer functions
+are connected to appropriate communication objects. The communication during the simulation (indicated
+in Fig.4 with the orange arrows) is then only done between the communication adapters, which forward
+or receive data from the technical objects realizing their functionality.</p>
+<p>The need for the TF manager to run its transfer functions is determined by the Closed Loop Controller
+that is responsible to orchestrate the closed loop, including both world simulation and brain
+simulation.</p>
+<p>The data flow in Fig.4 is as follows: The camera sensor data is exposed through a ROS topic. The
+robot control adapter has created a ROS Subscriber as the Transfer Functions has informed it that it
+will need the camera topic. The robot adapter fetches the data and provides it via a communication
+object.</p>
+<p>During a simulation, a concrete TF takes data from input communication objects e.g. a TF could request
+the current voltage from a voltmeter device. This data is processed and the TF reconfigures the output
+communication objects such as spike generators accordingly. This communication object is already
+specific to a concrete neuronal or robot simulation and knows what exactly to do.</p>
+<p>Meanwhile the organization of the data flow is done by the TF manager, the orchestration, i.e.
+controlling when the data is actually transferred, is handled by the Closed Loop Controller (CLC).</p>
+<p>The CLC or more generally an implementation of the <em>IClosedLoopControl</em> interface is responsible for
+the control of the synchronization as well as for orchestration of the data exchange among the
+Simulations and the Transfer Functions. This is done through the interfaces defined in Fig.3
+(IRobotControlAdapter,IBrainControlAdapter) which allow a complete control of the simulations in
+terms of execution of a step. The simulations of the brain and the world/robot are executed for
+the same amount of simulated time (runStep(dt)). The simulations are typically started by the CLC.
+The purpose of the CLC is not only to guarantee that both the simulations start and run for the same
+timestep, but also to orchestrate the TF manager, i.e. tell the TF manager when to execute transfer
+functions. After Gazebo and NEST have completed their execution, the TFs receive and process data
+from the simulations and produce an output which is the input for the next execution. At each timestep,
+the CLC can check for the status of the simulations through an attribute( IsAlive:Boolean).</p>
+<p>In <a class="reference internal" href="#architecture-interactions"><span>Fig. 10</span></a>, the following objects correspond to the following interfaces:</p>
+<ul class="simple">
+<li>Closed Loop Controller: IClosedLoopControl</li>
+<li>Brain Controller: IBrainControlAdapter</li>
+<li>Robot Controller: IRobotControlAdapter</li>
+<li>Transfer Functions: ITransferFunctionsNode</li>
+<li>Brain Adapter: IBrainCommunicationAdapter</li>
+<li>Robot Adapter: IRobotCommunicationAdapter</li>
+<li>Spike Generator: ISpikeGenerator. The exact interface is determined by the spike generation device type</li>
+<li>Voltage Detector: ISpikeDetector. The exact interface is determined by the spike detector type</li>
+<li>Camera Subscriber: IRobotSubscriber</li>
+<li>Left Motor Publisher: IRobotPublisher</li>
+</ul>
+<p>The implementations of these artifacts are contained in the CLE repository, although the implementations
+may forward requests to other libraries such as PyNN. For all of these interfaces, mock
+implementations are also available. They can be used either to unit test parts of the architecture in
+isolation but also for the neuroscience user to unit test their transfer function.</p>
+<p>The following other objects do not belong to the CLE:</p>
+<ul class="simple">
+<li>Generator device: This is a PyNN device that the communication object for the generator is referencing.</li>
+<li>Artificial neuron: Since there is no special voltmeter in PyNN, we simply add a new neuron to the neuronal net and query its membrane voltage.</li>
+<li>Camera-Sensor: The camera sensor is the virtual camera sensor of the simulated robot, in Fig.4 a husky robot.</li>
+<li>Left Motor: Same as before, this is an existing sensor of the virtual robot.</li>
+</ul>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">Closed Loop Engine</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="transfer_functions.html">Transfer Functions</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

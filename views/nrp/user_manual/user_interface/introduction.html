@@ -1,0 +1,206 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Web Cockpit" href="index.html" />
+    <link rel="next" title="Clone an experiment and start a simulation" href="1-esv-main.html" />
+    <link rel="prev" title="Web Cockpit" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/user_manual/user_interface/introduction.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">User Manual</a>
+                    
+                    <a href="index.html">Web Cockpit</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">Web Cockpit</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="1-esv-main.html">Clone an experiment and start a simulation</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="experiments-and-simulations">
+<h2>Experiments and simulations<a class="headerlink" href="#experiments-and-simulations" title="Permalink to this headline">¶</a></h2>
+<p>First, and <em>most importantly</em>, we need to give definitions of some terms.</p>
+<p>An <strong>experiment</strong> is a use case, combining a brain, a robot and an environment.</p>
+<p>A <strong>simulation</strong> is an instance of an experiment, launched by a particular user, at a certain time, with a predefined timeout.</p>
+<p>Thus, you could say that you can <em>define</em>, <em>choose</em> or <em>design</em> an <strong>experiment</strong>, while you <em>run</em> a <strong>simulation</strong> of this experiment.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="template-experiments">
+<h2>Template experiments<a class="headerlink" href="#template-experiments" title="Permalink to this headline">¶</a></h2>
+<p>We propose a series of template experiments to introduce the user to the features of the platform.
+Editors enable them to customize their experiments in depth.</p>
+<p>Among others, we included an experiment featuring the Husky robot acting as a <a class="reference external" href="https://en.wikipedia.org/wiki/Braitenberg_vehicle">Braitenberg Vehicle</a>.
+The purpose of these experiments is to observe how a virtual robot connected to a brain reacts to color stimuli.
+The brain model is trained to send particular commands to the robot when detecting red pixels.
+So, on the user view, the Husky robot will turn around itself in the virtual room, and move towards one of the two screens whenever the user sets it to red.</p>
+<p>The brain model is derived from a simple Braitenberg vehicle 6-neuron model. It has been designed to react to red color input provided by image analyzing transfer functions.
+It is running on the <a class="reference external" href="http://www.nest-initiative.org">Nest</a> point-neuron simulator. Below you can see a schema of the model.</p>
+<a class="reference internal image-reference" href="../../../_images/braitenberg.png"><img alt="../../../_images/braitenberg.png" class="align-center" src="../../../_images/braitenberg.png" style="width: 25%;" /></a>
+<p>The robots have classical controllers, so the brain does not control <em>how</em> they move on the low level, but outputs high-level decisions such as &#8220;move right&#8221;, &#8220;move left&#8221;, based on stimuli perception.
+The robots are equipped with a virtual camera that grabs an image from the scene in front of the robot.
+This image is sent to the brain through so-called &#8220;transfer functions&#8221; that pre-process it and turn it into usable input for <a class="reference external" href="http://www.nest-initiative.org">Nest</a>.
+In return, <a class="reference external" href="http://www.nest-initiative.org">Nest</a> output spikes go through other transfer functions to be translated into high-level movement commands and sent to the robot controller. The physics engine then updates the scene according to the new robot position. Our world simulation engine is based on the largely adopted <a class="reference external" href="http://www.gazebosim.org">Gazebo</a> simulator. Our robots have hardware counterparts that will enable us in the future to switch between hardware and software robots and observe the behavioral differences.</p>
+<p>There follows a list of the environments available in the platform in which to carry out virtual experiments.</p>
+</div>
+<div class="section" id="virtual-room">
+<h2>Virtual room<a class="headerlink" href="#virtual-room" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../_images/virtual_room.png"><img alt="../../../_images/virtual_room.png" class="align-center" src="../../../_images/virtual_room.png" style="width: 25%;" /></a>
+<p>This environment has been inspired by actual HBP office spaces.</p>
+</div>
+<div class="section" id="holodeck">
+<h2>Holodeck<a class="headerlink" href="#holodeck" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../_images/holodeck.png"><img alt="../../../_images/holodeck.png" class="align-center" src="../../../_images/holodeck.png" style="width: 25%;" /></a>
+<p>The Holodeck is a virtual lab in which to carry out experiments.</p>
+</div>
+<div class="section" id="spacebotcup">
+<h2>SpaceBotCup<a class="headerlink" href="#spacebotcup" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../_images/space_bot_cup.png"><img alt="../../../_images/space_bot_cup.png" class="align-center" src="../../../_images/space_bot_cup.png" style="width: 25%;" /></a>
+<p>This environment is based on the SpaceBotCup terrain that FZI uses to train its robots.</p>
+</div>
+<div class="section" id="virtual-biology-lab">
+<h2>Virtual biology lab<a class="headerlink" href="#virtual-biology-lab" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../../../_images/biology_lab.png"><img alt="../../../_images/biology_lab.png" class="align-center" src="../../../_images/biology_lab.png" style="width: 25%;" /></a>
+<p>This environment provides a high graphical quality environment that can be used in combination with various robots</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">Web Cockpit</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="1-esv-main.html">Clone an experiment and start a simulation</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Edit the experiment &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="Web Cockpit" href="../index.html" />
+    <link rel="next" title="Edit the environment" href="7-gz3d-edit-environment.html" />
+    <link rel="prev" title="ROS terminal" href="../67-gz3d-ros-terminal.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/nrp/user_manual/user_interface/edit/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../../index.html">User Manual</a>
+                    
+                    <a href="../index.html">Web Cockpit</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="../67-gz3d-ros-terminal.html">ROS terminal</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="7-gz3d-edit-environment.html">Edit the environment</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="edit-the-experiment">
+<h1>Edit the experiment<a class="headerlink" href="#edit-the-experiment" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Users can edit experiment configurations and make persistent changes in their private storage.
+To open the editors, once the simulation is properly loaded, click on the <strong>Editors</strong> button in the toolbar.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/gz3d-editors-button.jpg"><img alt="../../../../_images/gz3d-editors-button.jpg" class="align-center" src="../../../../_images/gz3d-editors-button.jpg" style="width: 20%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This opens up a tabbed editor pane. To edit a specific aspect of the simulation, just click on the corresponding tab.
+Click on <strong>Save</strong> to make changes persistent.</p>
+<p>This chapter is divided in two sections:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="7-gz3d-edit-environment.html">Edit the environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-edit-environment.html#add-objects-and-lights">Add Objects and Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-edit-environment.html#object-inspector">Object inspector</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="7-gz3d-edit-simulation.html">Edit the simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-edit-simulation.html#edit-experiment-flow-state-machines">Edit experiment flow (State machines)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-edit-simulation.html#edit-brain">Edit brain</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="7-gz3d-tf-editor.html">The transfer functions editor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-tf-editor.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-tf-editor.html#transfer-functions-selection">Transfer functions selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-tf-editor.html#the-script-and-raw-script-tabs">The Script and Raw Script tabs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-tf-editor.html#populations">Populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-tf-editor.html#connect-to-brain">Connect to brain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-tf-editor.html#connect-to-robot">Connect to robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="7-gz3d-tf-editor.html#global-variables">Global variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gz3d-resources-tab.html">Manage python and other resources</a></li>
+</ul>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="../67-gz3d-ros-terminal.html">ROS terminal</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="7-gz3d-edit-environment.html">Edit the environment</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

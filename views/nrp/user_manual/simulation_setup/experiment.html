@@ -1,0 +1,230 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Experiment configuration &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Simulation Setup" href="index.html" />
+    <link rel="next" title="Virtual Coach" href="../virtual_coach/index.html" />
+    <link rel="prev" title="Changing Simulated Models during a running simulation" href="hard_reset.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/user_manual/simulation_setup/experiment.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">User Manual</a>
+                    
+                    <a href="index.html">Simulation Setup</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="hard_reset.html">Changing Simulated Models during a running simulation</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../virtual_coach/index.html">Virtual Coach</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="experiment-configuration">
+<h1>Experiment configuration<a class="headerlink" href="#experiment-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Apart from the BIBI configuration, the experiment configuration mainly consists of the following artifacts:</p>
+<ul class="simple">
+<li>The experiment metadata refers to the experiment name, description and image to show in the experiment list.
+Here, the image of the experiment is simply the image file with the same name as the experiment description file.</li>
+<li>The timeout of the experiment determines the amount of time in seconds after which a simulation of this experiment
+should be terminated.</li>
+<li>The simulation maturity is used to determine the visibility of the experiment. An experiment with maturity
+production is expected to be bug-free, while an experiment in development may still include bugs.</li>
+<li>A reference to the BIBI configuration file</li>
+<li>The simulated environment in which the experiment is simulated as a reference to an SDF description, initial camera
+position and initial robot position</li>
+<li>Possible automation of the experiment through state machines.</li>
+</ul>
+<p>To specify a state machine using SMACH, a script has to be written that includes a module-level variable named sm or state_machine, in
+this variable the state machine will be stored. The execution of this script is done in a separate process and the logistic of starting and stopping the state
+machine according to the simulation state is then managed by the platform.</p>
+<p>Though any existing SMACH state machine can be used, we offer a set of default implementations to simplify the specification
+of control in a number of predefined usage scenarios. These state implementations are described below.</p>
+<div class="section" id="monitoring-the-simulation-time">
+<h2>Monitoring the simulation time<a class="headerlink" href="#monitoring-the-simulation-time" title="Permalink to this headline">¶</a></h2>
+<p>One of the most straight-forward things to use to trigger state transitions in a state machine is time. To make the experiment
+reproducible, simulation time should be used rather than physical time.</p>
+<p>This can be done using the two states <strong>ClockMonitorState</strong> and <strong>WaitToClockState</strong>. The <strong>ClockMonitorState</strong> simply monitors the simulated time
+while it is active and uses a callback to decide whether a transition should be made. If the callback evaluates to False or an error occurred, the state transitions to invalid,
+otherwise to valid (usually transitioning the state to itself). The <strong>WaitToClockState</strong> is a default implementation that simply waits until
+a given simulation time is reached.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">smach</span><span class="o">.</span><span class="n">StateMachine</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;CONDITION&#39;</span><span class="p">,</span>
+                       <span class="n">states</span><span class="o">.</span><span class="n">WaitToClockState</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+                       <span class="p">{</span><span class="s1">&#39;valid&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION&#39;</span><span class="p">,</span> <span class="s1">&#39;invalid&#39;</span><span class="p">:</span> <span class="s1">&#39;ACTION&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;preempted&#39;</span><span class="p">:</span> <span class="s1">&#39;CONDITION_PREEMPTED&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>An example usage of the <strong>WaitToClockState</strong> is shown in the listing above.</p>
+</div>
+<div class="section" id="monitoring-neural-activity">
+<h2>Monitoring neural activity<a class="headerlink" href="#monitoring-neural-activity" title="Permalink to this headline">¶</a></h2>
+<p>Monitoring the neural activity is very similar to monitoring the simulated time. There are four state implementations
+available, <strong>MonitorSpikeRateState</strong>, <strong>MonitorLeakyIntegratorAlphaState</strong>, <strong>MonitorLeakyIntegratorExpState</strong> and <strong>MonitorSpikeRecorderState</strong>.
+Each of these state implementations targets a different type of neural monitor. All of these state implementations take as input the name of the
+monitor that should be queried and a callback function for when new monitoring messages come in. This callback function accepts three parameters: The user data of the
+state machine, the simulation time for which the monitoring message was sent and the current rate or an array of spikes received in the last period.</p>
+<p>If the callback function evaluates to True or a monitoring message was received which was unrelated to the monitor under query, the state transitions to valid, otherwise to invalid.</p>
+</div>
+<div class="section" id="monitoring-the-robot-position">
+<h2>Monitoring the robot position<a class="headerlink" href="#monitoring-the-robot-position" title="Permalink to this headline">¶</a></h2>
+<p>Like monitoring the neural activity, we also support states specifically designed to monitor the robots state, in particular its pose or twist.
+For this, the state implementations <strong>RobotPoseMonitorState</strong> and <strong>RobotTwistMonitorState</strong> are used. They accept as a parameter a callback function to which
+two parameters are passed: The user dictionary of the state machine and the robots pose or twist at the last simulation time.</p>
+<p>If the callback function evaluates to True, the state transitions to valid, otherwise to invalid.</p>
+</div>
+<div class="section" id="changing-the-lights-of-the-virtual-environment">
+<h2>Changing the lights of the virtual environment<a class="headerlink" href="#changing-the-lights-of-the-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>States are also able to interact with a simulation. One of the simplest interactions is the interaction with lights in the virtual environment. This interaction is
+implemented in the <strong>LightServiceState</strong>. This state accepts as parameters</p>
+<ul class="simple">
+<li>the name of the light that shall be changed</li>
+<li>the diffuse (the color) as a RGB list or dictionary</li>
+<li>the constant, linear and quadratic attenuation (each as numbers)</li>
+</ul>
+<p>One of the good things about the light state is that besides the name, any of these elements can be omitted. In that case, the state will query the current values
+for any missing fields before performing a light change request, so a state machine may only change the color, without changing attenuation at all.</p>
+</div>
+<div class="section" id="changing-material-colors-of-items-in-the-virtual-environment">
+<h2>Changing material colors of items in the virtual environment<a class="headerlink" href="#changing-material-colors-of-items-in-the-virtual-environment" title="Permalink to this headline">¶</a></h2>
+<p>Another interaction with the simulated environment directly supported by state machines is changing the colors of items in the virtual environment. This
+is supported through the class <strong>SetMaterialColorServiceState</strong> that accepts the following parameters:</p>
+<ul class="simple">
+<li>The object whose material should be modified (for example <em>right_vr_screen</em>)</li>
+<li>The part of the object that should be modified (for example <em>body</em>)</li>
+<li>The surface that should get a new color (for example <em>screen_glass</em>)</li>
+<li>The color to set (for example <em>Gazebo/Red</em>)</li>
+</ul>
+<p>In parentheses, we printed the values to set the screen color to red in a standard experiment in the virtual room or the SpaceBotCup environment.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="hard_reset.html">Changing Simulated Models during a running simulation</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../virtual_coach/index.html">Virtual Coach</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

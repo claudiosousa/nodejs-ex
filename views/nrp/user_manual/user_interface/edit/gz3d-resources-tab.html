@@ -1,0 +1,228 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Manage python and other resources &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="Edit the experiment" href="index.html" />
+    <link rel="next" title="Simulation Setup" href="../../simulation_setup/index.html" />
+    <link rel="prev" title="The transfer functions editor" href="7-gz3d-tf-editor.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/nrp/user_manual/user_interface/edit/gz3d-resources-tab.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../../index.html">User Manual</a>
+                    
+                    <a href="../index.html">Web Cockpit</a>
+                    
+                    <a href="index.html">Edit the experiment</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="7-gz3d-tf-editor.html">The transfer functions editor</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../../simulation_setup/index.html">Simulation Setup</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="manage-python-and-other-resources">
+<h1>Manage python and other resources<a class="headerlink" href="#manage-python-and-other-resources" title="Permalink to this headline">¶</a></h1>
+<p>When designing <a class="reference external" href="7-gz3d-tf-editor.html">transfer functions</a> or <a class="reference external" href="7-gz3d-edit-simulation.html">SMACH state machines</a>, you may want to import functions and classes
+that are not defined in the body of these specific scripts.
+Managing the python sources of an experiment is eased off by the <strong>Resources</strong> tab of the simulation <strong>Editors</strong>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/resources-tab.jpg"><img alt="../../../../_images/resources-tab.jpg" class="align-center" src="../../../../_images/resources-tab.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The <strong>Resources</strong> tab gives you access to the <strong>resources</strong> subfolder of your experiment folder.
+From this view, you can upload the files wit which you want to build transfer functions and
+SMACH scripts.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/uploaded-file.jpg"><img alt="../../../../_images/uploaded-file.jpg" class="align-center" src="../../../../_images/uploaded-file.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>In this example, a file named SquarePathMetric.py has been uploaded. It defines python class, namely
+SquarePathMetric, that will be imported by a transfer function. Below is an excerpt of the file
+SquarePathMetric.py.</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SquarePathMetric</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Class used to handle the metric of the square path benchmark.&quot;&quot;&quot;</span>
+  <span class="k">class</span> <span class="nc">PathSegment</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+      <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Class used to represent one side of the square.</span>
+<span class="sd">      It handles the performance of the robot for this segment.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="c1"># Map between pairs of quarters and the vertex in between.</span>
+      <span class="c1"># This is used to detect when the robot has reached the</span>
+      <span class="c1"># next segment.</span>
+      <span class="n">QUARTERS2VERTEX</span> <span class="o">=</span> <span class="p">[</span>
+          <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="bp">None</span><span class="p">]</span>
+      <span class="p">]</span>
+      <span class="n">initialized</span> <span class="o">=</span> <span class="bp">False</span>
+      <span class="k">def</span> <span class="nf">getQuarter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+      <span class="o">...</span>
+</pre></div>
+</div>
+<p>In the transfer function named <em>benchmark_evaluation</em>, we add the import statement enabling us to use
+the class SquarePathMetric.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/import-statement.jpg"><img alt="../../../../_images/import-statement.jpg" class="align-center" src="../../../../_images/import-statement.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>As soon as the change is applied, the import statement <em>from SquarePathMetric import SquarePathMetric</em> will be handled
+by the simulation.</div></blockquote>
+<p>Note that the files uploaded to the <strong>resources</strong> folder can also be managed from <strong>Experiment files</strong> tab, see <a class="reference external" href="../1-esv-main.html">Clone
+an experiment and start a simulation</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/resources-folder.jpg"><img alt="../../../../_images/resources-folder.jpg" class="align-center" src="../../../../_images/resources-folder.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="7-gz3d-tf-editor.html">The transfer functions editor</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../../simulation_setup/index.html">Simulation Setup</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

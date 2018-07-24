@@ -1,0 +1,219 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Accessing neural network variables to configure Transfer Functions &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Accessing virtual sensors" href="virtual_sensors.html" />
+    <link rel="prev" title="Tutorial: A custom device for reusable image processing" href="custom_devices.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/access_neuron_parameters.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="custom_devices.html">Tutorial: A custom device for reusable image processing</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="virtual_sensors.html">Tutorial: Accessing virtual sensors</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="accessing-neural-network-variables-to-configure-transfer-functions">
+<h1>Accessing neural network variables to configure Transfer Functions<a class="headerlink" href="#accessing-neural-network-variables-to-configure-transfer-functions" title="Permalink to this headline">¶</a></h1>
+<p>In some cases, it may be beneficial to access parameters of the neural network to configure
+Transfer Functions. These variables may be specified as global variables of the neural network
+module that is to be loaded. These variables may contain size information of a dynamically sizable
+(typically engineered) neural network.</p>
+<p>There are two conceptually different ways to access neural network variables.</p>
+<div class="section" id="accessing-neural-network-variables-in-the-body-of-a-transfer-function">
+<h2>Accessing neural network variables in the body of a Transfer Function<a class="headerlink" href="#accessing-neural-network-variables-in-the-body-of-a-transfer-function" title="Permalink to this headline">¶</a></h2>
+<p>Accessing neural network parameters in the body of a Transfer Function is quite simple through the
+<strong>nrp.config.brain_root</strong> variable. This variable allows direct access to the Python module used as
+neural network (in case of a Python network) or the generated network object in case a H5 network is
+used.</p>
+</div>
+<div class="section" id="id1">
+<h2>Accessing neural network variables to configure Transfer Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The problem when accessing variables of the neural network in the specification of a Transfer Function
+(i.e., in the decorators) is that the value of these variables
+may change when the neural network is changed. However, the specification of a Transfer Function is
+cached, i.e. rather than re-executing the code of a Transfer Function for example on a reset, we execute
+required operations on parts of Transfer Functions. This allows us to do partial resets, for example to keep
+recorded csv data when the brain is changed during a simulation.</p>
+<p>Therefore, the <strong>nrp.config.brain_root</strong> variable must <strong>not</strong> be used to configure Transfer Function devices.
+The CLE simply would not recognize any changes to the network variable.</p>
+<p>Instead, such a variable access can be implemented in a very similar fashion to the access of neural network
+populations, as these also change whenever the brain is reloaded. That is, one simply has to access
+the variable through the provided API <strong>nrp.brain</strong>. This variable tracks its access and thus allows the NRP
+to track that the configuration depends on the neural network variable and to recompute the current value in case
+the neural network changed during the simulation.</p>
+<p>For an example, consider that you have two variables in your network called <em>ImageNumPixelRows</em> and
+<em>ImageNumPixelColumns</em> that correspond to the resolution of an image. Based on these variables, a
+device group has to be used in a Transfer Function that contains as many devices as there are pixels
+in the converted image. In this situation, one would typically want to easily change this image
+resolution without having to adjust several magic numbers in all affected Transfer Functions.</p>
+<p>To solve this, the supported way is to specify the access to neural network variables through the
+<strong>nrp.brain</strong> variable. You can simply do arithmetic calculations, navigate
+through the network model using attribute or index accesses or call methods. However, some parts of
+the Python language such as the <em>in</em> operator or list comprehension are not supported.
+The usage is exemplified in the following listing.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;LGNBrightInput&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">map_neurons</span><span class="p">(</span><span class="n">nrp</span><span class="o">.</span><span class="n">nrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">ImageNumPixelRows</span> <span class="o">*</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">ImageNumPixelColumns</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">LGNBright</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">nrp</span><span class="o">.</span><span class="n">dc_source</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">my_transfer_function</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">LGNBrightInput</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>The way how this works is that any access to the <strong>nrp.brain</strong> variable implicitly defines a function that is
+executed lazily when the neural network is loaded or changed.</p>
+<p>A consequence of this is that only very few functions are supported by this type of API. This is also
+the reason that the regular <em>range</em> function can not be used if the arguments depend on the neural network
+and a custom function <strong>nrp.nrange</strong> has to be used that extends the functionality of the builtin range
+by a support of this lazy evaluation API.</p>
+<p>If a use case requires a complicated access beyond the currently supported subset of the Python language,
+we offer a way to insert a blackbox in this procedure where you can define a lazy evaluation function yourself.
+This is done through the <strong>nrp.resolve</strong> method. You have to supply a function to this method that either
+takes no arguments, one argument that is the readily loaded neural network or two arguments consisting of
+the neural network module and the brain communication adapter.</p>
+<p>The usage is depicted in the following listing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSource</span><span class="p">(</span><span class="s2">&quot;LGNBrightInput&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">map_neurons</span><span class="p">(</span><span class="n">nrp</span><span class="o">.</span><span class="n">nrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="k">lambda</span> <span class="n">brain</span><span class="p">:</span> <span class="n">brain</span><span class="o">.</span><span class="n">ImageNumPixelRows</span> <span class="o">*</span> <span class="n">brain</span><span class="o">.</span><span class="n">ImageNumPixelColumns</span><span class="p">)),</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">LGNBright</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">nrp</span><span class="o">.</span><span class="n">dc_source</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">my_transfer_function</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">LGNBrightInput</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>However, we believe that where possible, the first type of this specification is more understandable and therefore encourage its usage.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="custom_devices.html">Tutorial: A custom device for reusable image processing</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="virtual_sensors.html">Tutorial: Accessing virtual sensors</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

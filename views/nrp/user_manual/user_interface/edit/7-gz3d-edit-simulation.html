@@ -1,0 +1,215 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Edit the simulation &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="Edit the experiment" href="index.html" />
+    <link rel="next" title="The transfer functions editor" href="7-gz3d-tf-editor.html" />
+    <link rel="prev" title="Edit the environment" href="7-gz3d-edit-environment.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/nrp/user_manual/user_interface/edit/7-gz3d-edit-simulation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../../index.html">User Manual</a>
+                    
+                    <a href="../index.html">Web Cockpit</a>
+                    
+                    <a href="index.html">Edit the experiment</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="7-gz3d-edit-environment.html">Edit the environment</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="7-gz3d-tf-editor.html">The transfer functions editor</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="edit-the-simulation">
+<h1>Edit the simulation<a class="headerlink" href="#edit-the-simulation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="edit-experiment-flow-state-machines">
+<h2>Edit experiment flow (State machines)<a class="headerlink" href="#edit-experiment-flow-state-machines" title="Permalink to this headline">¶</a></h2>
+<p>This tab displays the experiment automation script when available. Experiments&#8217; lifecycle can be scripted to force events to occur at given times or in reaction to others. An example experiment implementing a state machine is the Husky Braitenberg with automatically switching screens. But you may add state machines to any experiment. State machines are Python scripts which follow a specific syntax detailed in <a class="reference internal" href="../../../tutorials/experiment/state_machines.html#state-machines"><span>Tutorial: Writing a state machine for an experiment</span></a> and in the link supplied in the editor itself.</p>
+<p>The editor proposes following features:</p>
+<ul class="simple">
+<li><strong>New</strong> create a new template state machine. There may be multiple state machine scripts for one experiment/simulation</li>
+<li><strong>Delete</strong> deletes the current state machine script</li>
+<li><strong>Apply</strong> applies the state machine to the current simulation (not saved to experiment)</li>
+<li><strong>Upload</strong> and <strong>Download</strong> saves or loads from a local script on your computer. Useful to test multiple versions</li>
+<li><strong>Save</strong> permanently writes changes to the (cloned) experiment in your storage</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/gz3d-smach-editor.png"><img alt="../../../../_images/gz3d-smach-editor.png" class="align-center" src="../../../../_images/gz3d-smach-editor.png" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="edit-brain">
+<h2>Edit brain<a class="headerlink" href="#edit-brain" title="Permalink to this headline">¶</a></h2>
+<p>This tab displays the brain model code as a PyNN script (Python).
+In some simulations where the brain is not defined as a PyNN script, this feature is not available.</p>
+<div class="section" id="neuron-population">
+<h3>Neuron population<a class="headerlink" href="#neuron-population" title="Permalink to this headline">¶</a></h3>
+<p>You may change the neuron population mapping using the text fields at the top.
+These populations are referred to in the transfer functions and the names and indices should match.
+This is <strong>not</strong> checked by the system. In case of error, the simulation will fail.
+For details on how to edit populations and brain model, please refer to <a class="reference internal" href="#brain-model">Brain model</a> or the link within the editor.</p>
+<ul class="simple">
+<li><strong>New list</strong> creates a new population in list format</li>
+<li><strong>New slice</strong> creates a new population in slice format</li>
+<li><strong>Apply</strong> applies the changes and resets the brain with the new code</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/gz3d-population-editor.png"><img alt="../../../../_images/gz3d-population-editor.png" class="align-center" src="../../../../_images/gz3d-population-editor.png" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="brain-model">
+<h3>Brain model<a class="headerlink" href="#brain-model" title="Permalink to this headline">¶</a></h3>
+<p>You may change the brain model code directly. Beware that the system does not check for consistency
+As is the case with the other editors, you can download your brain model and upload an existing one (see previous picture).</p>
+<ul class="simple">
+<li><strong>Download</strong> downloads the current brain model</li>
+<li><strong>Upload</strong> uploads an existing brain model</li>
+<li><strong>Save</strong> permanently writes changes to the (cloned) experiment</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/gz3d-brain-editor.jpg"><img alt="../../../../_images/gz3d-brain-editor.jpg" class="align-center" src="../../../../_images/gz3d-brain-editor.jpg" style="width: 100%;" /></a>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="7-gz3d-edit-environment.html">Edit the environment</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="7-gz3d-tf-editor.html">The transfer functions editor</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

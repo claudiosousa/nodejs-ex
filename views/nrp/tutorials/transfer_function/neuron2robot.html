@@ -1,0 +1,227 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Writing a Neuron2Robot TF &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Writing a Robot2Neuron TF" href="robot2neuron.html" />
+    <link rel="prev" title="Tutorial: Writing a BIBI Configuration" href="bibi_config.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/neuron2robot.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="bibi_config.html">Tutorial: Writing a BIBI Configuration</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="robot2neuron.html">Tutorial: Writing a Robot2Neuron TF</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-writing-a-neuron2robot-tf">
+<h1>Tutorial: Writing a Neuron2Robot TF<a class="headerlink" href="#tutorial-writing-a-neuron2robot-tf" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial assumes you have familiarized yourself with the Braitenberg experiment. If not, please consider reading the <a class="reference internal" href="setup.html"><em>Tutorial: Tutorial Setup</em></a> first.</p>
+<p>A TF in Python is basically a Python function with a set of decorators. These decorators create a TF from a simple Python function by specifying where the function parameters come from and what should happen
+with the functions return value. Let us begin to manually implement the TF using Python code.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The following code will usually be generated by the BIBI configuration generator if BIBI Configurations are used.</p>
+</div>
+<div class="section" id="a-not-so-new-tf">
+<h2>A (not so) new TF<a class="headerlink" href="#a-not-so-new-tf" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">hbp_nrp_cle</span> <span class="kn">as</span> <span class="nn">nrp</span>
+
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">linear_twist</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>This code creates a TF named <strong>linear_twist</strong> as a <em>Neuron2Robot</em> TF.</p>
+</div>
+<div class="section" id="connecting-to-the-neuronal-network">
+<h2>Connecting to the neuronal network<a class="headerlink" href="#connecting-to-the-neuronal-network" title="Permalink to this headline">¶</a></h2>
+<p>We access the neuronal network through parameters of the TF function. For this we need to introduce a new parameter and connect it to the brain.
+This connection is also done using a decorator. This decorator takes as input</p>
+<ol class="arabic simple">
+<li>The name of the parameter that should be connected</li>
+<li>The neurons that should be connected</li>
+<li>The device type that should be created</li>
+<li>Additional device configuration</li>
+</ol>
+<p>The specification of the neurons that can be connected works through a specification starting from <strong>nrp.brain</strong>. Since TFs exist independently from the brain instance, the object
+accessible through nrp.brain records all the steps and thus represents a function that will when given a brain instance select the neurons that should be connected to the TF.</p>
+<p>The device types are the device types supported by the CLE. In particular, the following are allowed:</p>
+<ul class="simple">
+<li>nrp.leaky_integrator_alpha = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.ILeakyIntegratorAlpha</span></code></li>
+<li>nrp.leaky_integrator_exp = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.ILeakyIntegratorExp</span></code></li>
+<li>nrp.fixed_frequency = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.IFixedSpikeGenerator</span></code></li>
+<li>nrp.poisson = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.IPoissonSpikeGenerator</span></code></li>
+<li>nrp.detector = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.ISpikeDetector</span></code></li>
+<li>nrp.dc_source = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.IDCSource</span></code></li>
+<li>nrp.ac_source = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.IACSource</span></code></li>
+<li>nrp.nc_source = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.INCSource</span></code></li>
+<li>nrp.population_rate = <code class="xref py py-class docutils literal"><span class="pre">hbp_nrp_cle.brainsim.BrainInterface.IPopulationRate</span></code></li>
+</ul>
+<p>Of course, not all device types are suitable for reading purposes.</p>
+<p>If we want to specify the devices like above, this amounts to the following Python code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;left_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+<span class="nd">@nrp.MapSpikeSink</span><span class="p">(</span><span class="s2">&quot;right_wheel_neuron&quot;</span><span class="p">,</span> <span class="n">nrp</span><span class="o">.</span><span class="n">brain</span><span class="o">.</span><span class="n">actors</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">nrp</span><span class="o">.</span><span class="n">leaky_integrator_alpha</span><span class="p">)</span>
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">linear_twist</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">left_wheel_neuron</span><span class="p">,</span> <span class="n">right_wheel_neuron</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The parameter mapping decorators must appear before the <em>Neuron2Robot</em> decorator. Otherwise an exception will be thrown.</p>
+</div>
+<p>The rationale behind the naming <em>MapSpikeSink</em> is that the generated devices are effectively sinks as they consume spikes.</p>
+<p>Although we have specified how the TF can be connected to a neuronal simulator, we have not yet decided on which neuronal simulator to choose. Moreover, it is perfectly valid to use a mock
+neuronal simulator as e.g. for unit testing of the TF.</p>
+<p>In the last code snippet, we have not used additional device configuration. Such additional device configuration is specific to a particular neuronal simulator and may be used for
+various purposes but as the data is transferred in the TF anyhow, this is usually not so important as similar effects can be gained more easily by varying scale factors.</p>
+</div>
+<div class="section" id="connecting-to-the-robot">
+<h2>Connecting to the robot<a class="headerlink" href="#connecting-to-the-robot" title="Permalink to this headline">¶</a></h2>
+<p>Of course, so far there is nothing to unit test since the TF is not yet doing anything. To change this, we have to assign a robot topic channel. The most convenient form is
+to simply capture the methods return value and send the output to a robot topic. To do this, we simply need to add an argument to the <em>&#64;Neuron2Robot</em> decorator as shown below:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.Neuron2Robot</span><span class="p">(</span><span class="n">Topic</span><span class="p">(</span><span class="s1">&#39;/husky/cmd_vel&#39;</span><span class="p">,</span> <span class="n">geometry_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Twist</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Now, we only need to ensure that we return something that is not <em>None</em> but an instance of <em>geometry_msgs.msg.Twist</em>.</p>
+<p>As the next step, we learn how to specify a TF in the opposite direction: <a class="reference internal" href="robot2neuron.html"><em>Tutorial: Writing a Robot2Neuron TF</em></a>.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="bibi_config.html">Tutorial: Writing a BIBI Configuration</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="robot2neuron.html">Tutorial: Writing a Robot2Neuron TF</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

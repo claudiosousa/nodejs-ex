@@ -1,0 +1,294 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Monitoring the simulation &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Web Cockpit" href="index.html" />
+    <link rel="next" title="3D Settings" href="64-gz3d-3dsettings.html" />
+    <link rel="prev" title="Interact with the simulation" href="5-gz3d-interact.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/user_manual/user_interface/6-gz3d-monitor-data.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">User Manual</a>
+                    
+                    <a href="index.html">Web Cockpit</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="5-gz3d-interact.html">Interact with the simulation</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="64-gz3d-3dsettings.html">3D Settings</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="monitoring-the-simulation">
+<h1>Monitoring the simulation<a class="headerlink" href="#monitoring-the-simulation" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="spike-monitor">
+<h2>Spike Monitor<a class="headerlink" href="#spike-monitor" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>When you click on the <strong>monitor spikes</strong> button in the toolbar, a graph pops up, that lets you see a
+representation of the spikes in real-time.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-spikemonitor.jpg"><img alt="../../../_images/gz3d-spikemonitor.jpg" class="align-center" src="../../../_images/gz3d-spikemonitor.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The spikes are displayed as they are produced, in real time. They are plotted horizontally, each line
+representing a single neuron. Red vertical lines give time ticks every 3 seconds. You may close this
+graph and reopen it later, the graph keeps track of former plots. You may also move or resize the
+view. Same goes for the joint monitoring.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Monitoring is implemented with a special transfer function called &#8220;all_neurons_spike_monitor&#8221; in our template experiments. If you delete or alter this transfer function, monitoring might not work properly.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="joints-monitor">
+<h2>Joints Monitor<a class="headerlink" href="#joints-monitor" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>When you click on the <strong>Joints Monitor</strong> button, a view pops up where you can select the joints and
+the type of data you want to plot.</p>
+<a class="reference internal image-reference" href="../../../_images/gz3d-joint-monitor.jpg"><img alt="../../../_images/gz3d-joint-monitor.jpg" class="align-center" src="../../../_images/gz3d-joint-monitor.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="brain-visualizer">
+<h2>Brain Visualizer<a class="headerlink" href="#brain-visualizer" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>When clicking on the <strong>Brain Visualizer</strong> button, a view pops up showing a 3D representation of the brain used in the running experiment.
+The <strong>Shape</strong>, <strong>Distribution</strong> and <strong>Display</strong> of the neurons can be customized using the available controls.
+It is possible to toggle the display of the different population types.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-brain-visualizer.jpg"><img alt="../../../_images/gz3d-brain-visualizer.jpg" class="align-center" src="../../../_images/gz3d-brain-visualizer.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The <strong>Shape</strong>, <strong>Distribution</strong> and <strong>Display</strong> of the neurons can be customized using the available controls.
+It is possible to toggle the display of the different population types and save your setting by hitting the <strong>Save Settings</strong> button.
+If you have defined 3D positions and colors for your neuron populations
+in the file named brainvisualizer.json, you can display them in checking the <strong>custom</strong> radio button.
+If you haven&#8217;t written anything in brainvisualizer.json, you can save the current 3D configuration by selecting the <strong>custom</strong> radio button and pressing
+the <strong>save</strong> button beside it.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>The following example of brainvisualizer.json file defines the 3D positions and colors of
+the two neuron populations depicted in the figure below.</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+      <span class="nt">&quot;populations&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="nt">&quot;circuit&quot;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="nt">&quot;neurons&quot;</span><span class="p">:</span> <span class="p">{</span>
+                              <span class="nt">&quot;0&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                      <span class="nt">&quot;pos&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                              <span class="mi">0</span><span class="p">,</span>
+                                              <span class="mi">-2</span><span class="p">,</span>
+                                              <span class="mi">0</span>
+                                      <span class="p">],</span>
+                                      <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                              <span class="p">},</span>
+                              <span class="nt">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                      <span class="nt">&quot;pos&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                              <span class="mf">1.7320508075688772</span><span class="p">,</span>
+                                              <span class="mf">-1.0000000000000004</span><span class="p">,</span>
+                                              <span class="mi">0</span>
+                                      <span class="p">],</span>
+                                      <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                              <span class="p">}</span>
+                      <span class="p">},</span>
+                      <span class="nt">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;hsl(0,100%,80%)&quot;</span>
+              <span class="p">},</span>
+              <span class="nt">&quot;record&quot;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="nt">&quot;neurons&quot;</span><span class="p">:</span> <span class="p">{</span>
+                              <span class="nt">&quot;0&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                      <span class="nt">&quot;pos&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                              <span class="mf">-1.7320508075688776</span><span class="p">,</span>
+                                              <span class="mf">0.9999999999999996</span><span class="p">,</span>
+                                              <span class="mf">-2.1211504774498143e-16</span>
+                                      <span class="p">],</span>
+                                      <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                              <span class="p">},</span>
+                              <span class="nt">&quot;1&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                      <span class="nt">&quot;pos&quot;</span><span class="p">:</span> <span class="p">[</span>
+                                              <span class="mi">0</span><span class="p">,</span>
+                                              <span class="mi">2</span><span class="p">,</span>
+                                              <span class="mi">0</span>
+                                      <span class="p">],</span>
+                                      <span class="nt">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                              <span class="p">}</span>
+                      <span class="p">},</span>
+                      <span class="nt">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;hsl(180,100%,80%)&quot;</span>
+              <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;scale&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/gz3d-brain-visualizer-json.jpg"><img alt="../../../_images/gz3d-brain-visualizer-json.jpg" class="align-center" src="../../../_images/gz3d-brain-visualizer-json.jpg" style="width: 50%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="performance-monitor">
+<h2>Performance Monitor<a class="headerlink" href="#performance-monitor" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In order to detect performance issues, you can profile the simulation using the <strong>Performance Monitor</strong> available from the toolbar.
+The diagram illustrates the cumulative time taken by the different components of a simulation.</p>
+<p>Transfer functions, the brain and world simulation are shown as sectors of a pie-chart representing the whole time passed in simulating the experiment.</p>
+<a class="reference internal image-reference" href="../../../_images/gz3d-performance-monitor.jpg"><img alt="../../../_images/gz3d-performance-monitor.jpg" class="align-center" src="../../../_images/gz3d-performance-monitor.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="5-gz3d-interact.html">Interact with the simulation</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="64-gz3d-3dsettings.html">3D Settings</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

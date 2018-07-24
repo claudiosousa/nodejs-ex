@@ -1,0 +1,242 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Create an experiment &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Web Cockpit" href="index.html" />
+    <link rel="next" title="Find help" href="2-gz3d-help.html" />
+    <link rel="prev" title="Clone an experiment and start a simulation" href="1-esv-main.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/user_manual/user_interface/12-gz3d-create-experiment.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">User Manual</a>
+                    
+                    <a href="index.html">Web Cockpit</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="1-esv-main.html">Clone an experiment and start a simulation</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="2-gz3d-help.html">Find help</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="create-an-experiment">
+<h1>Create an experiment<a class="headerlink" href="#create-an-experiment" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>On the entrance page,  <strong>My Experiments</strong> tab lets you create an experiment
+by selecting models for the environment, the robot and the brain.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/create-new-experiment.jpg"><img alt="../../../_images/create-new-experiment.jpg" class="align-center" src="../../../_images/create-new-experiment.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>A model can be selected from the template model library provided with the NRP, from your private storage or from a file
+stored on your computer.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/choose-environment.jpg"><img alt="../../../_images/choose-environment.jpg" class="align-center" src="../../../_images/choose-environment.jpg" style="width: 100%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>If you select a model located on your computer, it will be added to your private library inside your storage space.
+For environment and robot models, you can select a zip file from your computer. This zip file must be a zipped folder
+containing a file named model.config at its root. The format of this file is described in the example below.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&#39;1.0&#39;?&gt;</span>
+<span class="nt">&lt;model</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="na">xmlns=</span><span class="s">&quot;http://schemas.humanbrainproject.eu/SP10/2017/robot_model_config&quot;</span>
+<span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://schemas.humanbrainproject.eu/SP10/2017/robot_model_config</span>
+<span class="s">../robot_model_configuration.xsd&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;name&gt;</span>HBP Clearpath Robotics Husky A200<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;license&gt;</span>GPL<span class="nt">&lt;/license&gt;</span>
+    <span class="nt">&lt;sdf</span> <span class="na">version=</span><span class="s">&quot;1.5&quot;</span><span class="nt">&gt;</span>model.sdf<span class="nt">&lt;/sdf&gt;</span>
+    <span class="nt">&lt;thumbnail&gt;</span>thumbnail.png<span class="nt">&lt;/thumbnail&gt;</span>
+    <span class="nt">&lt;author&gt;</span>
+        <span class="nt">&lt;name&gt;</span>J. Camilo Vasquez Tieck<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;email&gt;</span>tieck@fzi.de<span class="nt">&lt;/email&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Ryan Gariepy<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;email&gt;</span>rgariepy@clearpathrobotics.com<span class="nt">&lt;/email&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Oliver Zweigle<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;email&gt;</span>zweigle@fzi<span class="nt">&lt;/email&gt;</span>
+    <span class="nt">&lt;/author&gt;</span>
+    <span class="nt">&lt;description&gt;</span>
+        Model of a husky unmanned ground vehicle robot.
+        More information: https://www.clearpathrobotics.com/husky-unmanned-ground-vehicle-robot/
+    <span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;website&gt;</span>https://www.clearpathrobotics.com/husky-unmanned-ground-vehicle-robot/<span class="nt">&lt;/website&gt;</span>
+    <span class="nt">&lt;documentation&gt;</span>
+        <span class="nt">&lt;sensors&gt;</span>
+          <span class="nt">&lt;sensor</span> <span class="na">name=</span><span class="s">&quot;back_left_sensor&quot;</span> <span class="na">type=</span><span class="s">&quot;force_torque&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;sensor</span> <span class="na">name=</span><span class="s">&quot;back_right_sensor&quot;</span> <span class="na">type=</span><span class="s">&quot;force_torque&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;sensor</span> <span class="na">name=</span><span class="s">&quot;front_left_sensor&quot;</span> <span class="na">type=</span><span class="s">&quot;force_torque&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;sensor</span> <span class="na">name=</span><span class="s">&quot;front_right_sensor&quot;</span> <span class="na">type=</span><span class="s">&quot;force_torque&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;sensor</span> <span class="na">name=</span><span class="s">&quot;camera&quot;</span> <span class="na">type=</span><span class="s">&quot;camera&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/sensors&gt;</span>
+        <span class="nt">&lt;actuators&gt;</span>
+          <span class="nt">&lt;actuator</span> <span class="na">name=</span><span class="s">&quot;back_left_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;motor&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;actuator</span> <span class="na">name=</span><span class="s">&quot;back_right_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;motor&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;actuator</span> <span class="na">name=</span><span class="s">&quot;front_left_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;motor&quot;</span> <span class="nt">/&gt;</span>
+          <span class="nt">&lt;actuator</span> <span class="na">name=</span><span class="s">&quot;front_right_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;motor&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/actuators&gt;</span>
+        <span class="nt">&lt;publication</span> <span class="na">title=</span><span class="s">&quot;Semi-Supervised Spiking Neural Network for One-Shot Object Appearance Learning&quot;</span>
+        <span class="na">authors=</span><span class="s">&quot;J. Kaiser, R. Stal, A. Subramoney, A. Roennau, R. Dillmann&quot;</span>
+        <span class="na">url=</span><span class="s">&quot;https://link.springer.com/chapter/10.1007%2F978-3-662-54712-0_10&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;youtube</span> <span class="na">title=</span><span class="s">&quot;Tutorial - Overview of the HBP Neurorobotics Platform&quot;</span> <span class="na">youtube-id=</span><span class="s">&quot;uAXzS7SPFG4&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;picture</span> <span class="na">title=</span><span class="s">&quot;Home page&quot;</span> <span class="na">url=</span>
+        <span class="s">&quot;https://developer.humanbrainproject.eu/docs/projects/HBP%20Neurorobotics%20Platform/0.9/_images/gz3d-interact.png&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/documentation&gt;</span>
+<span class="nt">&lt;/model&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div>The content of model.config will be used to generate the online robot documentation, see <a class="reference external" href="36-gz3d-inspect-robot.html">Inspect a robot</a>.</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>When your choice of assembly is made, you can instantiate the experiment in your private storage
+by pressing the <strong>Clone</strong> button. The new experiment is now available in <strong>My Experiments</strong> tab.</p>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="1-esv-main.html">Clone an experiment and start a simulation</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="2-gz3d-help.html">Find help</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

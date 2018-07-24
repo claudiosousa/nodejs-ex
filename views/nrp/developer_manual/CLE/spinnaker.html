@@ -1,0 +1,376 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using Spinnaker in the Neurorobotics Platform &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Closed Loop Engine" href="index.html" />
+    <link rel="next" title="ExD Backend" href="../ExDbackend/index.html" />
+    <link rel="prev" title="Transfer Functions" href="transfer_functions.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/developer_manual/CLE/spinnaker.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Developer Manual</a>
+                    
+                    <a href="index.html">Closed Loop Engine</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="transfer_functions.html">Transfer Functions</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="../ExDbackend/index.html">ExD Backend</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="using-spinnaker-in-the-neurorobotics-platform">
+<h1>Using Spinnaker in the Neurorobotics Platform<a class="headerlink" href="#using-spinnaker-in-the-neurorobotics-platform" title="Permalink to this headline">¶</a></h1>
+<p>Spinnaker is a neuromorphic hardware capable to run neuroscientific experiments on dedicated hardware
+in real time. The NRP has specific support for Spinnaker communicating over Ethernet.</p>
+<div class="section" id="installing-spinnaker">
+<h2>Installing Spinnaker<a class="headerlink" href="#installing-spinnaker" title="Permalink to this headline">¶</a></h2>
+<p>At the moment, we rely directly on the master branch of the Spinnaker tools. We do not use the released PyPy version
+as it is largely outdated. For instance, it does not support live updates of Poisson generators and does not work with PyNN version 0.9.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you really want to run the NRP using the released PyPy version of their toolchain, manually set the PyNN and neo requirements of the CLE to 0.8.3 and 0.4, respectively, and run a build command</p>
+</div>
+<div class="section" id="python-requirements">
+<h3>Python Requirements<a class="headerlink" href="#python-requirements" title="Permalink to this headline">¶</a></h3>
+<p>Activate the platform virtual env and install the Python dependencies.</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>source $NRP_VIRTUAL_ENV/bin/activate
+pip install pylru enum34 six &quot;requests&gt;=2.4.1&quot; jsonschema &quot;rig&gt;=2.0.0,&lt;3.0.0&quot; &quot;quantities&gt;=0.12.1&quot; &quot;lazyarray&gt;=0.2.9,&lt;=0.2.9&quot; &quot;appdirs&gt;=1.4.2,&lt;2.0.0&quot; &quot;neo==0.5.1&quot;
+deactivate
+</pre></div>
+</div>
+</div>
+<div class="section" id="c-compiler">
+<h3>C Compiler<a class="headerlink" href="#c-compiler" title="Permalink to this headline">¶</a></h3>
+<p>Follow the <cite>instructions to install a C compiler &lt;http://spinnakermanchester.github.io/common_pages/4.0.0/Compiler.html&gt;</cite></p>
+</div>
+<div class="section" id="installing">
+<h3>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h3>
+<p>Create a directory for the spinnaker tools. In the remainder, we will assume it is <code class="docutils literal"><span class="pre">$HBP/spinnaker</span></code>.</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>mkdir $HBP/spinnaker &amp;&amp; cd $HBP/spinnaker
+git clone https://github.com/SpiNNakerManchester/SupportScripts.git
+</pre></div>
+</div>
+<p>Next, you need to set up the C environment variables:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>export SPINN_DIRS=$HBP/spinnaker
+export PATH=$PATH:$SPINN_DIRS/spinnaker_tools/tools
+export PERL5LIB=$SPINN_DIRS/spinnaker_tools/tools
+export NEURAL_MODELLING_DIRS=$HBP/spinnaker/sPyNNaker/neural_modelling
+</pre></div>
+</div>
+<p>Then run the support script to fetch all repositories and build everything.</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>cd $HBP/spinnaker
+source $NRP_VIRTUAL_ENV/bin/activate
+SupportScripts/install.sh PyNN8
+SupportScripts/automatic_make.sh
+SupportScripts/setup.sh
+python $HBP/spinnaker/sPyNNaker8/spynnaker8/setup-pynn.py
+python -c &quot;import pyNN.spiNNaker&quot;
+deactivate
+</pre></div>
+</div>
+<p>The last command of the previous batch should have created a file called <em>.spynnaker.cfg</em> in your home directory.
+Edit that with an editor of your choice and set <em>machineName</em> and <em>version</em> according to the board that you have.
+For a Spinn-3 board, that is <em>version=3</em> and <em>machineName=192.168.240.253</em>; for a 48-chip board, it is <em>version=5</em> and <em>machineName=192.168.240.1</em>.</p>
+<p>Accordingly, you should configure the ethernet adapter that is connected with your board to use the IP address <em>192.168.240.2</em> and subnet-mask
+<em>255.255.255.0</em>. The default gateway can be <em>0.0.0.0</em>. Check this network setup for example using the command <code class="docutils literal"><span class="pre">ifconfig</span></code>. This command can also
+be used to change the network settings accordingly.</p>
+<p>To setup the ethernet connection using ethernet connection <em>eth0</em>, simply run the following:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>sudo ifconfig eth0 192.168.240.2 netmask 255.255.255.0
+</pre></div>
+</div>
+<p>Additional help may be found in the <cite>install manual &lt;http://spinnakermanchester.github.io/development/devenv.html&gt;</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The very first integration of Spinnaker required a patching of the signal handlers. This is no longer necessary.</p>
+</div>
+</div>
+</div>
+<div class="section" id="supported-device-types">
+<h2>Supported device types<a class="headerlink" href="#supported-device-types" title="Permalink to this headline">¶</a></h2>
+<p>In the remainder the supported device types are listed together with a rough sketch of their implementation.</p>
+<div class="section" id="spike-recorders">
+<h3>Spike recorders<a class="headerlink" href="#spike-recorders" title="Permalink to this headline">¶</a></h3>
+<p>We have a spike recorder implementation. This implementation does <em>not</em> use the recording interface of Spinnaker
+provided via PyNN, but rather uses a live connection. This enables us to receive a packet whenever a neuron of the selected
+population has spiked.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As the number of ethernet connections to a board is very limited (to about 7), we bundle all spike recorders into a single live connection.</p>
+</div>
+<p>Because we get that package, spike recorders in Spinnaker can be used as trigger devices for Transfer Functions.
+That is, you can run a TF whenever a certain neuron has spiked at all. If this is not done, then the spike
+recorder simply aggregates all spike messages that it receives since the last CLE timestep.</p>
+</div>
+<div class="section" id="leaky-integrator-exp">
+<h3>Leaky Integrator Exp<a class="headerlink" href="#leaky-integrator-exp" title="Permalink to this headline">¶</a></h3>
+<p>The integration also uses leaky integrators to exchange data with the world simulation. That is, the spikes
+are integrated on the board and the neuron on the board sends a multicast command (through an LPG) to the host
+that carries the membrane potential.</p>
+<p>In addition to the usual parameters for the leaky integrators, the leaky integrator implementation for Spinnaker
+also supports a parameter <em>timesteps</em> that indicates the number of internal timesteps separating two consecutive packets.
+For example, when <em>timesteps</em> is set to 10, the default value, the packets are sent every 10ms of simulated time.
+These packets can of course be used to trigger Transfer Functions.</p>
+</div>
+<div class="section" id="poisson-generators">
+<h3>Poisson generators<a class="headerlink" href="#poisson-generators" title="Permalink to this headline">¶</a></h3>
+<p>The rate of Poisson generators is essentially a simple neuron parameter and can therefore be
+changed through the PyNN interface quite easily. However, these changes are only transmitted when <em>run</em> is called for
+the next time.</p>
+<p>Spinnaker also has a support for making regular Poisson generator populations aware of reconfiguration
+due to a command packet that carries the new rate as payload. In the implementation of Poisson generators,
+we use a combination of these techniques: As long as this control connection is not established, we use the regular
+PyNN interface to set the rate accordingly. When the ethernet connection to perform live changes of the rates is
+established, we use this one.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Poisson generators are the main reason we are using the developer install of the Spinnaker software and not the
+released version.</p>
+</div>
+<p>Again, we bundle Poisson connections in order to save ethernet connections.</p>
+</div>
+<div class="section" id="spike-injectors">
+<h3>Spike Injectors<a class="headerlink" href="#spike-injectors" title="Permalink to this headline">¶</a></h3>
+<p>Spinnaker also provides a technique to inject single spikes into a network, again using a separate ethernet connection.
+We use this connection for a device type introduced exclusively for Spinnaker: The spike injector device.</p>
+<p>A communicator component according to the spike injector interface is an object with an <em>inject_spikes()</em> method
+that you can use to insert single spikes into the connected population at a given point in time (for example as a response
+to some sensor input). Spike injectors further carry the parameters as any spike injecting device to set the weight,
+delay and connector of the spike injector. Further, there is a parameter <em>n</em> to specify the amount of spike injector nodes created
+for the device.</p>
+</div>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>Anyways, the Spinnaker integration currently has some severe drawbacks compared to nest, which still is our standard simulator:</p>
+<ul class="simple">
+<li>Spinnaker currently has no support for population views or assemblies. This is a problem for us,
+because this means that you cannot record all neurons that are interesting for you at once.</li>
+<li>Spinnaker does not allow the network to be changed after the simulation has already started.
+Given that all of our GUI editors are meant as live editors, this means you can hardly edit the experiment using GUIs</li>
+<li>Resetting a simulation is not possible in Spinnaker (at least not as it is implemented it now). Thus,
+we either have to rework the reset function a lot or disable it for Spinnaker simulations (we are working on the latter)</li>
+<li>Pausing the simulation may take a very long time in the asynchronous mode, so we are also working
+to disable this feature for Spinnaker simulations</li>
+<li>Due to sockets left open after a simulation, we do not support running multiple Spinnaker simulations.
+Currently, the simulation server needs to be restarted after each Spinnaker simulation. This will be fixed in
+the future by running each simulation in its own process.</li>
+</ul>
+<p>Spinnaker only achieves realtime if you set the internal timestep to 1ms (which is the default for Spinnaker). Nest, however, runs with 0.1ms timestep. If you run Spinnaker with a timestep
+of 1.0ms (do that by inserting a call to the setup method to override the defaults we set in the platform), Spinnaker runs ten times slower than realtime. As an alternative,
+you can also change the hardware minimum timestep globally for your machine. You do that by editing the <em>.spynnaker.cfg</em> file in your home directory.</p>
+</div>
+<div class="section" id="integration-levels">
+<h2>Integration levels<a class="headerlink" href="#integration-levels" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we explain the integration levels implemented and/or planned in more detail.</p>
+<div class="section" id="synchronous">
+<h3>Synchronous<a class="headerlink" href="#synchronous" title="Permalink to this headline">¶</a></h3>
+<p>In the first level, we wanted to run Spinnaker in the exact same way we run nest. That is, we repeatedly
+run the simulation for very short time slice. However, this causes quite a large overhead that slows
+down the simulation to a realtime factor of about 1:30 even for a small simulation (since the overhead
+of a run call for 100ms of simulated time is in the magnitude of seconds).</p>
+<p>To use the synchronous Spinnaker simulation, make sure you use the <code class="docutils literal"><span class="pre">SynchronousSpinnakerSimulation</span></code> mode
+and use transfer functions synchronized with the CLE (that is, do not use triggers).</p>
+<p>To reduce the communication overhead, in particular to reduce the need for recordings, the synchronous Spinnaker mode
+also uses the asynchronous communication with Spinnaker.</p>
+</div>
+<div class="section" id="asynchronous">
+<h3>Asynchronous<a class="headerlink" href="#asynchronous" title="Permalink to this headline">¶</a></h3>
+<p>The second level of the integration is the asynchronous Spinnaker integration. Here, the idea is to
+drastically increase the timestep of the Spinnaker simulation (such that the overhead is reduced) and
+have the communication with the robot asynchronous to the main simulation loop.</p>
+<p>For that, one needs to use asynchronous transfer functions that realize such out-of-order data exchange.
+As soon as all data exchange between the simulators happens asynchronously, one can safely increase the internal
+timestep of the simulation. For this, the maximal CLE timestep has been increased to an hour. However, on a local install,
+one can easily increase this limit locally by changing the value in the XML schema and then regenerate the code from it.
+Currently, all device implementations support an asynchronous mode.</p>
+<p>The asynchronous Spinnaker integration allows to run a closed-loop neurorobotics experiment arbitrarily
+close to real time (as long as your scene does not get too complex) at the expense that the world simulation
+and the neural simulation may diverge and the features to pause or reset an experiment are no longer available.</p>
+</div>
+<div class="section" id="music">
+<h3>MUSIC<a class="headerlink" href="#music" title="Permalink to this headline">¶</a></h3>
+<p>We also have the plan to integrate Spinnaker via MUSIC in order to achieve a low overhead of the simulation
+but still have a good synchronization between the simulators. This will be exploratory work in SGA-II.</p>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p>In this section, several experiences of common problems are listed.</p>
+<div class="section" id="my-experiment-only-starts-after-some-period-of-time">
+<h3>My experiment only starts after some period of time<a class="headerlink" href="#my-experiment-only-starts-after-some-period-of-time" title="Permalink to this headline">¶</a></h3>
+<p>This is normal. Spinnaker does most of its overhead when the simulation is started for the first time.
+For a small experiment, it takes about half a minute to get everything running. In that period of time,
+the simulation is frozen and the simulation time freezes.</p>
+<p>You can actually consult the logs to see in particular what Spinnaker is doing.</p>
+</div>
+<div class="section" id="i-cannot-start-a-second-spinnaker-experiment-after-the-first-one-is-terminated">
+<h3>I cannot start a second Spinnaker experiment after the first one is terminated<a class="headerlink" href="#i-cannot-start-a-second-spinnaker-experiment-after-the-first-one-is-terminated" title="Permalink to this headline">¶</a></h3>
+<p>This is a known issue. There are currently some open sockets that prevent a second Spinnaker simulation. However, as currently all simulations are performed
+within the same simulation server process, this means that at most one Spinnaker simulation can be run. Afterwards, the simulation server
+must be reset. This is a known problem and we are working on that.</p>
+</div>
+<div class="section" id="my-neurons-do-not-spike">
+<h3>My neurons do not spike<a class="headerlink" href="#my-neurons-do-not-spike" title="Permalink to this headline">¶</a></h3>
+<p>At the time of writing, Spinnaker is limited in the neuron models that are supported. For example, the
+conductance-based leaky integrate and fire neuron model with alpha-shaped post-synaptic currents (<code class="docutils literal"><span class="pre">IF_cond_alpha</span></code>)
+that is used in many experiments based on nest is unavailable for Spinnaker. Rather, in Spinnaker you would
+use a neuron model with exponential-shaped decay (<code class="docutils literal"><span class="pre">IF_curr_exp</span></code>). However, this neuron model requires much more
+stimuli in order to spike at all, because the membrane potential decays much quicker.</p>
+<p>For example, if you want that a neuron spikes if it receives a single spike, you need synaptic weights of about 2.0.
+The default weight of a Poisson generator is 0.00015. Therefore, you would probably want to set the weight of a
+Poisson generator explicitly, otherwise your Poisson generator will not have an effect on the <code class="docutils literal"><span class="pre">IF_curr_exp</span></code> neuron
+due to the neuron model.</p>
+</div>
+<div class="section" id="my-simulation-is-not-working-reliably">
+<h3>My simulation is not working reliably<a class="headerlink" href="#my-simulation-is-not-working-reliably" title="Permalink to this headline">¶</a></h3>
+<p>All communication that happens between the simulation server and the Spinnaker board is done through UDP connections.
+UDP does not provide reliable communication, so it may happen that some packets are simply not delivered. Therefore, if your simulation
+depends heavily on the advent of seldom, sparse events, this may be a problem and there is nothing we can do about it.</p>
+<p>However, the more likely case is that some of the UDP packets are blocked, perhaps by a Firewall. The NRP uses mainly ports 19996, 19997 and 19999
+for spike recorders, updates of Poisson generators and spike injectors. Please check that these ports are open.</p>
+</div>
+<div class="section" id="the-precision-of-the-leaky-integrator-is-very-low">
+<h3>The precision of the leaky integrator is very low<a class="headerlink" href="#the-precision-of-the-leaky-integrator-is-very-low" title="Permalink to this headline">¶</a></h3>
+<p>Unfortunately, there is nothing we can do about that. The membrane potential is sent as an integer where it should
+rather be a S1615.</p>
+</div>
+<div class="section" id="what-is-a-s1615">
+<h3>What is a S1615?<a class="headerlink" href="#what-is-a-s1615" title="Permalink to this headline">¶</a></h3>
+<p>A S1615 is a fixed-point number with 16 binary digits before and 15 binary digits after the point. The format is used in the communication
+of the Spinnaker software to the board quite extensively and limits the precision of data exchange.</p>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="transfer_functions.html">Transfer Functions</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="../ExDbackend/index.html">ExD Backend</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,212 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Variables in Transfer Functions &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Using TFs specified directly in Python" href="python_only_tfs.html" />
+    <link rel="prev" title="Tutorial: Accessing virtual sensors" href="virtual_sensors.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/variables.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="virtual_sensors.html">Tutorial: Accessing virtual sensors</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="python_only_tfs.html">Tutorial: Using TFs specified directly in Python</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-variables-in-transfer-functions">
+<h1>Tutorial: Variables in Transfer Functions<a class="headerlink" href="#tutorial-variables-in-transfer-functions" title="Permalink to this headline">¶</a></h1>
+<p>The evaluation of certain experiments requires observing the world and or the brain simulation and
+judge based on the observations whether an experiment is executed successfully or not. These
+decisions can be based on metrics which can be observed directly or have to be derived from
+observable values.</p>
+<p>Transfer functions interconnect the two different simulations and are executed iteratively after
+each simulation step. Therefore, they are also suitable to aggregate measurements in order to
+determine relevant metrics. This tutorial demonstrates the use of global and local variables to
+use transfer functions as means of aggregating metrics.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Transfer function variables are currently only available in the python transfer function
+framework. An extension of the BIBI model is planned for the near future.</p>
+</div>
+<p>Transfer function variables are mapped to parameters of the transfer function similar to the
+mappings of robot devices (e.g. <cite>&#64;nrp.MapRobotSubscriber</cite>) or brain devices (e.g. <cite>&#64;nrp.MapSpikeSink</cite>).
+The following code snipped demonstrates declaring a transfer function local variable <cite>last_t</cite> to
+which the current value of <cite>t</cite> (the simulation time) is stored to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;last_t&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">calculate_diff_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">last_t</span><span class="p">):</span>
+    <span class="n">diff_t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="n">last_t</span><span class="o">.</span><span class="n">value</span>
+    <span class="c1"># do something important with the difference</span>
+    <span class="n">last_t</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">t</span>
+</pre></div>
+</div>
+<p>The <cite>initial_value</cite> keyword allows to initialize the variable before the first invocation of the
+transfer function. After that the variable stores the last value assigned to its <cite>value</cite> property
+for the lifetime of the transfer function. The scope of a transfer function variable is local to a
+transfer function by default.</p>
+<p>Additionally, transfer function variables can also be declared globally, to be accessible from
+different transfer functions. For this it is necessary to explicitly specify the scope of the
+variable to be global.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;shared_among_all_tfs&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="n">nrp</span><span class="o">.</span><span class="n">GLOBAL</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">calculate_diff_t</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">shared_among_all_tfs</span><span class="p">):</span>
+    <span class="c1"># do some calculation</span>
+</pre></div>
+</div>
+<p>In order to prevent from multiple global variables to create naming conflicts it is possible to
+specify a global key that is used to identify the variable. In the following example the parameter
+<cite>shared_var</cite> of the first transfer function maps to the same variable as the parameter <cite>shared_v</cite> of
+the second one. If no global key is specified the parameter name is used as identifier.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;shared_var&quot;</span><span class="p">,</span> <span class="n">global_key</span><span class="o">=</span><span class="s2">&quot;shared_var_no_1&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="n">nrp</span><span class="o">.</span><span class="n">GLOBAL</span><span class="p">)</span>
+<span class="nd">@nrp.Robot2Neuron</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">calculate_sth_1</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">shared_among_all_tfs</span><span class="p">):</span>
+    <span class="c1"># do some calculation</span>
+
+<span class="nd">@nrp.MapVariable</span><span class="p">(</span><span class="s2">&quot;shared_v&quot;</span><span class="p">,</span> <span class="n">global_key</span><span class="o">=</span><span class="s2">&quot;shared_var_no_1&quot;</span><span class="p">,</span> <span class="n">initial_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="n">nrp</span><span class="o">.</span><span class="n">GLOBAL</span><span class="p">)</span>
+<span class="nd">@nrp.Neuron2Robot</span><span class="p">(</span><span class="n">Topic</span><span class="p">(</span><span class="s2">&quot;/metrics/some_metric&quot;</span><span class="p">,</span> <span class="n">std_msgs</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">Float32</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">calculate_sth_2</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">shared_v</span><span class="p">):</span>
+    <span class="c1"># do some calculation</span>
+</pre></div>
+</div>
+<p>Although the examples showed only single variable mappings it is nevertheless possible to map
+multiple variable to a transfer function or to combine variable mappings with other parameters (
+e.g. <cite>&#64;nrp.MapRobotSubscriber</cite>)</p>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="virtual_sensors.html">Tutorial: Accessing virtual sensors</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="python_only_tfs.html">Tutorial: Using TFs specified directly in Python</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

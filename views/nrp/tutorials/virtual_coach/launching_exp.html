@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Launching an Experiment from the Virtual Coach &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Virtual Coach Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Interacting with an Experiment from the Virtual Coach" href="interacting_exp.html" />
+    <link rel="prev" title="Virtual Coach Tutorial" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/virtual_coach/launching_exp.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Virtual Coach Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="index.html">Virtual Coach Tutorial</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="interacting_exp.html">Tutorial: Interacting with an Experiment from the Virtual Coach</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-launching-an-experiment-from-the-virtual-coach">
+<h1>Tutorial: Launching an Experiment from the Virtual Coach<a class="headerlink" href="#tutorial-launching-an-experiment-from-the-virtual-coach" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="starting-the-virtual-coach">
+<h2>Starting the Virtual Coach<a class="headerlink" href="#starting-the-virtual-coach" title="Permalink to this headline">¶</a></h2>
+<p>There are different ways to start a Virtual Coach instance. With a local NRP install you can use the alias <em>cle-virtual-coach</em> in three different ways:</p>
+<ol class="arabic">
+<li><p class="first"><strong>Launch a Jupyter Notebook session</strong></p>
+<p>To launch a Jupyter Notebook session just run <cite>cle-virtual-coach jupyter notebook</cite> in a terminal. Of course, Jupyter Notebook has to be installed prior.</p>
+</li>
+<li><p class="first"><strong>Launch an interactive python interpreter session</strong></p>
+<p>To launch an interactive python interpreter session just run <cite>cle-virtual-coach python</cite> in a terminal.</p>
+</li>
+<li><p class="first"><strong>Launch a python script with arguments</strong></p>
+<p>To launch a python script <cite>foo.py</cite> with arguments <cite>a b c</cite> just run <cite>cle-virtual-coach foo.py a b c</cite>.</p>
+</li>
+</ol>
+<p>This information is also available in the alias help cle-virtual-coach -h.</p>
+</div>
+<div class="section" id="launching-a-simulation">
+<h2>Launching a Simulation<a class="headerlink" href="#launching-a-simulation" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s assume we launched the Virtual Coach in an interactive session, whether in a jupyter notebook or in the python interpreter. The first thing we need to do is to import the Virtual Coach and create a VirtualCoach instance with the appropriate backend.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">hbp_nrp_virtual_coach.virtual_coach</span> <span class="kn">import</span> <span class="n">VirtualCoach</span>
+<span class="n">vc</span> <span class="o">=</span> <span class="n">VirtualCoach</span><span class="p">(</span><span class="n">environment</span><span class="o">=</span><span class="s1">&#39;local&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we chose the local machine as the backend server. You can choose custom backends by modifying proxy section in the config.json. The default environment options are <cite>staging</cite>, <cite>dev</cite> and <cite>local</cite>.</p>
+<p>Once we created a VirtualCoach instance, we can use it to check out the current state of our environment. We can see a list of the available experiments to run, a list of the available servers to run experiments on, and a list of the currently running experiments.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">vc</span><span class="o">.</span><span class="n">print_experiment_list</span><span class="p">()</span>
+<span class="n">vc</span><span class="o">.</span><span class="n">print_available_servers</span><span class="p">()</span>
+<span class="n">vc</span><span class="o">.</span><span class="n">print_running_experiments</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After making sure our experiments exist and enough resources are available, we can attempt to launch an experiment. In this next section we will launch the Template Husky experiment. To launch a specific experiment, we need to specify its configuration name, which we can get from the experiment list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sim</span> <span class="o">=</span> <span class="n">vc</span><span class="o">.</span><span class="n">launch_experiment</span><span class="p">(</span><span class="s1">&#39;ExDTemplateHusky&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Launching an experiment can take some time and once it&#8217;s been successfully launched, we&#8217;ll get a <cite>Simulation Successfully Created</cite> log.</p>
+<p>We can also make sure that the experiment has been launched by querying the Virtual Coach for currently running experiments.</p>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="index.html">Virtual Coach Tutorial</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="interacting_exp.html">Tutorial: Interacting with an Experiment from the Virtual Coach</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>

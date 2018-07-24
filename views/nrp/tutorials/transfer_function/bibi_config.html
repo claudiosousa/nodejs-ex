@@ -1,0 +1,375 @@
+
+
+
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial: Writing a BIBI Configuration &mdash; HBP Neurorobotics Platform 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/hbpdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/hbpdoc.js"></script>
+    <link rel="top" title="HBP Neurorobotics Platform 2.0.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Transfer function advanced Tutorial" href="index.html" />
+    <link rel="next" title="Tutorial: Writing a Neuron2Robot TF" href="neuron2robot.html" />
+    <link rel="prev" title="Tutorial: Tutorial Setup" href="setup.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body role="document">
+<div class="hbpdoc-page">
+    <section class="hbpdoc-title page-header">
+        <a class="project-title" href="../../../index.html">HBP Neurorobotics Platform</a>
+
+        <a class="hbpdoc-toc-toggle pull-right" href>
+            <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+        </a>
+    </section>
+    <section class="hbpdoc-main">
+        <nav class="hbpdoc-sidebar hbpdoc-container">
+            <a class="hbpdoc-toc-toggle pull-right" href>
+                <span class="zmdi zmdi-menu"></span> <span class="sr-only icon-text">Menu</span>
+            </a>
+            
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authentication.html">Authentication and user account</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Neurorobotics Platform</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../user_manual/index.html">User Manual</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_manual/index.html">Developer Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../specifications/index.html">Specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact-and-support.html">Contact &amp; Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/nrp/tutorials/transfer_function/bibi_config.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+       </nav>
+
+        <article class="hbpdoc-content">
+
+            <div class="content">
+                
+                <div class="breadcrumb breadcrumb-meta expand">
+                    
+                    <a href="../../index.html">Neurorobotics Platform</a>
+                    
+                    <a href="../index.html">Tutorials</a>
+                    
+                    <a href="index.html">Transfer function advanced Tutorial</a>
+                    
+                </div>
+                
+
+                <aside class="hbpdoc-hnav hbpdoc-hnav-top">
+                    
+                    <span class="hbpdoc-hnav-previous">
+                        previous: <a class="hbpdoc-hnav-link" href="setup.html">Tutorial: Tutorial Setup</a>
+                    </span>
+                    
+                    
+                    <span class="hbpdoc-hnav-next">
+                        next: <a class="hbpdoc-hnav-link" href="neuron2robot.html">Tutorial: Writing a Neuron2Robot TF</a>
+                    </span>
+                    
+                </aside>
+
+                
+  <div class="section" id="tutorial-writing-a-bibi-configuration">
+<h1>Tutorial: Writing a BIBI Configuration<a class="headerlink" href="#tutorial-writing-a-bibi-configuration" title="Permalink to this headline">¶</a></h1>
+<p>A BIBI Configuration contains all the information necessary to couple a brain model with a robot model using transfer functions and to run these simulations
+in the Closed Loop Engine (CLE). Thus, besides references to the brain model and the robot model, it contains the specifications of the TFs.</p>
+<p>As an XML file, such a specification may be created by tools. We have an XML Schema document to validate BIBI Configuration files.</p>
+<p>As the complete metamodel of the BIBI Configuration may be a bit complicated at the beginning, we build a BIBI Configuration stepwise in XML.
+However, at any point in time, you may find it useful to lookup <a class="reference internal" href="../../specifications/bibi_configuration.html"><em>BIBI Model Specification</em></a> for a complete reference.</p>
+<p>To begin, we start with a new BIBI Configuration. BIBI configuration files should have the file extension <strong>.bibi</strong>.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;bibi</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+      <span class="na">xmlns=</span><span class="s">&quot;http://schemas.humanbrainproject.eu/SP10/2014/BIBI&quot;</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;/bibi&gt;</span>
+</pre></div>
+</div>
+<p>Here we have simply created a <em>bibi</em> element in the BIBI Configuration namespace.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The namespace is subject to change. In particular, the XML Schema definition currently cannot be obtained via the given URL. In order to allow editors to provide tool support,
+we recommend to explicitly specify the location of the schema manually. This can be done using the following XML attribute (assuming that the schema file resides in <em>../bibi_configuration.xsd</em>):
+<em>xsi:schemaLocation=&#8221;http://schemas.humanbrainproject.eu/SP10/2014/BIBI ../bibi_configuration.xsd</em></p>
+</div>
+<div class="section" id="specification-of-the-neuronal-network">
+<h2>Specification of the neuronal network<a class="headerlink" href="#specification-of-the-neuronal-network" title="Permalink to this headline">¶</a></h2>
+<p>At the moment our BIBI Configuration is not valid. One of the reasons for this is that it lacks a description for the used neuronal network. We need to tell the CLE
+what brain models we are going to use and what neuron groups exist.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;brainModel&gt;</span>
+  <span class="nt">&lt;file&gt;</span>brain_model/braitenberg.py<span class="nt">&lt;/file&gt;</span>
+  <span class="nt">&lt;populations</span> <span class="na">population=</span><span class="s">&quot;sensors&quot;</span> <span class="na">xsi:type=</span><span class="s">&quot;Range&quot;</span> <span class="na">from=</span><span class="s">&quot;0&quot;</span> <span class="na">to=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;populations</span> <span class="na">population=</span><span class="s">&quot;actors&quot;</span> <span class="na">xsi:type=</span><span class="s">&quot;Range&quot;</span> <span class="na">from=</span><span class="s">&quot;6&quot;</span> <span class="na">to=</span><span class="s">&quot;8&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/brainModel&gt;</span>
+</pre></div>
+</div>
+<p>This code block must be inserted as a child element of the root <em>bibi</em> element.</p>
+<p>In this example, we have specified that the brain model from <em>braitenberg.py</em> should be used. This path is either absolute or
+relative to the <strong>NRP_MODELS_DIRECTORY</strong> environment variable. Models of neural networks are usually in the <em>brain_models</em> directory inside this directory.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When using the CLE through the NRP platform, the <strong>NRP_MODELS_DIRECTORY</strong> will be your user directory.
+When using the CLE separately as e.g. for development machines, this environment variable should be set to a Models repository clone.</p>
+</div>
+<p>We further specify two neuron groups, the sensors ranging from 0 to 5 (exclusive) and the actors from 6 to and excluding 8. Note that these neuron groups exactly match the
+neuron groups (colors) from <a class="reference internal" href="setup.html"><em>setup page</em></a>. We will use these neuron groups in the TFs for reference.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The XML Schema enforces that the neuronal network file has the correct extension <strong>.py</strong> (or <em>.h5</em> for legacy h5 formatted network files).</p>
+</div>
+</div>
+<div class="section" id="specification-of-the-robot-model">
+<h2>Specification of the robot model<a class="headerlink" href="#specification-of-the-robot-model" title="Permalink to this headline">¶</a></h2>
+<p>Our BIBI Configuration also needs a robot model. We specify it simply by the file name of the robot model in the SDF format. This file then contains both the robot meshes as well as
+information on the plugins used by this robot.</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;bodyModel&gt;</span>husky_model/model.sdf<span class="nt">&lt;/bodyModel&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The XML Schema enforces that the brain model has the correct file extension <strong>.sdf</strong>.</p>
+</div>
+<p>Up to this point, the BIBI Configuration should look as follows:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;bibi</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+      <span class="na">xmlns=</span><span class="s">&quot;http://schemas.humanbrainproject.eu/SP10/2014/BIBI&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;brainModel&gt;</span>
+    <span class="nt">&lt;file&gt;</span>brain_model/braitenberg.py<span class="nt">&lt;/file&gt;</span>
+    <span class="nt">&lt;populations</span> <span class="na">population=</span><span class="s">&quot;sensors&quot;</span> <span class="na">xsi:type=</span><span class="s">&quot;Range&quot;</span> <span class="na">from=</span><span class="s">&quot;0&quot;</span> <span class="na">to=</span><span class="s">&quot;5&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;populations</span> <span class="na">population=</span><span class="s">&quot;actors&quot;</span> <span class="na">xsi:type=</span><span class="s">&quot;Range&quot;</span> <span class="na">from=</span><span class="s">&quot;6&quot;</span> <span class="na">to=</span><span class="s">&quot;8&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/brainModel&gt;</span>
+  <span class="nt">&lt;bodyModel&gt;</span>husky_model/model.sdf<span class="nt">&lt;/bodyModel&gt;</span>
+<span class="nt">&lt;/bibi&gt;</span>
+</pre></div>
+</div>
+<p>While we now have created a valid BIBI Configuration, it does not yet contain any TF, so the simulations will run in parallel with no connection to each other.
+To learn how to specify TFs, see <a class="reference internal" href="neuron2robot.html"><em>Tutorial: Writing a Neuron2Robot TF</em></a>.</p>
+</div>
+<div class="section" id="transfer-functions">
+<h2>Transfer Functions<a class="headerlink" href="#transfer-functions" title="Permalink to this headline">¶</a></h2>
+<p>There are three ways to include a Transfer Function into a BIBI model:</p>
+<ul class="simple">
+<li>Reference an existing Transfer function from a Python file</li>
+<li>Include the Python code directly in the BIBI model</li>
+<li>Include a model-based description of the Transfer Function in the BIBI model</li>
+</ul>
+<p>To reference a transfer function from a file, the following code in the BIBI model is sufficient:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;transferFunction</span> <span class="na">xsi:type=</span><span class="s">&quot;PythonTransferFunction&quot;</span> <span class="na">src=</span><span class="s">&quot;your_tf.py&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>The file extension of the specified file does not matter as the file is loaded line by line and then executed in a sandboxed environment through RestrictedPython.</p>
+<p>Alternatively, the Python code for the Transfer Function may also be specified in-place:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;transferFunction</span> <span class="na">xsi:type=</span><span class="s">&quot;PythonTransferFunction&quot;</span><span class="nt">&gt;</span>
+  #<span class="cp">&lt;![CDATA[</span>
+<span class="cp">  @nrp.MapRobotSubscriber(&quot;camera&quot;, Topic(&#39;/husky/camera&#39;, sensor_msgs.msg.Image))</span>
+<span class="cp">  @nrp.MapSpikeSource(&quot;red_left_eye&quot;, nrp.brain.sensors[slice(0, 3, 2)], nrp.poisson)</span>
+<span class="cp">  @nrp.MapSpikeSource(&quot;red_right_eye&quot;, nrp.brain.sensors[slice(1, 4, 2)], nrp.poisson)</span>
+<span class="cp">  @nrp.MapSpikeSource(&quot;green_blue_eye&quot;, nrp.brain.sensors[4], nrp.poisson)</span>
+<span class="cp">  @nrp.Robot2Neuron()</span>
+<span class="cp">  def eye_sensor_transmit(t, camera, red_left_eye, red_right_eye, green_blue_eye):</span>
+<span class="cp">      &quot;&quot;&quot;</span>
+<span class="cp">      This transfer function uses OpenCV to compute the percentages of red pixels</span>
+<span class="cp">      seen by the robot on his left and on his right. Then, it maps these percentages</span>
+<span class="cp">      (see decorators) to the neural network neurons using a Poisson generator.</span>
+<span class="cp">      &quot;&quot;&quot;</span>
+<span class="cp">      bridge = CvBridge()</span>
+<span class="cp">      red_left = red_right = green_blue = 0.0</span>
+<span class="cp">      if not isinstance(camera.value, type(None)):</span>
+
+<span class="cp">          # Boundary limits of what we consider red (in HSV format)</span>
+<span class="cp">          lower_red = np.array([0, 30, 30])</span>
+<span class="cp">          upper_red = np.array([0, 255, 255])</span>
+
+<span class="cp">          # Get an OpenCV image</span>
+<span class="cp">          cv_image = bridge.imgmsg_to_cv2(camera.value, &quot;rgb8&quot;)</span>
+
+<span class="cp">          # Transform image to HSV (easier to detect colors).</span>
+<span class="cp">          hsv_image = cv2.cvtColor(cv_image, cv2.COLOR_RGB2HSV)</span>
+
+<span class="cp">          # Create a mask where every non red pixel will be a zero.</span>
+<span class="cp">          mask = cv2.inRange(hsv_image, lower_red, upper_red)</span>
+<span class="cp">          image_size = (cv_image.shape[0] * cv_image.shape[1])</span>
+
+<span class="cp">          if (image_size &gt; 0):</span>
+<span class="cp">              # Since we want to get left and right red values, we cut the image</span>
+<span class="cp">              # in 2.</span>
+<span class="cp">              half = cv_image.shape[1] // 2</span>
+
+<span class="cp">              # Get the number of red pixels in the image.</span>
+<span class="cp">              red_left = cv2.countNonZero(mask[:, :half])</span>
+<span class="cp">              red_right = cv2.countNonZero(mask[:, half:])</span>
+
+<span class="cp">              # We have to multiply the red rates by 2 since it is for an</span>
+<span class="cp">              # half image only. We also multiply all of them by 1000 so that</span>
+<span class="cp">              # we have enough spikes produced by the Poisson generator</span>
+<span class="cp">              red_left_eye.rate = 2 * 1000 * (red_left / float(image_size))</span>
+<span class="cp">              red_right_eye.rate = 2 * 1000 * (red_right / float(image_size))</span>
+<span class="cp">              green_blue_eye.rate = 75 * ((image_size - (red_left + red_right)) / float(image_size))</span>
+<span class="cp">  #]]&gt;</span>
+<span class="nt">&lt;/transferFunction&gt;</span>
+</pre></div>
+</div>
+<p>In the third option, we also allow to specify a Transfer Function in the BIBI model directly.
+This way is designed for tool interactivity, not for a manual specification.
+The following Transfer Function makes use of a built-in function to detect red pixels and is specified entirely in the BIBI model:</p>
+<div class="highlight-xml"><div class="highlight"><pre>  <span class="nt">&lt;device</span> <span class="na">name=</span><span class="s">&quot;left_wheel_neuron&quot;</span> <span class="na">type=</span><span class="s">&quot;LeakyIntegratorAlpha&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;neurons</span> <span class="na">xsi:type=</span><span class="s">&quot;Index&quot;</span> <span class="na">population=</span><span class="s">&quot;actors&quot;</span> <span class="na">index=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/device&gt;</span>
+  <span class="nt">&lt;device</span> <span class="na">name=</span><span class="s">&quot;right_wheel_neuron&quot;</span> <span class="na">type=</span><span class="s">&quot;LeakyIntegratorAlpha&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;neurons</span> <span class="na">xsi:type=</span><span class="s">&quot;Index&quot;</span> <span class="na">population=</span><span class="s">&quot;actors&quot;</span> <span class="na">index=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/device&gt;</span>
+  <span class="nt">&lt;returnValue</span> <span class="na">name=</span><span class="s">&quot;wheel&quot;</span> <span class="na">topic=</span><span class="s">&quot;/husky/cmd_vel&quot;</span> <span class="na">type=</span><span class="s">&quot;geometry_msgs.msg.Twist&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;body</span> <span class="na">xsi:type=</span><span class="s">&quot;Call&quot;</span> <span class="na">type=</span><span class="s">&quot;geometry_msgs.msg.Twist&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;linear&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Call&quot;</span> <span class="na">type=</span><span class="s">&quot;geometry_msgs.msg.Vector3&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;x&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Scale&quot;</span> <span class="na">factor=</span><span class="s">&quot;20&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;inner</span> <span class="na">xsi:type=</span><span class="s">&quot;Min&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;operand</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;left_wheel_neuron&quot;</span> <span class="na">property=</span><span class="s">&quot;voltage&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;operand</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;right_wheel_neuron&quot;</span> <span class="na">property=</span><span class="s">&quot;voltage&quot;</span><span class="nt">/&gt;</span>
+              <span class="nt">&lt;/inner&gt;</span>
+            <span class="nt">&lt;/value&gt;</span>
+          <span class="nt">&lt;/argument&gt;</span>
+          <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;y&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Constant&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;/argument&gt;</span>
+          <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;z&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Constant&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;/argument&gt;</span>
+        <span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/argument&gt;</span>
+      <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;angular&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Call&quot;</span> <span class="na">type=</span><span class="s">&quot;geometry_msgs.msg.Vector3&quot;</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;x&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Constant&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;/argument&gt;</span>
+          <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;y&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Constant&quot;</span> <span class="na">value=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;/argument&gt;</span>
+          <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;z&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;Scale&quot;</span> <span class="na">factor=</span><span class="s">&quot;100&quot;</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;inner</span> <span class="na">xsi:type=</span><span class="s">&quot;Subtract&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;operand</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;right_wheel_neuron&quot;</span> <span class="na">property=</span><span class="s">&quot;voltage&quot;</span><span class="nt">/&gt;</span>
+                <span class="nt">&lt;operand</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;left_wheel_neuron&quot;</span> <span class="na">property=</span><span class="s">&quot;voltage&quot;</span><span class="nt">/&gt;</span>
+              <span class="nt">&lt;/inner&gt;</span>
+            <span class="nt">&lt;/value&gt;</span>
+          <span class="nt">&lt;/argument&gt;</span>
+        <span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/argument&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/returnValue&gt;</span>
+<span class="nt">&lt;/transferFunction&gt;</span>
+<span class="nt">&lt;transferFunction</span> <span class="na">xsi:type=</span><span class="s">&quot;Robot2Neuron&quot;</span> <span class="na">name=</span><span class="s">&quot;eye_sensor_transmit&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;local</span> <span class="na">name=</span><span class="s">&quot;image_results&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;body</span> <span class="na">xsi:type=</span><span class="s">&quot;Call&quot;</span> <span class="na">type=</span><span class="s">&quot;hbp_nrp_cle.tf_framework.tf_lib.detect_red&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;argument</span> <span class="na">name=</span><span class="s">&quot;image&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;value</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;camera&quot;</span> <span class="na">property=</span><span class="s">&quot;value&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/argument&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/local&gt;</span>
+  <span class="nt">&lt;device</span> <span class="na">name=</span><span class="s">&quot;red_left_eye&quot;</span> <span class="na">type=</span><span class="s">&quot;Poisson&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;neurons</span> <span class="na">xsi:type=</span><span class="s">&quot;Range&quot;</span> <span class="na">population=</span><span class="s">&quot;sensors&quot;</span> <span class="na">from=</span><span class="s">&quot;0&quot;</span> <span class="na">to=</span><span class="s">&quot;3&quot;</span> <span class="na">step=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!--body xsi:type=&quot;Scale&quot; factor=&quot;0.002&quot;--&gt;</span>
+    <span class="nt">&lt;body</span> <span class="na">xsi:type=</span><span class="s">&quot;Scale&quot;</span> <span class="na">factor=</span><span class="s">&quot;1000.0&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;inner</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;image_results&quot;</span> <span class="na">property=</span><span class="s">&quot;left&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/device&gt;</span>
+  <span class="nt">&lt;device</span> <span class="na">name=</span><span class="s">&quot;red_right_eye&quot;</span> <span class="na">type=</span><span class="s">&quot;Poisson&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;neurons</span> <span class="na">xsi:type=</span><span class="s">&quot;Range&quot;</span> <span class="na">population=</span><span class="s">&quot;sensors&quot;</span> <span class="na">from=</span><span class="s">&quot;1&quot;</span> <span class="na">to=</span><span class="s">&quot;4&quot;</span> <span class="na">step=</span><span class="s">&quot;2&quot;</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!--body xsi:type=&quot;Scale&quot; factor=&quot;0.002&quot;--&gt;</span>
+    <span class="nt">&lt;body</span> <span class="na">xsi:type=</span><span class="s">&quot;Scale&quot;</span> <span class="na">factor=</span><span class="s">&quot;1000.0&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;inner</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;image_results&quot;</span> <span class="na">property=</span><span class="s">&quot;right&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/device&gt;</span>
+  <span class="nt">&lt;device</span> <span class="na">name=</span><span class="s">&quot;green_blue_eye&quot;</span> <span class="na">type=</span><span class="s">&quot;Poisson&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;neurons</span> <span class="na">xsi:type=</span><span class="s">&quot;Index&quot;</span> <span class="na">population=</span><span class="s">&quot;sensors&quot;</span> <span class="na">index=</span><span class="s">&quot;4&quot;</span><span class="nt">/&gt;</span>
+    <span class="c">&lt;!--body xsi:type=&quot;Scale&quot; factor=&quot;0.00025&quot;--&gt;</span>
+    <span class="nt">&lt;body</span> <span class="na">xsi:type=</span><span class="s">&quot;Scale&quot;</span> <span class="na">factor=</span><span class="s">&quot;1000.0&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;inner</span> <span class="na">xsi:type=</span><span class="s">&quot;ArgumentReference&quot;</span> <span class="na">name=</span><span class="s">&quot;image_results&quot;</span> <span class="na">property=</span><span class="s">&quot;go_on&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+  <span class="nt">&lt;/device&gt;</span>
+  <span class="nt">&lt;topic</span> <span class="na">name=</span><span class="s">&quot;camera&quot;</span> <span class="na">topic=</span><span class="s">&quot;/husky/camera&quot;</span> <span class="na">type=</span><span class="s">&quot;sensor_msgs.msg.Image&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/transferFunction&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            </div>
+
+            <aside class="hbpdoc-hnav hbpdoc-hnav-bottom">
+                
+                <span class="hbpdoc-hnav-previous">
+                    previous: <a class="hbpdoc-hnav-link" href="setup.html">Tutorial: Tutorial Setup</a>
+                </span>
+                
+                
+                <span class="hbpdoc-hnav-next">
+                    next: <a class="hbpdoc-hnav-link" href="neuron2robot.html">Tutorial: Writing a Neuron2Robot TF</a>
+                </span>
+                
+            </aside>
+        </article>
+    </section>
+
+
+    <div class="hbpdoc-footer">
+        HBP Neurorobotics Platform <small>2.0</small> 
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Human Brain Project.
+      Last updated on Jul 24, 2018.
+    </div>
+    </div>
+</div>
+
+  </body>
+</html>
